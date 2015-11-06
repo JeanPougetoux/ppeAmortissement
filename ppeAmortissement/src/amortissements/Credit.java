@@ -8,6 +8,8 @@ public class Credit
 {
 	public final static int AMORTISSEMENT_CONSTANTS = 1,
 			ANNUITES_CONSTANTES = 2;
+	public int typeCredit,duree;
+	public double montantEmprunte,annuiteMaximale,taux;
 
 	/**
 	 * Créée un crédit.
@@ -16,7 +18,17 @@ public class Credit
 	Credit (int typeCredit, double montantEmprunte, double annuiteMaximale,
 			double taux, int duree)
 	{
-		// TODO à compléter
+		if (typeCredit == 1){
+			this.typeCredit = AMORTISSEMENT_CONSTANTS;
+		}
+		else{
+			this.typeCredit = ANNUITES_CONSTANTES;
+		}
+		this.montantEmprunte = montantEmprunte;
+		this.annuiteMaximale = annuiteMaximale;
+		this.taux = taux;
+		this.duree = duree;
+		
 	}
 	
 	/**
@@ -25,8 +37,7 @@ public class Credit
 	
 	public double montantEmprunte()
 	{
-		// TODO à compléter
-		return 0;
+		return montantEmprunte;
 	}
 	
 	/**
@@ -35,8 +46,7 @@ public class Credit
 	
 	public double annuiteMaximale()
 	{
-		// TODO à compléter
-		return 0;
+		return annuiteMaximale;
 	}
 	
 	/**
@@ -45,8 +55,7 @@ public class Credit
 	
 	public double taux()
 	{
-		// TODO à compléter
-		return 0;
+		return taux;
 	}
 	
 	/**

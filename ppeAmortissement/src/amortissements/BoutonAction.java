@@ -54,15 +54,11 @@ public class BoutonAction extends AbstractAction{
 				printValeurs();
 			}
 			else{
-				fenetre.getErreur().setText("Il faut au minimum trois champs.");
-				fenetre.getErreur().setForeground(Color.red);
-				fenetre.getErreur().setVisible(true);
+				MessageErreur.ErreurNombre(fenetre);
 			}
 		}
 		else{
-			fenetre.getErreur().setText("Veuillez ne saisir que des valeurs unitaires");
-			fenetre.getErreur().setForeground(Color.red);
-			fenetre.getErreur().setVisible(true);
+			MessageErreur.ErreurLettre(fenetre);
 		}
 	}
 	

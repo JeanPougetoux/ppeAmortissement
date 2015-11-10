@@ -1,6 +1,5 @@
 package amortissements;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileWriter;
@@ -68,8 +67,6 @@ public class ExportExcel extends AbstractAction{
 	}
 	
 	public void enregistrementOk(){
-		fenetre.getErreur().setText("Tableau bien exporté");
-		fenetre.getErreur().setForeground(Color.green);
-		fenetre.getErreur().setVisible(true);
+		MessageErreur.BienEnregistrer(fenetre);
 	}
 }

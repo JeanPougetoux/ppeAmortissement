@@ -15,6 +15,7 @@ public class FenetrePrincipale extends JFrame {
 	private JTextField taux, duree, emprunt, remboursement;
 	private JLabel printTaux, printDuree, printEmprunt, printRemboursement, messageErreur;
 	private JPanel panel;
+	private JTable tableau;
 
 	/**
 	 * Page principale où se passe toutes les interactions
@@ -75,6 +76,9 @@ public class FenetrePrincipale extends JFrame {
 	
 		drawTableau();
 		
+		JButton bouton2 = new JButton(new ExportExcel(this, "export"));
+		panel.add(bouton2);
+
 		printTaux = new JLabel("Taux : ");
         current = printTaux.getBorder();
         empty = new EmptyBorder(20, 55, 20, 0);
@@ -116,7 +120,7 @@ public class FenetrePrincipale extends JFrame {
  
         String[] entetes = {"Années", "Restant dû", "Intérêt", "Amortissement", "Annuité", "Valeur nette"};
  
-        JTable tableau = new JTable(donnees, entetes);
+        tableau = new JTable(donnees, entetes);
         JScrollPane scroll = new JScrollPane(tableau);
         Dimension dim = new Dimension(700, 300);
         scroll.setPreferredSize(dim);
@@ -157,5 +161,9 @@ public class FenetrePrincipale extends JFrame {
 	
 	public JLabel getErreur(){
 		return messageErreur;
+	}
+	
+	public JTable getTableau(){
+		return tableau;
 	}
 }

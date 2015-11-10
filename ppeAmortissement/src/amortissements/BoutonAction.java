@@ -1,5 +1,6 @@
 package amortissements;
 
+import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -54,11 +55,13 @@ public class BoutonAction extends AbstractAction{
 			}
 			else{
 				fenetre.getErreur().setText("Il faut au minimum trois champs.");
+				fenetre.getErreur().setForeground(Color.red);
 				fenetre.getErreur().setVisible(true);
 			}
 		}
 		else{
 			fenetre.getErreur().setText("Veuillez ne saisir que des valeurs unitaires");
+			fenetre.getErreur().setForeground(Color.red);
 			fenetre.getErreur().setVisible(true);
 		}
 	}

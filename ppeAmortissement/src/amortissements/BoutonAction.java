@@ -19,7 +19,7 @@ public class BoutonAction extends AbstractAction{
 	}
  
 	/**
-	 * Représente l'action liée au bouton
+	 * Représente l'action liée au bouton caca
 	 */
 	
 	public void actionPerformed(ActionEvent e) { 

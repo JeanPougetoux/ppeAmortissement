@@ -1,6 +1,5 @@
 package amortissements;
 
-import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -19,7 +18,7 @@ public class BoutonAction extends AbstractAction{
 	}
  
 	/**
-	 * Représente l'action liée au bouton caca
+	 * Représente l'action liée au bouton
 	 */
 	
 	public void actionPerformed(ActionEvent e) { 

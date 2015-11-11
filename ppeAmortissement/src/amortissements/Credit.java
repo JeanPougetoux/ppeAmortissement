@@ -73,8 +73,7 @@ public class Credit
 	
 	public TableauAmortissement getTableauAmortissement()
 	{
-		// TODO à compléter.
-		return null;
+		return new TableauAmortissement(this);
 	}
 	
 	/**

@@ -1,48 +1,52 @@
 package amortissements;
 
 /**
- * Représente le tableau d'amortissement d'un crédit.
+ * ReprÃ©sente le tableau d'amortissement d'un crÃ©dit.
  */
 
 public class TableauAmortissement 
 {
+	
 	/**
-	 * Crée le tableau d'amortissement du crédit passé en paramètre.
+	 * CrÃ©e le tableau d'amortissement du crÃ©dit passÃ© en paramÃ¨tre.
 	 */
+	String[] tableau;
 	
 	public TableauAmortissement(Credit credit)
 	{
-		// TODO à compléter.
+		for (int i=0;i<credit.duree();i++){
+			tableau[]
+		}
 	}
 	
 	/**
-	 * Retourne la durée de l'amortissement.
+	 * Retourne la durÃ©e de l'amortissement.
 	 */
 	
 	public int getNbLignes()
 	{
-		// TODO à compléter.
+		// TODO Ã  complÃ©ter.
 		return 0;
 	}
 	
 	/**
-	 * Retourne la i-ème ligne du tableau d'amortissement.
-	 * Les indices commencent à 0.
+	 * Retourne la i-Ã¨me ligne du tableau d'amortissement.
+	 * Les indices commencent Ã  0.
 	 */
 	
 	public Ligne getLigne(int i)
 	{
-		// TODO à compléter.
+		// TODO Ã  complÃ©ter.
 		return null;		
 	}
 	
 	/**
-	 * Retourne une représentation du tableau au format 
-	 * chaîne de caractères.
+	 * Retourne une reprÃ©sentation du tableau au format 
+	 * chaÃ®ne de caractÃ¨res.
 	 */
 	
 	public String toString() {
-		// TODO à compléter.
+		// TODO Ã  complÃ©ter.
 		return null;
 	}
 }

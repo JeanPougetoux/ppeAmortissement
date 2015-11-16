@@ -22,9 +22,7 @@ public class TableauAmortissement
 		
 		for (int i=1;i<credit.duree();i++){
 			
-			tableau[i] = tableau[i-1].ligneSuivante(credit);
-		
-			
+			tableau[i] = tableau[i-1].ligneSuivante(credit);	
 		}
 	}
 	

@@ -97,7 +97,6 @@ public class Credit
 			double interet = (annuiteMaximale - amortissement);
 			double taux = interet/montantEmprunte;
 			return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
-			
 		}
 		else if (typeCredit == ANNUITES_CONSTANTES){
 			double annuite = annuiteMaximale +10;
@@ -117,11 +116,10 @@ public class Credit
 				tauxProbable = (tauxMax + tauxMin)/2;
 			}
 			return new Credit(typeCredit, montantEmprunte, annuiteMaximale, tauxProbable, duree);
-		
-			
 		}
 		return null;
 	}
+	
 	public static double calculTauxAnnuiteConstante(double montant, int duree, double taux){
 		double annuite = (montant*taux)/(1-Math.pow(1+taux, -duree));
 		return annuite;
@@ -191,5 +189,4 @@ public class Credit
 		}
 		return null;
 	}
-
 }

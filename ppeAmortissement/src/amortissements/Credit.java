@@ -96,7 +96,6 @@ public class Credit
 			double interet = (annuiteMaximale - amortissement);
 			double taux = interet/montantEmprunte;
 			return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
-			
 		}
 		else if (typeCredit == ANNUITES_CONSTANTES){
 			double annuite = annuiteMaximale +10;
@@ -116,11 +115,10 @@ public class Credit
 				tauxProbable = (tauxMax + tauxMin)/2;
 			}
 			return new Credit(typeCredit, montantEmprunte, annuiteMaximale, tauxProbable, duree);
-		
-			
 		}
 		return null;
 	}
+	
 	public static double calculTauxAnnuiteConstante(double montant, int duree, double taux){
 		double annuite = (montant*taux)/(1-Math.pow(1+taux, -duree));
 		return annuite;
@@ -189,16 +187,16 @@ public class Credit
 		}
 		return null;
 	}
-	public static void main(String[] args){
-		/*Credit cred = calculeMontantEmprunte(2,22391.8773,0.06,7);
-		double montant = cred.montantEmprunte();
-		System.out.println("Le montant emprunte est de  : " + montant + "euros");
-		//double a = AnnuiteCalculeTaux(20000,4,0.05);
-		*/
-		/*Credit mega = calculeAnnuiteMaximale(2, 35000,	0.07, 5);
-		System.out.println(mega.annuiteMaximale());*/
-		
-		Credit omega = calculeTaux (ANNUITES_CONSTANTES,200000,15000,20);
-		System.out.println("letaux du pret est de :"+omega.taux()*100+" %");
-	}
+//	public static void main(String[] args){
+//		/*Credit cred = calculeMontantEmprunte(2,22391.8773,0.06,7);
+//		double montant = cred.montantEmprunte();
+//		System.out.println("Le montant emprunte est de  : " + montant + "euros");
+//		//double a = AnnuiteCalculeTaux(20000,4,0.05);
+//		*/
+//		/*Credit mega = calculeAnnuiteMaximale(2, 35000,	0.07, 5);
+//		System.out.println(mega.annuiteMaximale());*/
+//		
+//		Credit omega = calculeTaux (ANNUITES_CONSTANTES,200000,15000,20);
+//		System.out.println("letaux du pret est de :"+omega.taux()*100+" %");
+//	}
 }

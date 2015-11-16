@@ -12,7 +12,7 @@ public class FenetrePrincipale extends JFrame {
 	private JTextField taux, duree, emprunt, remboursement;
 	private JLabel printTaux, printDuree, printEmprunt, printRemboursement, messageErreur;
 	private JLabel labelTaux, labelDuree, labelEmprunt, labelRemboursement, labelBottom;
-	private JPanel panel;
+	private JPanel panel, panel2;
 	private JButton bouton, bouton2;
 	private JScrollPane scroll;
 	private JTable tableau;
@@ -34,13 +34,22 @@ public class FenetrePrincipale extends JFrame {
 	
 	private void build(){
 		setTitle("Gestion de l'amortissement"); 
-		setSize(850,500); 
+		setSize(850,480); 
 		setLocationRelativeTo(null); 
 		setResizable(false); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		setContentPane(buildContentPane());
+		setContentPane(buildContentPaneHead());
+		getContentPane().add(buildContentPane());
 	}
 	
+	private JPanel buildContentPaneHead(){
+		panel2 = new JPanel();
+		panel2.setLayout(new FlowLayout());
+		panel2.setBackground(Color.white);
+		drawHead();
+		panelHead();
+		return panel2;
+	}
 	/**
 	 * Permet de remplir le JPanel avec les différents composants et
 	 * l'intègre au JFrame (page principale)
@@ -50,11 +59,9 @@ public class FenetrePrincipale extends JFrame {
 		panel = new JPanel();
 		panel.setLayout(new GridBagLayout());
 		panel.setBackground(Color.white);
-		drawHead();
 		drawTableau();
 		drawBody();
 		drawBottom();
-		panelHead();
 		panelTableau();
 		panelBottom();
 		return panel;
@@ -65,13 +72,13 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private void drawHead(){
 		labelTaux = new JLabel("Taux (en %) : ");
-		taux = new JTextField();
+		taux = new JTextField(04);
 		labelDuree = new JLabel("Durée (en années) : ");				
-		duree = new JTextField();
+		duree = new JTextField(04);
 		labelEmprunt = new JLabel("Montant emprunté : ");		
-		emprunt = new JTextField();
-		labelRemboursement = new JLabel("Montant des remboursements : ");		
-		remboursement = new JTextField();
+		emprunt = new JTextField(04);
+		labelRemboursement = new JLabel("Annuité maximale : ");		
+		remboursement = new JTextField(04);
 		
 		bouton = new JButton(new BoutonAction(this, "valider"));
 	}
@@ -103,46 +110,22 @@ public class FenetrePrincipale extends JFrame {
 	private void drawBottom(){
 		 messageErreur = new JLabel("Veuillez ne saisir que des valeurs unitaires");
 	     messageErreur.setForeground(Color.red);
-//	     messageErreur.setVisible(false);
+	     messageErreur.setVisible(false);
 	}
 	
 	/*
 	 * Place le header 
 	 */
 	private void panelHead(){
-		gbc = new GridBagConstraints();
-		gbc.gridx = gbc.gridy = 0;
-		panel.add(labelTaux, gbc);
-		gbc = new GridBagConstraints();
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		panel.add(taux, gbc);
-		gbc = new GridBagConstraints();
-		gbc.gridx = 2;
-		gbc.gridy = 0;
-		panel.add(labelDuree, gbc);
-		gbc.gridx = 3;
-		gbc.gridy = 0;
-		panel.add(duree, gbc);
-		gbc = new GridBagConstraints();
-		gbc.gridx = 4;
-		gbc.gridy = 0;
-		panel.add(labelEmprunt, gbc);
-		gbc.gridx = 5;
-		gbc.gridy = 0;
-		panel.add(emprunt, gbc);
-		gbc = new GridBagConstraints();
-		gbc.gridx = 6;
-		gbc.gridy = 0;
-		panel.add(labelRemboursement, gbc);
-		gbc.gridx = 7;
-		gbc.gridy = 0;			
-		panel.add(remboursement, gbc);		
-		gbc = new GridBagConstraints();;
-		gbc.gridwidth = GridBagConstraints.REMAINDER;
-		gbc.gridx = 8;
-		gbc.gridy = 0;		
-		panel.add(bouton, gbc);
+		panel2.add(labelTaux);
+		panel2.add(taux);
+		panel2.add(labelDuree);
+		panel2.add(duree);
+		panel2.add(labelEmprunt);
+		panel2.add(emprunt);
+		panel2.add(labelRemboursement);
+		panel2.add(remboursement);
+		panel2.add(bouton);
 	}
 	
 	/*
@@ -155,9 +138,11 @@ public class FenetrePrincipale extends JFrame {
 		gbc.gridy = 2;
 		gbc.gridwidth = GridBagConstraints.REMAINDER;		
 		gbc.fill = GridBagConstraints.BOTH;
+		gbc.insets = new Insets(20, 0, 0, 0);
 		panel.add(scroll, gbc);
 		gbc = new GridBagConstraints();
-		gbc.gridwidth = GridBagConstraints.REMAINDER;		
+		gbc.gridwidth = GridBagConstraints.REMAINDER;	
+		gbc.insets = new Insets(10, 300, 10, 0);
 		gbc.gridx = 8;
 		gbc.gridy = 3;
 		panel.add(bouton2, gbc);
@@ -195,7 +180,7 @@ public class FenetrePrincipale extends JFrame {
  
         tableau = new JTable(donnees, entetes);
         scroll = new JScrollPane(tableau);
-        Dimension dim = new Dimension(800, 300);
+        Dimension dim = new Dimension(760, 300);
         scroll.setPreferredSize(dim);
 	}
 	

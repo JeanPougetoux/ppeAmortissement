@@ -14,9 +14,7 @@ public class TableauAmortissement
 	
 	public TableauAmortissement(Credit credit)
 	{
-		for (int i=0;i<credit.duree();i++){
-			tableau[]
-		}
+		// TODO Ã  complÃ©ter.
 	}
 	
 	/**

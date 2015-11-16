@@ -141,8 +141,9 @@ public class Credit
 		}
 		else if (typeCredit == ANNUITES_CONSTANTES){
 			int duree = 0;
-			while(montantEmprunte>0){
-				montantEmprunte = montantEmprunte - (annuiteMaximale - montantEmprunte * taux);
+			double montant = montantEmprunte;
+			while(montant>0){
+				montant = montant - (annuiteMaximale - montant * taux);
 				duree ++;
 			}
 			return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);

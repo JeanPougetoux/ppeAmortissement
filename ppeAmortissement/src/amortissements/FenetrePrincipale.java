@@ -106,7 +106,7 @@ public class FenetrePrincipale extends JFrame {
 		 bouton2 = new JButton(new ExportExcel(this, "export"));
 		 messageErreur = new JLabel("Veuillez ne saisir que des valeurs unitaires");
 	     messageErreur.setForeground(Color.red);
-//	     messageErreur.setVisible(false);
+	     messageErreur.setVisible(false);
 	}
 	
 	/*

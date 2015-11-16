@@ -39,7 +39,7 @@ public class BoutonAction extends AbstractAction{
 		chaine += "Taux : ";
 		chaine += "  Durée : ";
 		chaine += "  Montant emprunté : ";
-		chaine += "  Montant de remboursement : ";
+		chaine += "  Annuité maximale : ";
 		fenetre.getLabelBottom().setText(chaine);
 	}
 	
@@ -54,7 +54,6 @@ public class BoutonAction extends AbstractAction{
 			
 			if(verifNombreValeurs()){
 				generationCredit();
-				printValeurs();
 			}
 			else{
 				MessageErreur.ErreurNombre(fenetre);
@@ -69,13 +68,13 @@ public class BoutonAction extends AbstractAction{
 	 * Met les valeurs validées dans les champs s'il n'y a pas d'erreurs
 	 */
 	
-	public void printValeurs(){
+	public void printValeurs(Credit cred){
 		String chaine = "";
-		chaine += "Taux : " + fenetre.getTaux().getText();
-		chaine += "%,  Durée : " + fenetre.getDuree().getText();
-		chaine += "année(s),  Montant emprunté : " + fenetre.getEmprunt().getText();
-		chaine += "euros,  Montant de remboursement : " ;
-		chaine += fenetre.getRemboursement().getText() + " euros";
+		chaine += "Taux : " + cred.taux();
+		chaine += "%,  Durée : " + cred.duree();
+		chaine += " année(s),  Montant emprunté : " + cred.montantEmprunte();
+		chaine += " euros,  Annuité maximale : " ;
+		chaine += cred.annuiteMaximale() + " euros";
 		fenetre.getLabelBottom().setText(chaine);
 	}
 	
@@ -136,18 +135,22 @@ public class BoutonAction extends AbstractAction{
 		System.out.println("ok2");
 		if(fenetre.getEmprunt().getText().length() == 0){
 			cred = Credit.calculeMontantEmprunte(typeCredit, remboursement, taux, duree);
+			printValeurs(cred);
 			System.out.println(cred.getTableauAmortissement());
 		}
 		else if(fenetre.getDuree().getText().length() == 0){
 			cred = Credit.calculeDuree(typeCredit, emprunt, remboursement, taux);
+			printValeurs(cred);
 			System.out.println(cred.getTableauAmortissement());
 		}
 		else if(fenetre.getRemboursement().getText().length() == 0){
 			cred = Credit.calculeAnnuiteMaximale(typeCredit, emprunt, taux, duree);
+			printValeurs(cred);
 			System.out.println(cred.getTableauAmortissement());
 		}
 		else if(fenetre.getTaux().getText().length() == 0){
 			cred = Credit.calculeTaux(typeCredit, emprunt, remboursement, duree);
+			printValeurs(cred);
 			System.out.println(cred.getTableauAmortissement());
 		}
 	}

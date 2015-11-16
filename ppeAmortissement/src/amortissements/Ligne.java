@@ -118,16 +118,14 @@ public class Ligne
 				double capifinal = (double)Math.round((initial - amort) * 100) / 100;
 				return new Ligne (annee,initial,interet,
 						amort,annuite,capifinal);
-			
-			}
-			
+			}	
 		}
 		else{
 			return null;
 		}
-		
 	}
 	public String toString() {
-		return "| "+getAnnee()+ " |"+ getCapitalInitial() + " |"+ getInterets() + " |"+ getAmortissements() + " |"+ getAnnuite() + " |"+ getCapitalFinal() + " |";
+		return "| "+getAnnee()+ "    |"+ getCapitalInitial() + "    |"+ getInterets() + "    |"
+	+ getAmortissements() + "    |"+ getAnnuite() + "    |"+ getCapitalFinal() + "    |";
 	}
 }

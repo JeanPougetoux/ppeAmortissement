@@ -10,11 +10,20 @@ public class TableauAmortissement
 	/**
 	 * CrÃ©e le tableau d'amortissement du crÃ©dit passÃ© en paramÃ¨tre.
 	 */
-	String[] tableau;
+	public final static int COLONNES_TABLEAU = 6;
 	
+	Ligne[] tableau;
+	Credit credit;
 	public TableauAmortissement(Credit credit)
 	{
-		// TODO Ã  complÃ©ter.
+		this.credit = credit;
+		tableau = new Ligne[credit.duree()];
+		tableau[0] = Ligne.premiereLigne(credit);
+		
+		for (int i=1;i<credit.duree();i++){
+			
+			tableau[i] = tableau[i-1].ligneSuivante(credit);	
+		}
 	}
 	
 	/**
@@ -23,8 +32,7 @@ public class TableauAmortissement
 	
 	public int getNbLignes()
 	{
-		// TODO Ã  complÃ©ter.
-		return 0;
+		return this.credit.duree();
 	}
 	
 	/**
@@ -34,8 +42,7 @@ public class TableauAmortissement
 	
 	public Ligne getLigne(int i)
 	{
-		// TODO Ã  complÃ©ter.
-		return null;		
+		return tableau[i];		
 	}
 	
 	/**
@@ -44,7 +51,10 @@ public class TableauAmortissement
 	 */
 	
 	public String toString() {
-		// TODO Ã  complÃ©ter.
-		return null;
+		String message = "";
+		for (int i=0;i<getNbLignes();i++){
+			message += tableau[i].toString()+"\n";
+		}
+		return message;
 	}
 }

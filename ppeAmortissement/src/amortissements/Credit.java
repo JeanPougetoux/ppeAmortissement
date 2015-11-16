@@ -18,15 +18,16 @@ public class Credit
 	Credit (int typeCredit, double montantEmprunte, double annuiteMaximale,
 			double taux, int duree)
 	{
+		
 		if (typeCredit == AMORTISSEMENT_CONSTANTS){
 			this.typeCredit = AMORTISSEMENT_CONSTANTS;
 		}
 		else{
 			this.typeCredit = ANNUITES_CONSTANTES;
 		}
-		this.montantEmprunte = montantEmprunte;
-		this.annuiteMaximale = annuiteMaximale;
-		this.taux = taux;
+		this.montantEmprunte = (double)Math.round(montantEmprunte * 100) / 100 ;
+		this.annuiteMaximale = (double)Math.round(annuiteMaximale * 100) / 100 ;
+		this.taux = (double)Math.round(taux * 100) / 100;
 		this.duree = duree;
 		
 	}
@@ -187,16 +188,4 @@ public class Credit
 		}
 		return null;
 	}
-//	public static void main(String[] args){
-//		/*Credit cred = calculeMontantEmprunte(2,22391.8773,0.06,7);
-//		double montant = cred.montantEmprunte();
-//		System.out.println("Le montant emprunte est de  : " + montant + "euros");
-//		//double a = AnnuiteCalculeTaux(20000,4,0.05);
-//		*/
-//		/*Credit mega = calculeAnnuiteMaximale(2, 35000,	0.07, 5);
-//		System.out.println(mega.annuiteMaximale());*/
-//		
-//		Credit omega = calculeTaux (ANNUITES_CONSTANTES,200000,15000,20);
-//		System.out.println("letaux du pret est de :"+omega.taux()*100+" %");
-//	}
 }

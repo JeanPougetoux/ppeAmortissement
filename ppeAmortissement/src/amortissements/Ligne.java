@@ -108,17 +108,16 @@ public class Ligne
 				double interets = capitalInital * credit.taux();
 				double amortissement = this.amortissements;
 				double annuite = interets + amortissement;
-				double capitalFinal = capitalInitial - amortissement;
-				return new Ligne (annee,capitalInitial,interets,amortissement,annuite,capitalFinal);
+				double capitalFinal = capitalInital - amortissement;
+				return new Ligne (annee,capitalInital,interets,amortissement,annuite,capitalFinal);
 			}
 			else{
-				double capitalInital = this.capitalFinal;
-				double annuite = this.annuite;
-				double interets = capitalInital * credit.taux();
-				double amortissement = annuite - interets;
-				
-				double capitalFinal = capitalInitial - amortissement;
-				return new Ligne (annee,capitalInitial,interets,amortissement,annuite,capitalFinal);
+				double initial = (double)Math.round(this.capitalFinal * 100) / 100 ;
+				double interet = (double)Math.round((this.capitalFinal*credit.taux()) * 100) / 100;
+				double amort = (double)Math.round((this.annuite - interet) * 100) / 100;
+				double capifinal = (double)Math.round((initial - amort) * 100) / 100;
+				return new Ligne (annee,initial,interet,
+						amort,annuite,capifinal);
 			
 			}
 			
@@ -127,5 +126,8 @@ public class Ligne
 			return null;
 		}
 		
+	}
+	public String toString() {
+		return "| "+getAnnee()+ " |"+ getCapitalInitial() + " |"+ getInterets() + " |"+ getAmortissements() + " |"+ getAnnuite() + " |"+ getCapitalFinal() + " |";
 	}
 }

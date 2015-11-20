@@ -89,7 +89,6 @@ public class Ligne
 	public static Ligne premiereLigne(Credit credit)
 	{
 		double amortissement = credit.annuiteMaximale()-(credit.montantEmprunte()*credit.taux());
-		
 		return new Ligne (0, credit.montantEmprunte(), credit.montantEmprunte()*credit.taux(), 
 		amortissement, credit.annuiteMaximale(),credit.montantEmprunte()-amortissement);
 	}

@@ -5,22 +5,30 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import amortissements.Credit;
+import amortissements.MonException;
 
 public class testCredit {
 
 	@Test
-	public void testCalculeTaux() {
+	public void testCalculeTaux() throws MonException {
 		int type = 1;
 		double montant = 100000;
 		double annuiteMaximale = 10000;
 		int duree = 20;
 		double taux = 0.05;
-		Credit credit = Credit.calculeTaux(Credit.AMORTISSEMENT_CONSTANTS, 100000, 10000, 20);
-		assertTrue(type == credit.typeCredit());
-		assertTrue(montant == credit.montantEmprunte());
-		assertTrue(annuiteMaximale == credit.annuiteMaximale());
-		assertTrue(duree == credit.duree());
-		assertTrue(taux == credit.taux());
+		Credit credit;
+		try {
+			credit = Credit.calculeTaux(Credit.AMORTISSEMENT_CONSTANTS, 100000, 10000, 20);
+			assertTrue(type == credit.typeCredit());
+			assertTrue(montant == credit.montantEmprunte());
+			assertTrue(annuiteMaximale == credit.annuiteMaximale());
+			assertTrue(duree == credit.duree());
+			assertTrue(taux == credit.taux());
+		} catch (MonException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		annuiteMaximale = 8024.26;
 		type = 2;

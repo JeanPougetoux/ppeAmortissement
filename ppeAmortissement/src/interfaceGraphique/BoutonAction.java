@@ -4,117 +4,117 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import amortissements.Credit;
+import amortissements.MonException;
 
-public class BoutonAction extends AbstractAction{
-	
+public class BoutonAction extends AbstractAction {
+
 	private static final long serialVersionUID = 1L;
 	private FenetrePrincipale fenetre;
 	private int typeCredit;
 
 	/**
-	 * Classe liée au bouton et aux actions qu'il déclenche
+	 * Classe liï¿½e au bouton et aux actions qu'il dï¿½clenche
 	 */
-	
-	public BoutonAction(FenetrePrincipale fenetre, String texte){
+
+	public BoutonAction(FenetrePrincipale fenetre, String texte) {
 		super(texte);
 		this.fenetre = fenetre;
 	}
- 
+
 	/**
-	 * Représente l'action liée au bouton
+	 * Reprï¿½sente l'action liï¿½e au bouton
 	 */
-	
-	public void actionPerformed(ActionEvent e) { 
+
+	public void actionPerformed(ActionEvent e) {
 		fenetre.getErreur().setVisible(false);
 		initializeNul();
 		initializeValeurs();
-	} 
-	
+	}
+
 	/**
-	 * Réinitialise les champs et la visibilité du message d'erreur
-	 * comme dans la page principale
+	 * Rï¿½initialise les champs et la visibilitï¿½ du message d'erreur comme dans
+	 * la page principale
 	 */
-	
-	public void initializeNul(){
+
+	public void initializeNul() {
 		fenetre.getErreur().setVisible(false);
 		String chaine = "";
 		chaine += "Taux : ";
-		chaine += "  Durée : ";
-		chaine += "  Montant emprunté : ";
-		chaine += "  Annuité maximale : ";
+		chaine += "  Durï¿½e : ";
+		chaine += "  Montant empruntï¿½ : ";
+		chaine += "  Annuitï¿½ maximale : ";
 		fenetre.getLabelBottom().setText(chaine);
 	}
-	
+
 	/**
-	 * Vérifie que les textFields sont au bon nombre (de 3) et qu'ils ne contiennent pas de lettre,
-	 * si tout est bon lance l'impression des valeurs
+	 * Vï¿½rifie que les textFields sont au bon nombre (de 3) et qu'ils ne
+	 * contiennent pas de lettre, si tout est bon lance l'impression des valeurs
 	 */
-	
-	public void initializeValeurs(){
-		if(getNumeric(fenetre.getTaux().getText()) && getNumeric(fenetre.getDuree().getText()) &&
-				getNumeric(fenetre.getEmprunt().getText()) && getNumeric(fenetre.getRemboursement().getText())){
-			
-			if(verifNombreValeurs()){
+
+	public void initializeValeurs() {
+		if (getNumeric(fenetre.getTaux().getText()) && getNumeric(fenetre.getDuree().getText())
+				&& getNumeric(fenetre.getEmprunt().getText()) && getNumeric(fenetre.getRemboursement().getText())) {
+
+			if (verifNombreValeurs()) {
 				generationCredit();
-			}
-			else{
+			} else {
 				MessageErreur.ErreurNombre(fenetre);
 			}
-		}
-		else{
+		} else {
 			MessageErreur.ErreurLettre(fenetre);
 		}
 	}
-	
+
 	/**
-	 * Met les valeurs validées dans les champs s'il n'y a pas d'erreurs
+	 * Met les valeurs validï¿½es dans les champs s'il n'y a pas d'erreurs
 	 */
-	
-	public void printValeurs(Credit cred){
+
+	public void printValeurs(Credit cred) {
 		String chaine = "";
-		chaine += "Taux : " + cred.taux()*100;
-		chaine += "%,  Durée : " + cred.duree();
-		chaine += " année(s),  Montant emprunté : " + cred.montantEmprunte();
-		chaine += " euros,  Annuité maximale : " ;
+		chaine += "Taux : " + cred.taux() * 100;
+		chaine += "%,  Durï¿½e : " + cred.duree();
+		chaine += " annï¿½e(s),  Montant empruntï¿½ : " + cred.montantEmprunte();
+		chaine += " euros,  Annuitï¿½ maximale : ";
 		chaine += cred.annuiteMaximale() + " euros";
 		fenetre.getLabelBottom().setText(chaine);
 	}
-	
+
 	/**
-	 * Permet de vérifier le nombre des valeurs saisies par l'utilisateur
+	 * Permet de vï¿½rifier le nombre des valeurs saisies par l'utilisateur
 	 */
-	
-	private boolean verifNombreValeurs(){
+
+	private boolean verifNombreValeurs() {
 		int compteur = 0;
 		boolean verif = false;
-		
-		if(fenetre.getTaux().getText().length() > 0)
+
+		if (fenetre.getTaux().getText().length() > 0)
 			compteur++;
-		if(fenetre.getDuree().getText().length() > 0)
+		if (fenetre.getDuree().getText().length() > 0)
 			compteur++;
-		if(fenetre.getEmprunt().getText().length() > 0)
+		if (fenetre.getEmprunt().getText().length() > 0)
 			compteur++;
-		if(fenetre.getRemboursement().getText().length() > 0)
+		if (fenetre.getRemboursement().getText().length() > 0)
 			compteur++;
-		if(compteur >= 3)
+		if (compteur >= 3)
 			verif = true;
 		return verif;
 	}
-	
-	/* 
-	 * Voit quel est le type du crédit
+
+	/*
+	 * Voit quel est le type du crï¿½dit
 	 */
-	private void defineTypeCredit(){
-		if(fenetre.getCombo().getSelectedItem() == "Amortissement constant")
+	private void defineTypeCredit() {
+		if (fenetre.getCombo().getSelectedItem() == "Amortissement constant")
 			typeCredit = 1;
-		else if(fenetre.getCombo().getSelectedItem() == "Annuitées constantes")
+		else if (fenetre.getCombo().getSelectedItem() == "Annuitï¿½es constantes")
 			typeCredit = 2;
 	}
-	
+
 	/*
-	 * Permet la génération d'un crédit en utilisant les valeur de notre fenêtre principale
+	 * Permet la gï¿½nï¿½ration d'un crï¿½dit en utilisant les valeur de notre fenï¿½tre
+	 * principale
 	 */
-	
+
 	private void generationCredit(){
 		defineTypeCredit();
 		double taux = 0;
@@ -136,36 +136,42 @@ public class BoutonAction extends AbstractAction{
 		}
 		Credit cred;
 		System.out.println("ok2");
-		if(fenetre.getEmprunt().getText().length() == 0){
-			cred = Credit.calculeMontantEmprunte(typeCredit, remboursement, taux, duree);
-			printValeurs(cred);
-			System.out.println(cred.getTableauAmortissement());
+		try
+		{
+			if(fenetre.getEmprunt().getText().length() == 0){
+				cred = Credit.calculeMontantEmprunte(typeCredit, remboursement, taux, duree);
+				printValeurs(cred);
+				System.out.println(cred.getTableauAmortissement());
+			}
+			else if(fenetre.getDuree().getText().length() == 0){
+				cred = Credit.calculeDuree(typeCredit, emprunt, remboursement, taux);
+				printValeurs(cred);
+				System.out.println(cred.getTableauAmortissement());
+			}
+			else if(fenetre.getRemboursement().getText().length() == 0){
+				cred = Credit.calculeAnnuiteMaximale(typeCredit, emprunt, taux, duree);
+				printValeurs(cred);
+				System.out.println(cred.getTableauAmortissement());
+			}
+			else if(fenetre.getTaux().getText().length() == 0){
+				cred = Credit.calculeTaux(typeCredit, emprunt, remboursement, duree);
+				printValeurs(cred);
+				System.out.println(cred.getTableauAmortissement());
+			}
 		}
-		else if(fenetre.getDuree().getText().length() == 0){
-			cred = Credit.calculeDuree(typeCredit, emprunt, remboursement, taux);
-			printValeurs(cred);
-			System.out.println(cred.getTableauAmortissement());
-		}
-		else if(fenetre.getRemboursement().getText().length() == 0){
-			cred = Credit.calculeAnnuiteMaximale(typeCredit, emprunt, taux, duree);
-			printValeurs(cred);
-			System.out.println(cred.getTableauAmortissement());
-		}
-		else if(fenetre.getTaux().getText().length() == 0){
-			cred = Credit.calculeTaux(typeCredit, emprunt, remboursement, duree);
-			printValeurs(cred);
-			System.out.println(cred.getTableauAmortissement());
+		catch(MonException e)
+		{
+			System.out.println(e);
 		}
 	}
-		
+
 	/**
-	 * Vérifie si une chaîne contient autre chose que des caractères numériques
+	 * Vï¿½rifie si une chaï¿½ne contient autre chose que des caractï¿½res numï¿½riques
 	 */
-	
-	private boolean getNumeric(String chaine){
-		for(int i = 0; i < chaine.length(); i++)
-		{
-			if(!Character.isDigit(chaine.charAt(i)) && chaine.charAt(i) != '.')
+
+	private boolean getNumeric(String chaine) {
+		for (int i = 0; i < chaine.length(); i++) {
+			if (!Character.isDigit(chaine.charAt(i)) && chaine.charAt(i) != '.')
 				return false;
 		}
 		return true;

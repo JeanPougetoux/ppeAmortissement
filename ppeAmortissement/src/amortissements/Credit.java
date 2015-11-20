@@ -25,11 +25,11 @@ public class Credit
 		else{
 			this.typeCredit = ANNUITES_CONSTANTES;
 		}
-		this.montantEmprunte = (double)Math.round(montantEmprunte * 100) / 100 ;
-		this.annuiteMaximale = (double)Math.round(annuiteMaximale * 100) / 100 ;
-		this.taux = (double)Math.round(taux * 100) / 100;
+		this.montantEmprunte = montantEmprunte;//(double)Math.round(montantEmprunte * 100) / 100 ;
+		this.annuiteMaximale = annuiteMaximale; //(double)Math.round(annuiteMaximale * 100) / 100 ;
+		this.taux = taux;//(double)Math.round(taux * 1000000) / 1000000;
 		this.duree = duree;
-		
+		System.out.println(this);
 	}
 	/**
 	 * Retourne le type du credit
@@ -89,20 +89,20 @@ public class Credit
 	
 	public static Credit calculeTaux(int typeCredit, 
 			double montantEmprunte, double annuiteMaximale,
-			int duree)
+			int duree)throws ExceptionCalculeTaux
 	{
 		
 		if (typeCredit == AMORTISSEMENT_CONSTANTS){
 			
-			if (testCalculeTaux(montantEmprunte,annuiteMaximale,duree)){
+				if(!testCalculeTaux(montantEmprunte,annuiteMaximale,duree)){
+					throw new ExceptionCalculeTaux();
+				}
+			
 				double amortissement = montantEmprunte/duree;
 				double interet = (annuiteMaximale - amortissement);
 				double taux = interet/montantEmprunte;
 				return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
-			}
-			else{
-				return null;
-			}
+			
 			
 		}
 		else if (typeCredit == ANNUITES_CONSTANTES){
@@ -132,7 +132,8 @@ public class Credit
 		return annuite;
 	}
 	public static boolean testCalculeTaux(double montant, double annuite, int duree){
-		return (montant>annuite) && (annuite > (montant/duree));
+		
+		return (montant > annuite) && (annuite > (montant / duree));
 	}
 
 	
@@ -199,4 +200,10 @@ public class Credit
 		}
 		return null;
 	}
+	
+	@Override
+	public String toString() {
+		return "" + typeCredit + ", " + montantEmprunte + ", " + annuiteMaximale()
+		+ ", " + taux + ", " + duree;
+	} 
 }

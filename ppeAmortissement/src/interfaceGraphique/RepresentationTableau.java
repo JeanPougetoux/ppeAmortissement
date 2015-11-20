@@ -1,4 +1,4 @@
-package amortissements;
+package interfaceGraphique;
 
 public class RepresentationTableau {
 

@@ -104,7 +104,7 @@ public class Ligne
 	{
 		int annee = this.annee + 1;
 		if (annee <= credit.duree()){
-			if (credit.typeCredit() == credit.AMORTISSEMENT_CONSTANTS){
+			if (credit.typeCredit() == Credit.AMORTISSEMENT_CONSTANTS){
 				double capitalInital = this.capitalFinal;
 				double interets = capitalInital * credit.taux();
 				double amortissement = this.amortissements;

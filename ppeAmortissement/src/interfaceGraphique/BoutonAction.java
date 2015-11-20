@@ -1,7 +1,9 @@
-package amortissements;
+package interfaceGraphique;
 
 import java.awt.event.*;
 import javax.swing.*;
+
+import amortissements.Credit;
 
 public class BoutonAction extends AbstractAction{
 	
@@ -70,7 +72,7 @@ public class BoutonAction extends AbstractAction{
 	
 	public void printValeurs(Credit cred){
 		String chaine = "";
-		chaine += "Taux : " + cred.taux();
+		chaine += "Taux : " + cred.taux()*100;
 		chaine += "%,  Durée : " + cred.duree();
 		chaine += " année(s),  Montant emprunté : " + cred.montantEmprunte();
 		chaine += " euros,  Annuité maximale : " ;
@@ -121,6 +123,7 @@ public class BoutonAction extends AbstractAction{
 		int duree = 0;
 		if(fenetre.getTaux().getText().length() != 0){
 			taux = Double.parseDouble(fenetre.getTaux().getText());
+			taux /= 100;
 		}
 		if(fenetre.getDuree().getText().length() != 0){
 			duree = Integer.parseInt(fenetre.getDuree().getText());

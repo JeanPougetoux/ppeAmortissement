@@ -15,6 +15,7 @@ public class Ligne
 	Ligne(int annee, double capitalInitial, double interets, 
 			double amortissements, double annuite, double capitalFinal)
 	{
+		
 		this.annee = annee;
 		this.capitalInitial = capitalInitial;
 		this.interets = interets;

@@ -93,10 +93,17 @@ public class Credit
 	{
 		
 		if (typeCredit == AMORTISSEMENT_CONSTANTS){
-			double amortissement = montantEmprunte/duree;
-			double interet = (annuiteMaximale - amortissement);
-			double taux = interet/montantEmprunte;
-			return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
+			
+			if (testCalculeTaux(montantEmprunte,annuiteMaximale,duree)){
+				double amortissement = montantEmprunte/duree;
+				double interet = (annuiteMaximale - amortissement);
+				double taux = interet/montantEmprunte;
+				return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
+			}
+			else{
+				return null;
+			}
+			
 		}
 		else if (typeCredit == ANNUITES_CONSTANTES){
 			double annuite = annuiteMaximale +10;
@@ -104,7 +111,7 @@ public class Credit
 			double tauxMax = tauxProbable;
 			double tauxMin = 0;
 			
-			while (annuite > annuiteMaximale +1 || annuite < annuiteMaximale -1){
+			while (Math.abs(annuite - annuiteMaximale ) > 0.1){
 				
 				annuite = calculTauxAnnuiteConstante(montantEmprunte,duree,tauxProbable);
 				if (annuite > annuiteMaximale){
@@ -123,6 +130,9 @@ public class Credit
 	public static double calculTauxAnnuiteConstante(double montant, int duree, double taux){
 		double annuite = (montant*taux)/(1-Math.pow(1+taux, -duree));
 		return annuite;
+	}
+	public static boolean testCalculeTaux(double montant, double annuite, int duree){
+		return (montant>annuite) && (annuite > (montant/duree));
 	}
 
 	

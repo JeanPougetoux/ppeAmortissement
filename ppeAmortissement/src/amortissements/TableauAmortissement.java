@@ -45,6 +45,14 @@ public class TableauAmortissement
 		return tableau[i];		
 	}
 	
+	/*
+	 * Retourne le tableau d'amortissement
+	 */
+	public Ligne[] getTableau()
+	{
+		return tableau;
+	}
+	
 	/**
 	 * Retourne une reprÃ©sentation du tableau au format 
 	 * chaÃ®ne de caractÃ¨res.

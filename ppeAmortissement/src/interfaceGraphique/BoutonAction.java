@@ -59,10 +59,12 @@ public class BoutonAction extends AbstractAction{
 			}
 			else{
 				MessageErreur.ErreurNombre(fenetre);
+				fenetre.clearTableau();
 			}
 		}
 		else{
 			MessageErreur.ErreurLettre(fenetre);
+			fenetre.clearTableau();
 		}
 	}
 	
@@ -135,26 +137,25 @@ public class BoutonAction extends AbstractAction{
 			remboursement = Double.parseDouble(fenetre.getRemboursement().getText());
 		}
 		Credit cred;
-		System.out.println("ok2");
 		if(fenetre.getEmprunt().getText().length() == 0){
 			cred = Credit.calculeMontantEmprunte(typeCredit, remboursement, taux, duree);
 			printValeurs(cred);
-			System.out.println(cred.getTableauAmortissement());
+			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
 		}
 		else if(fenetre.getDuree().getText().length() == 0){
 			cred = Credit.calculeDuree(typeCredit, emprunt, remboursement, taux);
 			printValeurs(cred);
-			System.out.println(cred.getTableauAmortissement());
+			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
 		}
 		else if(fenetre.getRemboursement().getText().length() == 0){
 			cred = Credit.calculeAnnuiteMaximale(typeCredit, emprunt, taux, duree);
 			printValeurs(cred);
-			System.out.println(cred.getTableauAmortissement());
+			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
 		}
 		else if(fenetre.getTaux().getText().length() == 0){
 			cred = Credit.calculeTaux(typeCredit, emprunt, remboursement, duree);
 			printValeurs(cred);
-			System.out.println(cred.getTableauAmortissement());
+			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
 		}
 	}
 		

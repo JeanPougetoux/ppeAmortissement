@@ -1,4 +1,4 @@
-package amortissements;
+package interfaceGraphique;
 
 import java.awt.Color;
 

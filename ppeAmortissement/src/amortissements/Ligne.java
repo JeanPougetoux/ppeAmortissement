@@ -125,7 +125,7 @@ public class Ligne
 		}
 	}
 	public String toString() {
-		return "| "+getAnnee()+ "    |"+ getCapitalInitial() + "    |"+ getInterets() + "    |"
-	+ getAmortissements() + "    |"+ getAnnuite() + "    |"+ getCapitalFinal() + "    |";
+		return "| "+getAnnee()+ "    |"+ (double)Math.round(getCapitalInitial() * 100) / 100 + "    |"+ (double)Math.round(getInterets() * 100) / 100 + "    |"
+	+ (double)Math.round(getAmortissements() * 100) / 100 + "    |"+ (double)Math.round(getAnnuite() * 100) / 100 + "    |"+ (double)Math.round(getCapitalFinal() * 100) / 100 + "    |";
 	}
 }

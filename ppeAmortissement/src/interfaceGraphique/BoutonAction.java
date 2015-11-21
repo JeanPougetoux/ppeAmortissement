@@ -4,7 +4,9 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import amortissements.Credit;
-import amortissements.MonException;
+import exceptions.ExceptionCalculeDuree;
+import exceptions.ExceptionCalculeTaux;
+
 
 public class BoutonAction extends AbstractAction {
 
@@ -159,7 +161,7 @@ public class BoutonAction extends AbstractAction {
 				System.out.println(cred.getTableauAmortissement());
 			}
 		}
-		catch(MonException e)
+		catch(ExceptionCalculeTaux | ExceptionCalculeDuree e)
 		{
 			System.out.println(e);
 		}

@@ -6,14 +6,24 @@ import org.junit.Test;
 
 import amortissements.Credit;
 import amortissements.Ligne;
+import exceptions.ExceptionCalculeDuree;
 
 public class testLigne {
-
+	
 	double montant = 100000;
 	double annuiteMaximale = 10000;
 	double taux = 0.05;
-	Credit cred = Credit.calculeDuree(Credit.AMORTISSEMENT_CONSTANTS, montant, annuiteMaximale, taux);
-	Ligne li = Ligne.premiereLigne(cred);
+	Credit cred ;
+	Ligne li ;
+
+	public testLigne()throws ExceptionCalculeDuree{
+		this.montant = 100000;
+		this.annuiteMaximale = 10000;
+		this.taux = 0.05;
+		this.cred = Credit.calculeDuree(Credit.AMORTISSEMENT_CONSTANTS, montant, annuiteMaximale, taux);
+		this.li = Ligne.premiereLigne(cred);
+	}
+	
 	
 	@Test
 	public void testPremiereLigne() {
@@ -26,7 +36,7 @@ public class testLigne {
 	}
 
 	@Test
-	public void testLigneSuivante() {
+	public void testLigneSuivante()throws ExceptionCalculeDuree {
 		Ligne liSuivante = li.ligneSuivante(cred);
 		assertTrue(liSuivante.getAmortissements() == 5000);
 		assertTrue(liSuivante.getAnnee() == 1);

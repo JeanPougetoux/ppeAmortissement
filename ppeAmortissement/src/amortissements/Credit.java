@@ -1,6 +1,8 @@
 package amortissements;
 
+import exceptions.ExceptionCalculeAnnuiteMaximale;
 import exceptions.ExceptionCalculeDuree;
+import exceptions.ExceptionCalculeMontant;
 import exceptions.ExceptionCalculeTaux;
 
 /**
@@ -114,7 +116,7 @@ public class Credit
 			double tauxMax = tauxProbable;
 			double tauxMin = 0;
 			if (!testCalculeTaux(montantEmprunte,annuiteMaximale,duree))
-				throw new ExceptionCalculeTaux("Données incorrect");
+				throw new ExceptionCalculeTaux("Impossible de calculer le taux, données incorrect");
 			
 			while (Math.abs(annuite - annuiteMaximale ) > 0.00001){
 				
@@ -151,9 +153,13 @@ public class Credit
 			double taux) throws ExceptionCalculeDuree
 	{
 		if (!testCalculeDuree(montantEmprunte, annuiteMaximale, taux))
-			throw new ExceptionCalculeDuree("données incorrect");
+			throw new ExceptionCalculeDuree("Impossible de calculer la durée, données inorrectes !");
 		if(typeCredit == AMORTISSEMENT_CONSTANTS){
-			int duree = (int)(montantEmprunte/(annuiteMaximale - montantEmprunte*taux));
+			
+			
+			System.out.println("duréé nécéssaire pour l'amortissement total :"+"\n" +montantEmprunte/(annuiteMaximale - montantEmprunte*taux)+"\n");
+			int duree = (int)(Math.round(montantEmprunte/(annuiteMaximale - montantEmprunte*taux)));
+			System.out.println("durée arrondie"+"\n"+duree);
 			Credit cred = new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
 			return cred;
 		}
@@ -170,7 +176,7 @@ public class Credit
 	}
 public static boolean testCalculeDuree(double montant, double annuite, double taux){
 		
-		return (taux > 0 && taux < 1 )&& (montant > annuite);
+		return (taux > 0 && taux < 1 )&& (montant > annuite)&& (annuite > montant*taux) && (annuite >0);
 	}
 	
 
@@ -180,8 +186,10 @@ public static boolean testCalculeDuree(double montant, double annuite, double ta
 	 */
 	
 	public static Credit calculeMontantEmprunte(int typeCredit, 
-			double annuiteMaximale,	double taux, int duree)
+			double annuiteMaximale,	double taux, int duree)throws ExceptionCalculeMontant
 	{
+		if (!testCalculeMontantEmprunte(annuiteMaximale,taux,duree))
+			throw new ExceptionCalculeMontant("impossible de calculer le montant : données incorrectes !");
 		if (typeCredit == AMORTISSEMENT_CONSTANTS){
 			double montantEmprunte = annuiteMaximale / (taux + 1/(double)(duree));
 			return new Credit (typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
@@ -192,6 +200,10 @@ public static boolean testCalculeDuree(double montant, double annuite, double ta
 		}
 		return null;
 	}
+	public static boolean testCalculeMontantEmprunte(double annuite, double taux, int duree){
+		
+		return (duree > 0)&& (taux > 0 && taux <1) && (annuite > 0);
+	}
 
 	/**
 	 * Retourne un crédit en calculant automatiquement
@@ -199,8 +211,10 @@ public static boolean testCalculeDuree(double montant, double annuite, double ta
 	 */
 	
 	public static Credit calculeAnnuiteMaximale(int typeCredit, 
-			double montantEmprunte,	double taux, int duree)
+			double montantEmprunte,	double taux, int duree)throws ExceptionCalculeAnnuiteMaximale
 	{
+		if (!testCalculeAnnuiteMaximale(montantEmprunte, taux, duree))
+			throw new ExceptionCalculeAnnuiteMaximale("Calcul de l'annuite impossible, données éronnées !");
 		if (typeCredit == AMORTISSEMENT_CONSTANTS){
 			double annuiteMaximale = (montantEmprunte*taux)+(montantEmprunte / duree);
 			return new Credit (typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
@@ -211,6 +225,11 @@ public static boolean testCalculeDuree(double montant, double annuite, double ta
 		}
 		return null;
 	}
+	public static boolean testCalculeAnnuiteMaximale(double montant, double taux, int duree){
+		
+		return (duree > 0)&& (taux > 0 && taux <1) && (montant > 0)&& (montant > duree);
+	}
+
 	
 	@Override
 	public String toString() {

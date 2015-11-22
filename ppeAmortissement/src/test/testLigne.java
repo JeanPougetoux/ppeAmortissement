@@ -10,9 +10,9 @@ import exceptions.ExceptionCalculeDuree;
 
 public class testLigne {
 	
-	double montant = 100000;
-	double annuiteMaximale = 10000;
-	double taux = 0.05;
+	double montant ;
+	double annuiteMaximale;
+	double taux ;
 	Credit cred ;
 	Ligne li ;
 

@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import amortissements.Credit;
+import exceptions.ExceptionCalculeAnnuiteMaximale;
 import exceptions.ExceptionCalculeDuree;
+import exceptions.ExceptionCalculeMontant;
 import exceptions.ExceptionCalculeTaux;
 
 
@@ -91,21 +93,34 @@ public class testCredit {
 		double annuiteMaximale = 34440.00;
 		int duree = 4;
 		double taux = 0.03;
-		Credit credit = Credit.calculeMontantEmprunte(Credit.AMORTISSEMENT_CONSTANTS, 34440.00, 0.03, 4);
-		assertTrue(type == credit.typeCredit());
-		assertTrue(montant == credit.montantEmprunte());
-		assertTrue(annuiteMaximale == credit.annuiteMaximale());
-		assertTrue(duree == credit.duree());
-		assertTrue(taux == credit.taux());
+		Credit credit;
+		try {
+			credit = Credit.calculeMontantEmprunte(Credit.AMORTISSEMENT_CONSTANTS, 34440.00, 0.03, 4);
+			assertTrue(type == credit.typeCredit());
+			assertTrue(montant == credit.montantEmprunte());
+			assertTrue(annuiteMaximale == credit.annuiteMaximale());
+			assertTrue(duree == credit.duree());
+			assertTrue(taux == credit.taux());
+		} catch (ExceptionCalculeMontant e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		type = 2;
 		annuiteMaximale = 33090.33;
-		credit = Credit.calculeMontantEmprunte(Credit.ANNUITES_CONSTANTES, 33090.33, 0.03, 4);
-		assertTrue(type == credit.typeCredit());
-		assertEquals(montant, credit.montantEmprunte(), 0.01);
-		assertTrue(annuiteMaximale == credit.annuiteMaximale());
-		assertTrue(duree == credit.duree());
-		assertTrue(taux == credit.taux());
+		try {
+			credit = Credit.calculeMontantEmprunte(Credit.ANNUITES_CONSTANTES, 33090.33, 0.03, 4);
+			assertTrue(type == credit.typeCredit());
+			assertEquals(montant, credit.montantEmprunte(), 0.01);
+			assertTrue(annuiteMaximale == credit.annuiteMaximale());
+			assertTrue(duree == credit.duree());
+			assertTrue(taux == credit.taux());
+		} catch (ExceptionCalculeMontant e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Test
@@ -115,21 +130,34 @@ public class testCredit {
 		double annuiteMaximale = 10000;
 		int duree = 20;
 		double taux = 0.05;
-		Credit credit = Credit.calculeAnnuiteMaximale(Credit.AMORTISSEMENT_CONSTANTS, 100000, 0.05, 20);
-		assertTrue(type == credit.typeCredit());
-		assertTrue(montant == credit.montantEmprunte());
-		assertTrue(annuiteMaximale == credit.annuiteMaximale());
-		assertTrue(duree == credit.duree());
-		assertTrue(taux == credit.taux());
+		Credit credit;
+		try {
+			credit = Credit.calculeAnnuiteMaximale(Credit.AMORTISSEMENT_CONSTANTS, 100000, 0.05, 20);
+			assertTrue(type == credit.typeCredit());
+			assertTrue(montant == credit.montantEmprunte());
+			assertTrue(annuiteMaximale == credit.annuiteMaximale());
+			assertTrue(duree == credit.duree());
+			assertTrue(taux == credit.taux());
+		} catch (ExceptionCalculeAnnuiteMaximale e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		type = 2;
 		annuiteMaximale = 8024.26;
-		credit = Credit.calculeAnnuiteMaximale(Credit.ANNUITES_CONSTANTES, 100000, 0.05, 20);
-		assertTrue(type == credit.typeCredit());
-		assertTrue(montant == credit.montantEmprunte());
-		assertTrue(annuiteMaximale == credit.annuiteMaximale());
-		assertTrue(duree == credit.duree());
-		assertTrue(taux == credit.taux());
+		try {
+			credit = Credit.calculeAnnuiteMaximale(Credit.ANNUITES_CONSTANTES, 100000, 0.05, 20);
+			assertTrue(type == credit.typeCredit());
+			assertTrue(montant == credit.montantEmprunte());
+			assertTrue(annuiteMaximale == credit.annuiteMaximale());
+			assertTrue(duree == credit.duree());
+			assertTrue(taux == credit.taux());
+		} catch (ExceptionCalculeAnnuiteMaximale e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

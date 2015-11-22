@@ -102,13 +102,24 @@ public class Ligne
 	public Ligne ligneSuivante(Credit credit)
 	{
 		int annee = this.annee + 1;
-		if (annee <= credit.duree()){
+		if (annee < credit.duree()){
 			if (credit.typeCredit() == Credit.AMORTISSEMENT_CONSTANTS){
 				double capitalInital = this.capitalFinal;
 				double interets = capitalInital * credit.taux();
 				double amortissement = this.amortissements;
 				double annuite = interets + amortissement;
 				double capitalFinal = capitalInital - amortissement;
+				if ((annee == credit.duree()-1) && (capitalFinal != 0))
+					if (capitalFinal > 0){
+						annuite += capitalFinal;
+						capitalFinal = 0;
+					}
+					else{
+						annuite -= capitalFinal;
+						capitalFinal = 0;
+					}
+						
+				
 				return new Ligne (annee,capitalInital,interets,amortissement,annuite,capitalFinal);
 			}
 			else{

@@ -127,6 +127,15 @@ public class Ligne
 				double interet = (double)Math.round((this.capitalFinal*credit.taux()) * 100) / 100;
 				double amort = (double)Math.round((this.annuite - interet) * 100) / 100;
 				double capifinal = (double)Math.round((initial - amort) * 100) / 100;
+				if ((annee == credit.duree()-1) && (capitalFinal != 0))
+					if (capitalFinal > 0){
+						annuite += capitalFinal;
+						capitalFinal = 0;
+					}
+					else{
+						annuite -= capitalFinal;
+						capitalFinal = 0;
+					}
 				return new Ligne (annee,initial,interet,
 						amort,annuite,capifinal);
 			}	

@@ -54,8 +54,16 @@ public class BoutonAction extends AbstractAction{
 		if(getNumeric(fenetre.getTaux().getText()) && getNumeric(fenetre.getDuree().getText()) &&
 				getNumeric(fenetre.getEmprunt().getText()) && getNumeric(fenetre.getRemboursement().getText())){
 			
-			if(verifNombreValeurs()){
-				generationCredit();
+			if(verifNombreValeurs() >= 3){
+				if(verifNombreValeurs() == 4){
+					if(!generationCredit4Valeurs()){
+						MessageErreur.ErreurValeurs(fenetre);
+						fenetre.clearTableau();
+					}
+				}
+				else{	
+					generationCredit();
+				}
 			}
 			else{
 				MessageErreur.ErreurNombre(fenetre);
@@ -86,9 +94,8 @@ public class BoutonAction extends AbstractAction{
 	 * Permet de vérifier le nombre des valeurs saisies par l'utilisateur
 	 */
 	
-	private boolean verifNombreValeurs(){
+	private int verifNombreValeurs(){
 		int compteur = 0;
-		boolean verif = false;
 		
 		if(fenetre.getTaux().getText().length() > 0)
 			compteur++;
@@ -98,9 +105,7 @@ public class BoutonAction extends AbstractAction{
 			compteur++;
 		if(fenetre.getRemboursement().getText().length() > 0)
 			compteur++;
-		if(compteur >= 3)
-			verif = true;
-		return verif;
+		return compteur;
 	}
 	
 	/* 
@@ -159,6 +164,23 @@ public class BoutonAction extends AbstractAction{
 		}
 	}
 		
+	/*
+	 * Vérifie si le crédit possède 4 bonnes valeurs
+	 */
+	private boolean generationCredit4Valeurs(){
+		double taux = Double.parseDouble(fenetre.getTaux().getText());
+		taux /= 100;
+		int duree = Integer.parseInt(fenetre.getDuree().getText());
+		double emprunt = Double.parseDouble(fenetre.getEmprunt().getText());
+		double remboursement = Double.parseDouble(fenetre.getRemboursement().getText());
+		defineTypeCredit();
+		Credit cred = Credit.calculeAnnuiteMaximale(typeCredit, emprunt, taux, duree);
+		if(cred.annuiteMaximale() == remboursement){
+			printValeurs(cred);
+			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
+		}
+		return(cred.annuiteMaximale() == remboursement);
+	}
 	/**
 	 * Vérifie si une chaîne contient autre chose que des caractères numériques
 	 */

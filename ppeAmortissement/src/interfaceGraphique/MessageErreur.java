@@ -23,6 +23,15 @@ public class MessageErreur {
 	}
 	
 	/**
+	 * Erreur si les quatres valeurs saisies ne sont pas bonnes
+	 */
+	public static void ErreurValeurs(FenetrePrincipale fenetre){
+		fenetre.getErreur().setText("Les valeurs ne correspondent pas");
+		fenetre.getErreur().setForeground(Color.red);
+		fenetre.getErreur().setVisible(true);
+	}
+	
+	/**
 	 * Export bien effecté
 	 */
 	public static void BienEnregistrer(FenetrePrincipale fenetre){

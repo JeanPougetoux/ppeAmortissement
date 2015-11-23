@@ -106,7 +106,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	
 	private void drawBottom(){
-		 labelBottom = new JLabel("Taux :   Durée :   Montant emprunté :   Montant de remboursement : ");
+		 labelBottom = new JLabel("Taux :   Durée :   Montant emprunté :   Annuité maximale : ");
 		 bouton2 = new JButton(new ExportExcel(this, "export"));
 		 messageErreur = new JLabel("Veuillez ne saisir que des valeurs unitaires");
 	     messageErreur.setForeground(Color.red);

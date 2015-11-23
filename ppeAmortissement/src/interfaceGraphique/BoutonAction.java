@@ -44,9 +44,9 @@ public class BoutonAction extends AbstractAction {
 		fenetre.getErreur().setVisible(false);
 		String chaine = "";
 		chaine += "Taux : ";
-		chaine += "  Durï¿½e : ";
-		chaine += "  Montant empruntï¿½ : ";
-		chaine += "  Annuitï¿½ maximale : ";
+		chaine += "  Durée : ";
+		chaine += "  Montant emprunté : ";
+		chaine += "  Annuitée maximale : ";
 		fenetre.getLabelBottom().setText(chaine);
 	}
 
@@ -58,11 +58,20 @@ public class BoutonAction extends AbstractAction {
 	public void initializeValeurs() {
 		if (getNumeric(fenetre.getTaux().getText()) && getNumeric(fenetre.getDuree().getText())
 				&& getNumeric(fenetre.getEmprunt().getText()) && getNumeric(fenetre.getRemboursement().getText())) {
-
-			if (verifNombreValeurs()) {
-				generationCredit();
-			} else {
+			if(verifNombreValeurs() >= 3){
+				if(verifNombreValeurs() == 4){
+					if(!generationCredit4Valeurs()){
+						MessageErreur.ErreurValeurs(fenetre);
+						fenetre.clearTableau();
+					}
+				}
+				else{	
+					generationCredit();
+				}
+			}
+			else{
 				MessageErreur.ErreurNombre(fenetre);
+				fenetre.clearTableau();
 			}
 		} else {
 			MessageErreur.ErreurLettre(fenetre);
@@ -76,9 +85,9 @@ public class BoutonAction extends AbstractAction {
 	public void printValeurs(Credit cred) {
 		String chaine = "";
 		chaine += "Taux : " + cred.taux() * 100;
-		chaine += "%,  Durï¿½e : " + cred.duree();
-		chaine += " annï¿½e(s),  Montant empruntï¿½ : " + cred.montantEmprunte();
-		chaine += " euros,  Annuitï¿½ maximale : ";
+		chaine += "%,  Durée : " + cred.duree();
+		chaine += " annï¿½e(s),  Montant emprunté : " + cred.montantEmprunte();
+		chaine += " euros,  Annuité maximale : ";
 		chaine += cred.annuiteMaximale() + " euros";
 		fenetre.getLabelBottom().setText(chaine);
 	}
@@ -87,21 +96,18 @@ public class BoutonAction extends AbstractAction {
 	 * Permet de vï¿½rifier le nombre des valeurs saisies par l'utilisateur
 	 */
 
-	private boolean verifNombreValeurs() {
+	private int verifNombreValeurs(){
 		int compteur = 0;
-		boolean verif = false;
-
-		if (fenetre.getTaux().getText().length() > 0)
+		
+		if(fenetre.getTaux().getText().length() > 0)
 			compteur++;
-		if (fenetre.getDuree().getText().length() > 0)
+		if(fenetre.getDuree().getText().length() > 0)
 			compteur++;
-		if (fenetre.getEmprunt().getText().length() > 0)
+		if(fenetre.getEmprunt().getText().length() > 0)
 			compteur++;
-		if (fenetre.getRemboursement().getText().length() > 0)
+		if(fenetre.getRemboursement().getText().length() > 0)
 			compteur++;
-		if (compteur >= 3)
-			verif = true;
-		return verif;
+		return compteur;
 	}
 
 	/*
@@ -167,6 +173,24 @@ public class BoutonAction extends AbstractAction {
 		{
 			System.out.println(e);
 		}
+	}
+	
+	/*
+	 * Vérifie si le crédit possède 4 bonnes valeurs
+	 */
+	private boolean generationCredit4Valeurs(){
+		double taux = Double.parseDouble(fenetre.getTaux().getText());
+		taux /= 100;
+		int duree = Integer.parseInt(fenetre.getDuree().getText());
+		double emprunt = Double.parseDouble(fenetre.getEmprunt().getText());
+		double remboursement = Double.parseDouble(fenetre.getRemboursement().getText());
+		defineTypeCredit();
+		Credit cred = Credit.calculeAnnuiteMaximale(typeCredit, emprunt, taux, duree);
+		if(cred.annuiteMaximale() == remboursement){
+			printValeurs(cred);
+			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
+		}
+		return(cred.annuiteMaximale() == remboursement);
 	}
 
 	/**

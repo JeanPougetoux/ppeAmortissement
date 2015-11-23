@@ -44,9 +44,9 @@ public class BoutonAction extends AbstractAction {
 		fenetre.getErreur().setVisible(false);
 		String chaine = "";
 		chaine += "Taux : ";
-		chaine += "  Durée : ";
-		chaine += "  Montant emprunté : ";
-		chaine += "  Annuitée maximale : ";
+		chaine += "  Durï¿½e : ";
+		chaine += "  Montant empruntï¿½ : ";
+		chaine += "  Annuitï¿½e maximale : ";
 		fenetre.getLabelBottom().setText(chaine);
 	}
 
@@ -85,9 +85,9 @@ public class BoutonAction extends AbstractAction {
 	public void printValeurs(Credit cred) {
 		String chaine = "";
 		chaine += "Taux : " + cred.taux() * 100;
-		chaine += "%,  Durée : " + cred.duree();
-		chaine += " annï¿½e(s),  Montant emprunté : " + cred.montantEmprunte();
-		chaine += " euros,  Annuité maximale : ";
+		chaine += "%,  Durï¿½e : " + cred.duree();
+		chaine += " annï¿½e(s),  Montant empruntï¿½ : " + cred.montantEmprunte();
+		chaine += " euros,  Annuitï¿½ maximale : ";
 		chaine += cred.annuiteMaximale() + " euros";
 		fenetre.getLabelBottom().setText(chaine);
 	}
@@ -176,7 +176,7 @@ public class BoutonAction extends AbstractAction {
 	}
 	
 	/*
-	 * Vérifie si le crédit possède 4 bonnes valeurs
+	 * Vï¿½rifie si le crï¿½dit possï¿½de 4 bonnes valeurs
 	 */
 	private boolean generationCredit4Valeurs(){
 		double taux = Double.parseDouble(fenetre.getTaux().getText());
@@ -185,12 +185,21 @@ public class BoutonAction extends AbstractAction {
 		double emprunt = Double.parseDouble(fenetre.getEmprunt().getText());
 		double remboursement = Double.parseDouble(fenetre.getRemboursement().getText());
 		defineTypeCredit();
-		Credit cred = Credit.calculeAnnuiteMaximale(typeCredit, emprunt, taux, duree);
-		if(cred.annuiteMaximale() == remboursement){
-			printValeurs(cred);
-			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
+		Credit cred ;
+		try {
+			cred = Credit.calculeAnnuiteMaximale(typeCredit, emprunt, taux, duree);
+			if(cred.annuiteMaximale() == remboursement){
+				printValeurs(cred);
+				fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
+				return(cred.annuiteMaximale() == remboursement);
+			}
+		} catch (ExceptionCalculeAnnuiteMaximale e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return(cred.annuiteMaximale() == remboursement);
+		return false;
+		
+		
 	}
 
 	/**

@@ -2,6 +2,9 @@ package interfaceGraphique;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import amortissements.Ligne;
 
 public class FenetrePrincipale extends JFrame {
 
@@ -17,6 +20,7 @@ public class FenetrePrincipale extends JFrame {
 	private JScrollPane scroll;
 	private JTable tableau;
 	private JComboBox<String> choix;
+	private DefaultTableModel model;
 
 	/**
 	 * Page principale où se passe toutes les interactions
@@ -72,7 +76,7 @@ public class FenetrePrincipale extends JFrame {
 		panel = new JPanel();
 		panel.setLayout(new FlowLayout());
 		panel.setBackground(Color.white);
-		drawTableau();
+		initTableau();
 		panelTableau();
 		return panel;
 	}
@@ -102,7 +106,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	
 	private void drawBottom(){
-		 labelBottom = new JLabel("Taux :   Durée :   Montant emprunté :   Montant de remboursement : ");
+		 labelBottom = new JLabel("Taux :   Durée :   Montant emprunté :   Annuité maximale : ");
 		 bouton2 = new JButton(new ExportExcel(this, "export"));
 		 messageErreur = new JLabel("Veuillez ne saisir que des valeurs unitaires");
 	     messageErreur.setForeground(Color.red);
@@ -150,21 +154,41 @@ public class FenetrePrincipale extends JFrame {
 	 * Créer un tableau, le remplit de valeurs et l'ajoute au JPanel
 	 */
 	
-	public void drawTableau(){
-		Object[][] donnees = {
-                {"3", "2000", "200", "1000", "300", "700"},
-                {"3", "2000", "200", "1000", "300", "700"},
-
-        };
+	public void initTableau(){
+		Object[][] donnees = {};
  
-        String[] entetes = {"Années", "Restant dû", "Intérêt", "Amortissement", "Annuité", "Valeur nette"};
+        String[] entetes = {"Années", "Capital initial", "Intérêt", "Amortissement", "Annuité", "Capital final"};
  
-        tableau = new JTable(donnees, entetes);
+        model = new DefaultTableModel(donnees, entetes);
+        tableau = new JTable(model);
         scroll = new JScrollPane(tableau);
         Dimension dim = new Dimension(760, 300);
         scroll.setPreferredSize(dim);
 	}
 	
+	public void drawTableau(Ligne[] tab){
+		Object[][] donnees = new Object[tab.length][6];
+		for(int i = 0; i < tab.length; i++){
+			donnees[i][0] = tab[i].getAnnee();
+			donnees[i][1] = tab[i].getCapitalInitial();
+			donnees[i][2] = tab[i].getInterets();
+			donnees[i][3] = tab[i].getAmortissements();
+			donnees[i][4] = tab[i].getAnnuite();
+			donnees[i][5] = tab[i].getCapitalFinal();
+		}
+        String[] entetes = {"Années", "Capital initial", "Intérêt", "Amortissement", "Annuité", "Capital final"};
+		model = new DefaultTableModel(donnees, entetes);
+		tableau.setModel(model);
+	}
+	
+	/*
+	 * Efface toutes les données du tableau
+	 */
+	public void clearTableau(){
+		model.getDataVector().clear();
+		model.fireTableDataChanged();
+		tableau.setModel(model);
+	}
 	public JTextField getTaux(){
 		return taux;
 	}

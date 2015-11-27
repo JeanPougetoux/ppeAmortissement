@@ -4,10 +4,9 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import amortissements.Credit;
-import exceptions.ExceptionCalculeAnnuiteMaximale;
-import exceptions.ExceptionCalculeDuree;
-import exceptions.ExceptionCalculeMontant;
-import exceptions.ExceptionCalculeTaux;
+
+
+import exceptions.MonException;
 
 
 public class BoutonAction extends AbstractAction {
@@ -169,7 +168,7 @@ public class BoutonAction extends AbstractAction {
 				System.out.println(cred.getTableauAmortissement());
 			}
 		}
-		catch(ExceptionCalculeTaux | ExceptionCalculeDuree | ExceptionCalculeMontant | ExceptionCalculeAnnuiteMaximale e)
+		catch(MonException e)
 		{
 			System.out.println(e);
 		}
@@ -193,7 +192,7 @@ public class BoutonAction extends AbstractAction {
 				fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
 				return(cred.annuiteMaximale() == remboursement);
 			}
-		} catch (ExceptionCalculeAnnuiteMaximale e) {
+		} catch (MonException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -6,7 +6,8 @@ import org.junit.Test;
 
 import amortissements.Credit;
 import amortissements.Ligne;
-import exceptions.ExceptionCalculeDuree;
+
+import exceptions.MonException;
 
 public class testLigne {
 	
@@ -16,7 +17,7 @@ public class testLigne {
 	Credit cred ;
 	Ligne li ;
 
-	public testLigne()throws ExceptionCalculeDuree{
+	public testLigne()throws MonException{
 		this.montant = 100000;
 		this.annuiteMaximale = 10000;
 		this.taux = 0.05;
@@ -36,7 +37,7 @@ public class testLigne {
 	}
 
 	@Test
-	public void testLigneSuivante()throws ExceptionCalculeDuree {
+	public void testLigneSuivante()throws MonException {
 		Ligne liSuivante = li.ligneSuivante(cred);
 		assertTrue(liSuivante.getAmortissements() == 5000);
 		assertTrue(liSuivante.getAnnee() == 1);

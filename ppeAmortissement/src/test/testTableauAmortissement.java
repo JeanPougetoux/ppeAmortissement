@@ -7,7 +7,8 @@ import org.junit.Test;
 import amortissements.Credit;
 import amortissements.Ligne;
 import amortissements.TableauAmortissement;
-import exceptions.ExceptionCalculeDuree;
+
+import exceptions.MonException;
 
 public class testTableauAmortissement {
 
@@ -17,7 +18,7 @@ public class testTableauAmortissement {
 	double taux;
 	TableauAmortissement tab;
 	
-	public testTableauAmortissement() throws ExceptionCalculeDuree {
+	public testTableauAmortissement() throws MonException {
 		this.montant = 100000;
 		this.annuiteMaximale = 10000;
 		this.taux = 0.05;

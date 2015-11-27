@@ -95,7 +95,8 @@ public class testCredit {
 		
 		type = Credit.ANNUITES_CONSTANTES;
 		annuiteMaximale = 34687;
-			
+			montant = 122998.385138;
+			taux = 0.05;
 			credit = Credit.calculeMontantEmprunte(Credit.ANNUITES_CONSTANTES, 34687, 0.05, 4);
 			assertEquals(type, credit.typeCredit());
 			assertEquals(montant, credit.montantEmprunte(), 0.01);

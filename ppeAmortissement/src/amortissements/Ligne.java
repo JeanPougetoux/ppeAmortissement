@@ -123,6 +123,7 @@ public class Ligne
 				return new Ligne (annee,capitalInital,interets,amortissement,annuite,capiFinal);
 			}
 			else{
+				double 	annuiteFutur = annuite;
 				double initial = (double)Math.round(this.capitalFinal * 100) / 100 ;
 				double interet = (double)Math.round((this.capitalFinal*credit.taux()) * 100) / 100;
 				double amort = (double)Math.round((this.annuite - interet) * 100) / 100;
@@ -130,15 +131,15 @@ public class Ligne
 				if ((annee == credit.duree()-1) && (capifinal != 0))
 					
 					if (capifinal > 0){
-						annuite += capifinal;
+						annuiteFutur += capifinal;
 						capifinal = 0;
 					}
 					else{
-						annuite -= capifinal;
+						annuiteFutur -= capifinal;
 						capifinal = 0;
 					}
 				return new Ligne (annee,initial,interet,
-						amort,annuite,capifinal);
+						amort,annuiteFutur,capifinal);
 			}	
 		}
 		else{

@@ -8,7 +8,7 @@ public class Main {
 	public static void main(String[] args) {
 		Credit cred;
 		try {
-			cred = Credit.calculeDuree(Credit.ANNUITES_CONSTANTES, 125000, 35251,0.05);
+			cred = Credit.calculeDuree(Credit.AMORTISSEMENT_CONSTANTS, 125000, 35251,0.05);
 			System.out.println(cred.getTableauAmortissement());
 			//System.out.println(cred.taux()*100 + " %");
 			

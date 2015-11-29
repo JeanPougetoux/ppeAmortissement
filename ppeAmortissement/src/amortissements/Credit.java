@@ -12,7 +12,10 @@ import exceptions.MonException;
  */
 
 public class Credit 
-{
+{ 
+	/*
+	 *   Une bonne BEUTEU de bon matin, éloigne le médecin !
+	 */
 	public final static int AMORTISSEMENT_CONSTANTS = 1,
 			ANNUITES_CONSTANTES = 2;
 	private int typeCredit,duree;

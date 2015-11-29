@@ -109,15 +109,12 @@ public class Ligne
 				double amortissement = this.amortissements;
 				double annuite = interets + amortissement;
 				double capiFinal = capitalInital - amortissement;
-				if ((annee == credit.duree()-1) && (capiFinal != 0))
-					if (capiFinal > 0){
-						annuite += capiFinal;
-						capiFinal = 0;
-					}
-					else{
-						annuite -= capiFinal;
-						capiFinal = 0;
-					}
+				if((annee == credit.duree()-1) && (capiFinal != 0)){
+					amortissement = capitalInital;
+					annuite = interets + amortissement;
+					capiFinal = capitalInital - amortissement;
+				}
+					
 						
 				
 				return new Ligne (annee,capitalInital,interets,amortissement,annuite,capiFinal);
@@ -131,11 +128,13 @@ public class Ligne
 				if ((annee == credit.duree()-1) && (capifinal != 0))
 					
 					if (capifinal > 0){
-						annuiteFutur += capifinal;
+						amort = amort - capifinal;
+						annuiteFutur = amort + interet;
 						capifinal = 0;
 					}
 					else{
-						annuiteFutur -= capifinal;
+						amort = amort + capifinal;
+						annuiteFutur = amort + interet;
 						capifinal = 0;
 					}
 				return new Ligne (annee,initial,interet,

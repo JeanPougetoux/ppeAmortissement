@@ -26,12 +26,10 @@ public class Credit
 			double taux, int duree)
 	{
 		
-		if (typeCredit == AMORTISSEMENT_CONSTANTS){
-			this.typeCredit = AMORTISSEMENT_CONSTANTS;
-		}
-		else{
-			this.typeCredit = ANNUITES_CONSTANTES;
-		}
+		if (typeCredit == AMORTISSEMENT_CONSTANTS || typeCredit == ANNUITES_CONSTANTES)
+			this.typeCredit = typeCredit;
+		
+		
 		this.montantEmprunte = montantEmprunte;//(double)Math.round(montantEmprunte * 100) / 100 ;
 		this.annuiteMaximale = annuiteMaximale; //(double)Math.round(annuiteMaximale * 100) / 100 ;
 		this.taux = taux;//(double)Math.round(taux * 1000000) / 1000000;
@@ -164,20 +162,32 @@ public class Credit
 		testCalculeDuree(montantEmprunte, annuiteMaximale, taux);
 		if(typeCredit == AMORTISSEMENT_CONSTANTS){
 			
-			
-			System.out.println("duréé nécéssaire pour l'amortissement total :"+"\n" +montantEmprunte/(annuiteMaximale - montantEmprunte*taux)+"\n");
+			double dureeNonArrondie = montantEmprunte/(annuiteMaximale - montantEmprunte*taux);
+			System.out.println("duréé nécéssaire pour l'amortissement total :"+"\n" +dureeNonArrondie+"\n");
 			int duree = (int)(Math.round(montantEmprunte/(annuiteMaximale - montantEmprunte*taux)));
+			double testDuree = duree - dureeNonArrondie;
+			System.out.println("ecart = "+ -testDuree);
 			System.out.println("durée arrondie"+"\n"+duree);
+			if (testDuree < 0)
+				duree = (int)(Math.round(montantEmprunte/(annuiteMaximale - montantEmprunte*taux)+0.5));;
+			System.out.println("nouvelle durée arrondie "+duree);
 			Credit cred = new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
 			return cred;
 		}
 		else if (typeCredit == ANNUITES_CONSTANTES){
-			int duree = 0;
+			int duree = 1;
 			double montant = montantEmprunte;
-			while((montant<-10) || (montant>10)){
-				montant = montant - (annuiteMaximale - montant * taux);
+			double interet = montant * taux;
+			double amortissement = annuiteMaximale - interet;
+			while( montant>amortissement){
+				montant = montant - (amortissement);
+				interet = montant * taux;
+				amortissement = annuiteMaximale - interet;
 				duree ++;
 			}
+			
+			System.out.println(montant);
+			System.out.println(duree);
 			return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
 		}
 		return null;

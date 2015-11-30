@@ -4,6 +4,7 @@ import interfaceGraphique.Application;
 import interfaceGraphique.FenetrePrincipale;
 import interfaceGraphique.MessageErreur;
 
+@SuppressWarnings({ "serial", "unused" })
 public class ExceptionMontant extends MonException{
 
 	String message;

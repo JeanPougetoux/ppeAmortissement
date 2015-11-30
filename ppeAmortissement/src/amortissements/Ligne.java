@@ -81,6 +81,10 @@ public class Ligne
 		return capitalFinal;
 	}
 	
+	
+	
+	
+	
 	/**
 	 * Retourne la première ligne du tableau d'amortissement pour
 	 * le crédit passé en paramètre.
@@ -93,11 +97,16 @@ public class Ligne
 		amortissement, credit.annuiteMaximale(),credit.montantEmprunte()-amortissement);
 	}
 
+	
+	
+
 	/**
 	 * Retourne la ligne suivant la ligne courante pour le 
 	 * passé en paramètre. Retoure null si la ligne courante est
 	 * la dernière ligne.
 	 */
+	
+
 	
 	public Ligne ligneSuivante(Credit credit)
 	{

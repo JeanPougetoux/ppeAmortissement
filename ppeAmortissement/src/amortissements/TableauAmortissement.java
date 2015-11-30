@@ -26,6 +26,16 @@ public class TableauAmortissement
 		}
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Retourne la durÃ©e de l'amortissement.
 	 */

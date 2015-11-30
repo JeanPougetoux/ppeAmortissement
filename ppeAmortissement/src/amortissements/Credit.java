@@ -6,6 +6,7 @@ import exceptions.ExceptionDuree;
 import exceptions.ExceptionMontant;
 import exceptions.ExceptionTaux;
 import exceptions.MonException;
+import interfaceGraphique.FenetrePrincipale;
 
 /**
  * ReprÃ©sente un crÃ©dit.
@@ -25,7 +26,6 @@ public class Credit
 	Credit (int typeCredit, double montantEmprunte, double annuiteMaximale,
 			double taux, int duree)
 	{
-		
 		if (typeCredit == AMORTISSEMENT_CONSTANTS || typeCredit == ANNUITES_CONSTANTES)
 			this.typeCredit = typeCredit;
 		
@@ -92,14 +92,14 @@ public class Credit
 	 * Retourne un crÃ©dit en calculant automatiquement le taux.
 	 */
 	
-	public static Credit calculeTaux(int typeCredit, 
+	public static Credit calculeTaux(FenetrePrincipale f, int typeCredit, 
 			double montantEmprunte, double annuiteMaximale,
 			int duree)throws MonException
 	{
 		
 		if (typeCredit == AMORTISSEMENT_CONSTANTS){
 			
-				testCalculeTaux(montantEmprunte,annuiteMaximale,duree);
+				testCalculeTaux(f, montantEmprunte,annuiteMaximale,duree);
 					
 			
 				double amortissement = montantEmprunte/duree;
@@ -114,7 +114,7 @@ public class Credit
 			double tauxProbable = 1;
 			double tauxMax = tauxProbable;
 			double tauxMin = 0;
-			testCalculeTaux(montantEmprunte,annuiteMaximale,duree);
+			testCalculeTaux(f, montantEmprunte,annuiteMaximale,duree);
 				
 			
 			while (Math.abs(annuite - annuiteMaximale ) > 0.00001){
@@ -137,15 +137,15 @@ public class Credit
 		return (montant*taux)/(1-Math.pow(1+taux, -duree));
 		
 	}
-	public static void testCalculeTaux(double montant, double annuite, int duree)throws MonException{
+	public static void testCalculeTaux(FenetrePrincipale f, double montant, double annuite, int duree)throws MonException{
 		if(duree<=0){
-			throw new ExceptionDuree("Impossible de calculer le taux, durÃ©e nÃ©gative !", duree);
+			throw new ExceptionDuree("Impossible de calculer le taux, durée négative !", duree, f);
 		}
 		else if(montant < annuite){
-			throw new ExceptionMontant("Impossible de calculer le taux, l'annuitÃ© doit Ãªtre infÃ©rieur au montant !",montant);
+			throw new ExceptionMontant("Impossible de calculer le taux, l'annuitée doit être inférieure au montant !",montant, f);
 		}
 		else if (annuite < (montant/duree)){
-			throw new ExceptionAnnuite("Impossible de calculer le taux, L'amortissement est supÃ©rieur Ã  l'annuitÃ© !", annuite);
+			throw new ExceptionAnnuite("Impossible de calculer le taux, L'amortissement est supérieur à l'annuitée !", annuite, f);
 		}
 		
 	}
@@ -155,22 +155,22 @@ public class Credit
 	 * Retourne un crÃ©dit en calculant automatiquement la durÃ©e.
 	 */
 	
-	public static Credit calculeDuree(int typeCredit, 
+	public static Credit calculeDuree(FenetrePrincipale f, int typeCredit, 
 			double montantEmprunte, double annuiteMaximale,
 			double taux) throws MonException
 	{
-		testCalculeDuree(montantEmprunte, annuiteMaximale, taux);
+		testCalculeDuree(f, montantEmprunte, annuiteMaximale, taux);
 		if(typeCredit == AMORTISSEMENT_CONSTANTS){
 			
 			double dureeNonArrondie = montantEmprunte/(annuiteMaximale - montantEmprunte*taux);
-			System.out.println("durÃ©Ã© nÃ©cÃ©ssaire pour l'amortissement total :"+"\n" +dureeNonArrondie+"\n");
+			System.out.println("durée nécessaire pour l'amortissement total :"+"\n" +dureeNonArrondie+"\n");
 			int duree = (int)(Math.round(montantEmprunte/(annuiteMaximale - montantEmprunte*taux)));
 			double testDuree = duree - dureeNonArrondie;
 			System.out.println("ecart = "+ -testDuree);
-			System.out.println("durÃ©e arrondie"+"\n"+duree);
+			System.out.println("durée arrondie"+"\n"+duree);
 			if (testDuree < 0)
 				duree = (int)(Math.round(montantEmprunte/(annuiteMaximale - montantEmprunte*taux)+0.5));;
-			System.out.println("nouvelle durÃ©e arrondie "+duree);
+			System.out.println("nouvelle durée arrondie "+duree);
 			Credit cred = new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
 			return cred;
 		}
@@ -192,19 +192,19 @@ public class Credit
 		}
 		return null;
 	}
-public static void testCalculeDuree(double montant, double annuite, double taux) throws MonException{
+public static void testCalculeDuree(FenetrePrincipale f, double montant, double annuite, double taux) throws MonException{
 		if (taux <= 0 || taux >= 1){
-			throw new ExceptionTaux("Impossible de calculer la durÃ©e,taux incorrect!",taux);
+			throw new ExceptionTaux("Impossible de calculer la durée,taux incorrect!",taux, f);
 		}
 		else if (montant < annuite){
-			throw new ExceptionMontant("Impossible de calculer la durÃ©e, montant trop faible !",montant);
+			throw new ExceptionMontant("Impossible de calculer la durée, montant trop faible !",montant, f);
 		}
 		else if (annuite < montant*taux){
-			throw new ExceptionAnnuite("Impossible de calculer la durÃ©e, l'annuitÃ© doit Ãªtre supÃ©rieure aux intÃ©rets !",annuite);
+			throw new ExceptionAnnuite("Impossible de calculer la durée, l'annuitée doit être supérieure aux intérets !",annuite, f);
 	
 		}
 		else if (annuite < 0){
-			throw new ExceptionAnnuite("Impossible de calculer la durÃ©e, annuitÃ© nÃ©gative !",annuite);
+			throw new ExceptionAnnuite("Impossible de calculer la durée, annuitée négative !",annuite, f);
 			
 		}
 		}
@@ -216,10 +216,10 @@ public static void testCalculeDuree(double montant, double annuite, double taux)
 	 * @throws ExceptionCalculeMontant 
 	 */
 	
-	public static Credit calculeMontantEmprunte(int typeCredit, 
+	public static Credit calculeMontantEmprunte(FenetrePrincipale f, int typeCredit, 
 			double annuiteMaximale,	double taux, int duree) throws MonException
 	{
-		testCalculeMontantEmprunte(annuiteMaximale,taux,duree);
+		testCalculeMontantEmprunte(f, annuiteMaximale,taux,duree);
 			
 		if (typeCredit == AMORTISSEMENT_CONSTANTS){
 			double montantEmprunte = annuiteMaximale / (taux + 1/(double)(duree));
@@ -231,15 +231,15 @@ public static void testCalculeDuree(double montant, double annuite, double taux)
 		}
 		return null;
 	}
-	public static void testCalculeMontantEmprunte(double annuite, double taux, int duree)throws MonException{
+	public static void testCalculeMontantEmprunte(FenetrePrincipale f, double annuite, double taux, int duree)throws MonException{
 		if (duree <= 0){
-			throw new ExceptionDuree("impossible de calculer le montant : la durÃ©e doit Ãªtre positive !",duree);
+			throw new ExceptionDuree("impossible de calculer le montant : la durée doit être positive !",duree, f);
 		}
 		else if (taux <=0 || taux >=1){
-			throw new ExceptionTaux("impossible de calculer le montant : taux incorrect !",taux);
+			throw new ExceptionTaux("impossible de calculer le montant : taux incorrect !",taux, f);
 		}
 		else if (annuite < 0)
-			throw new ExceptionAnnuite("impossible de calculer le montant : L'annuitÃ© doit Ãªtre positive",annuite);
+			throw new ExceptionAnnuite("impossible de calculer le montant : L'annuitée doit être positive",annuite, f);
 	}
 
 	/**
@@ -247,10 +247,10 @@ public static void testCalculeDuree(double montant, double annuite, double taux)
 	 * l'annuitÃ© maximale.
 	 */
 	
-	public static Credit calculeAnnuiteMaximale(int typeCredit, 
+	public static Credit calculeAnnuiteMaximale(FenetrePrincipale f, int typeCredit, 
 			double montantEmprunte,	double taux, int duree)throws MonException
 	{
-		testCalculeAnnuiteMaximale(montantEmprunte, taux, duree);
+		testCalculeAnnuiteMaximale(f, montantEmprunte, taux, duree);
 		if (typeCredit == AMORTISSEMENT_CONSTANTS){
 			double annuiteMaximale = (montantEmprunte*taux)+(montantEmprunte / duree);
 			return new Credit (typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
@@ -261,18 +261,19 @@ public static void testCalculeDuree(double montant, double annuite, double taux)
 		}
 		return null;
 	}
-	public static void testCalculeAnnuiteMaximale(double montant, double taux, int duree)throws MonException{
+	public static void testCalculeAnnuiteMaximale(FenetrePrincipale f, double montant, double taux, 
+			int duree)throws MonException{
 		if (duree <= 0){
-			throw new ExceptionDuree ("calcul impossible, durÃ©e nÃ©gative",duree);
+			throw new ExceptionDuree ("calcul impossible, durée négative",duree, f);
 		}
 		else if (taux <= 0 || taux >=1){
-			throw new ExceptionTaux ("calcul impossible, taux incorrect",taux);
+			throw new ExceptionTaux ("calcul impossible, taux incorrect",taux, f);
 		}
 		else if (montant <=0){
-			throw new ExceptionMontant("calcul impossible, montant nÃ©gatif",montant);
+			throw new ExceptionMontant("calcul impossible, montant négatif",montant, f);
 		}
 		else if (montant <duree){
-			throw new ExceptionDuree ("calcul impossible, la durÃ©e ne peut Ãªtre plus grande que le montant ",duree);
+			throw new ExceptionDuree ("calcul impossible, la durée ne peut être plus grande que le montant ",duree, f);
 		}
 		
 	}

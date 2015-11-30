@@ -32,11 +32,29 @@ public class MessageErreur {
 	}
 	
 	/**
+	 * Erreur si l'annuité max est supérieur au montant emprunté
+	 */
+	public static void ErreurAnnuité(FenetrePrincipale fenetre){
+		fenetre.getErreur().setText("L'annuité maximale est supérieur au montant emprunté");
+		fenetre.getErreur().setForeground(Color.red);
+		fenetre.getErreur().setVisible(true);
+	}
+	
+	/**
 	 * Export bien effecté
 	 */
 	public static void BienEnregistrer(FenetrePrincipale fenetre){
 		fenetre.getErreur().setText("Tableau bien exporté");
 		fenetre.getErreur().setForeground(Color.green);
+		fenetre.getErreur().setVisible(true);
+	}
+	
+	/**
+	 * Message d'erreur pour toutes les exceptions
+	 */
+	public static void ErreurException(FenetrePrincipale fenetre, String texte){
+		fenetre.getErreur().setText(texte);
+		fenetre.getErreur().setForeground(Color.red);
 		fenetre.getErreur().setVisible(true);
 	}
 }

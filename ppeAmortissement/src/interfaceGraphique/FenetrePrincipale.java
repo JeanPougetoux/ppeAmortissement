@@ -8,9 +8,6 @@ import amortissements.Ligne;
 
 public class FenetrePrincipale extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField taux, duree, emprunt, remboursement;
 	private JLabel messageErreur;
@@ -91,7 +88,7 @@ public class FenetrePrincipale extends JFrame {
 		duree = new JTextField(04);
 		labelEmprunt = new JLabel("Montant emprunté : ");		
 		emprunt = new JTextField(04);
-		labelRemboursement = new JLabel("Annuité maximale : ");		
+		labelRemboursement = new JLabel("Annuitée maximale : ");		
 		remboursement = new JTextField(04);
 		
 		String[] choixCredit = { "Annuitées constantes", "Amortissement constant"};
@@ -106,7 +103,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	
 	private void drawBottom(){
-		 labelBottom = new JLabel("Taux :   Durée :   Montant emprunté :   Annuité maximale : ");
+		 labelBottom = new JLabel("Taux :   Durée :   Montant emprunté :   Annuitée maximale : ");
 		 bouton2 = new JButton(new ExportExcel(this, "export"));
 		 messageErreur = new JLabel("Veuillez ne saisir que des valeurs unitaires");
 	     messageErreur.setForeground(Color.red);
@@ -184,11 +181,17 @@ public class FenetrePrincipale extends JFrame {
 	/*
 	 * Efface toutes les données du tableau
 	 */
+	
 	public void clearTableau(){
 		model.getDataVector().clear();
 		model.fireTableDataChanged();
 		tableau.setModel(model);
 	}
+	
+	public FenetrePrincipale getThis(){
+		return this;
+	}
+	
 	public JTextField getTaux(){
 		return taux;
 	}

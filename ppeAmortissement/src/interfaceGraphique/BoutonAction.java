@@ -30,6 +30,7 @@ public class BoutonAction extends AbstractAction {
 
 	public void actionPerformed(ActionEvent e) {
 		fenetre.getErreur().setVisible(false);
+		fenetre.clearTableau();
 		initializeNul();
 		initializeValeurs();
 	}
@@ -56,7 +57,8 @@ public class BoutonAction extends AbstractAction {
 
 	public void initializeValeurs() {
 		if (getNumeric(fenetre.getTaux().getText()) && getNumeric(fenetre.getDuree().getText())
-				&& getNumeric(fenetre.getEmprunt().getText()) && getNumeric(fenetre.getRemboursement().getText())) {
+				&& getNumeric(fenetre.getEmprunt().getText()) 
+				&& getNumeric(fenetre.getRemboursement().getText())) {
 			if(verifNombreValeurs() >= 3){
 				if(verifNombreValeurs() == 4){
 					if(!generationCredit4Valeurs()){
@@ -65,15 +67,30 @@ public class BoutonAction extends AbstractAction {
 					}
 				}
 				else{	
-					generationCredit();
+					if(fenetre.getRemboursement().getText().length() != 0 
+							&& fenetre.getEmprunt().getText().length() != 0){
+						if(Double.parseDouble(fenetre.getRemboursement().getText()) > 
+							Double.parseDouble(fenetre.getEmprunt().getText())){
+							MessageErreur.ErreurAnnuité(fenetre);
+							fenetre.clearTableau();
+						}
+						else{
+							getValeurs();
+						}
+					}
+					else{
+						getValeurs();
+					}
 				}
 			}
 			else{
 				MessageErreur.ErreurNombre(fenetre);
 				fenetre.clearTableau();
 			}
-		} else {
+		} 
+		else {
 			MessageErreur.ErreurLettre(fenetre);
+			fenetre.clearTableau();
 		}
 	}
 
@@ -120,11 +137,10 @@ public class BoutonAction extends AbstractAction {
 	}
 
 	/*
-	 * Permet la gï¿½nï¿½ration d'un crï¿½dit en utilisant les valeur de notre fenï¿½tre
-	 * principale
+	 * Vérifie les valeurs tapées par l'utilisateur et initialise les variables
 	 */
 
-	private void generationCredit(){
+	private void getValeurs(){
 		defineTypeCredit();
 		double taux = 0;
 		double remboursement = 0;
@@ -143,50 +159,50 @@ public class BoutonAction extends AbstractAction {
 		if(fenetre.getRemboursement().getText().length() != 0){
 			remboursement = Double.parseDouble(fenetre.getRemboursement().getText());
 		}
-		Credit cred;
-		System.out.println("ok2");
-		try
-		{
-			if(fenetre.getEmprunt().getText().length() == 0){
-				cred = Credit.calculeMontantEmprunte(typeCredit, remboursement, taux, duree);
-				printValeurs(cred);			
-				fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
-			}
-			else if(fenetre.getDuree().getText().length() == 0){
-				cred = Credit.calculeDuree(typeCredit, emprunt, remboursement, taux);
-				printValeurs(cred);		
-				fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
-			}
-			else if(fenetre.getRemboursement().getText().length() == 0){
-				cred = Credit.calculeAnnuiteMaximale(typeCredit, emprunt, taux, duree);
-				printValeurs(cred);
-				fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
-			}
-			else if(fenetre.getTaux().getText().length() == 0){
-				cred = Credit.calculeTaux(typeCredit, emprunt, remboursement, duree);
-				printValeurs(cred);
-				fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
-			}
+		try{
+			generationCredit(taux, remboursement, emprunt, duree);
 		}
-		catch(MonException e)
-		{
+		catch(MonException e){
 			System.out.println(e);
 		}
 	}
 	
+	private void generationCredit(double taux, double remboursement, double emprunt, 
+			int duree) throws MonException{
+		Credit cred;
+		if(fenetre.getEmprunt().getText().length() == 0){
+			cred = Credit.calculeMontantEmprunte(fenetre, typeCredit, remboursement, taux, duree);
+			printValeurs(cred);			
+			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
+		}
+		else if(fenetre.getDuree().getText().length() == 0){
+			cred = Credit.calculeDuree(fenetre, typeCredit, emprunt, remboursement, taux);
+			printValeurs(cred);		
+			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
+		}
+		else if(fenetre.getRemboursement().getText().length() == 0){
+			cred = Credit.calculeAnnuiteMaximale(fenetre, typeCredit, emprunt, taux, duree);
+			printValeurs(cred);
+			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
+		}
+		else if(fenetre.getTaux().getText().length() == 0){
+			cred = Credit.calculeTaux(fenetre, typeCredit, emprunt, remboursement, duree);
+			printValeurs(cred);
+			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
+		}
+	}
 	/*
 	 * Vï¿½rifie si le crï¿½dit possï¿½de 4 bonnes valeurs
 	 */
 	private boolean generationCredit4Valeurs(){
-		double taux = Double.parseDouble(fenetre.getTaux().getText());
-		taux /= 100;
+		double taux = (Double.parseDouble(fenetre.getTaux().getText()))/100;
 		int duree = Integer.parseInt(fenetre.getDuree().getText());
 		double emprunt = Double.parseDouble(fenetre.getEmprunt().getText());
 		double remboursement = Double.parseDouble(fenetre.getRemboursement().getText());
 		defineTypeCredit();
 		Credit cred ;
 		try {
-			cred = Credit.calculeAnnuiteMaximale(typeCredit, emprunt, taux, duree);
+			cred = Credit.calculeAnnuiteMaximale(fenetre, typeCredit, emprunt, taux, duree);
 			if(cred.annuiteMaximale() == remboursement){
 				printValeurs(cred);
 				fenetre.drawTableau(cred.getTableauAmortissement().getTableau());

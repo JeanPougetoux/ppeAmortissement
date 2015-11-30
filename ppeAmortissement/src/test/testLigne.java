@@ -8,6 +8,7 @@ import amortissements.Credit;
 import amortissements.Ligne;
 
 import exceptions.MonException;
+import interfaceGraphique.FenetrePrincipale;
 
 public class testLigne {
 	
@@ -16,12 +17,13 @@ public class testLigne {
 	double taux ;
 	Credit cred ;
 	Ligne li ;
+	FenetrePrincipale f = new FenetrePrincipale();
 
 	public testLigne()throws MonException{
 		this.montant = 100000;
 		this.annuiteMaximale = 10000;
 		this.taux = 0.05;
-		this.cred = Credit.calculeDuree(Credit.AMORTISSEMENT_CONSTANTS, montant, annuiteMaximale, taux);
+		this.cred = Credit.calculeDuree(f, Credit.AMORTISSEMENT_CONSTANTS, montant, annuiteMaximale, taux);
 		this.li = Ligne.premiereLigne(cred);
 	}
 	
@@ -48,7 +50,7 @@ public class testLigne {
 		
 		annuiteMaximale = 12950.46;
 		taux = 0.05;
-		cred = Credit.calculeDuree(Credit.ANNUITES_CONSTANTES, montant, annuiteMaximale, taux);
+		cred = Credit.calculeDuree(f, Credit.ANNUITES_CONSTANTES, montant, annuiteMaximale, taux);
 		li = Ligne.premiereLigne(cred);
 		liSuivante = li.ligneSuivante(cred);
 		assertTrue(liSuivante.getAmortissements() == 8347.98);

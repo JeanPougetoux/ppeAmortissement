@@ -9,6 +9,7 @@ import amortissements.Ligne;
 import amortissements.TableauAmortissement;
 
 import exceptions.MonException;
+import interfaceGraphique.FenetrePrincipale;
 
 public class testTableauAmortissement {
 
@@ -17,12 +18,13 @@ public class testTableauAmortissement {
 	double annuiteMaximale;
 	double taux;
 	TableauAmortissement tab;
+	FenetrePrincipale f = new FenetrePrincipale();
 	
 	public testTableauAmortissement() throws MonException {
 		this.montant = 100000;
 		this.annuiteMaximale = 10000;
 		this.taux = 0.05;
-		this.cred = Credit.calculeDuree(Credit.AMORTISSEMENT_CONSTANTS, montant, annuiteMaximale, taux);		
+		this.cred = Credit.calculeDuree(f, Credit.AMORTISSEMENT_CONSTANTS, montant, annuiteMaximale, taux);		
 		this.tab = new TableauAmortissement(cred);
 	}
 

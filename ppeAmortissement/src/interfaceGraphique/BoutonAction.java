@@ -171,22 +171,22 @@ public class BoutonAction extends AbstractAction {
 			int duree) throws MonException{
 		Credit cred;
 		if(fenetre.getEmprunt().getText().length() == 0){
-			cred = Credit.calculeMontantEmprunte(fenetre, typeCredit, remboursement, taux, duree);
+			cred = Credit.calculeMontantEmprunte(typeCredit, remboursement, taux, duree);
 			printValeurs(cred);			
 			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
 		}
 		else if(fenetre.getDuree().getText().length() == 0){
-			cred = Credit.calculeDuree(fenetre, typeCredit, emprunt, remboursement, taux);
+			cred = Credit.calculeDuree(typeCredit, emprunt, remboursement, taux);
 			printValeurs(cred);		
 			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
 		}
 		else if(fenetre.getRemboursement().getText().length() == 0){
-			cred = Credit.calculeAnnuiteMaximale(fenetre, typeCredit, emprunt, taux, duree);
+			cred = Credit.calculeAnnuiteMaximale(typeCredit, emprunt, taux, duree);
 			printValeurs(cred);
 			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
 		}
 		else if(fenetre.getTaux().getText().length() == 0){
-			cred = Credit.calculeTaux(fenetre, typeCredit, emprunt, remboursement, duree);
+			cred = Credit.calculeTaux(typeCredit, emprunt, remboursement, duree);
 			printValeurs(cred);
 			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
 		}
@@ -202,7 +202,7 @@ public class BoutonAction extends AbstractAction {
 		defineTypeCredit();
 		Credit cred ;
 		try {
-			cred = Credit.calculeAnnuiteMaximale(fenetre, typeCredit, emprunt, taux, duree);
+			cred = Credit.calculeAnnuiteMaximale(typeCredit, emprunt, taux, duree);
 			if(cred.annuiteMaximale() == remboursement){
 				printValeurs(cred);
 				fenetre.drawTableau(cred.getTableauAmortissement().getTableau());

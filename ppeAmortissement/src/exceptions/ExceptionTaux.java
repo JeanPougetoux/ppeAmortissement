@@ -1,5 +1,6 @@
 package exceptions;
 
+import interfaceGraphique.Application;
 import interfaceGraphique.FenetrePrincipale;
 import interfaceGraphique.MessageErreur;
 
@@ -7,11 +8,11 @@ public class ExceptionTaux extends MonException{
 
 	String message;
 	double taux;
-	public ExceptionTaux(String message,double taux, FenetrePrincipale f){
+	public ExceptionTaux(String message,double taux){
 	
 		this.message = message;
 		this.taux = taux;
-		MessageErreur.ErreurException(f, message);
+		MessageErreur.ErreurException(Application.fenetre, message);
 	}
 	
 	@Override

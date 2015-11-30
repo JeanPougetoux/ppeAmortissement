@@ -1,5 +1,6 @@
 package exceptions;
 
+import interfaceGraphique.Application;
 import interfaceGraphique.FenetrePrincipale;
 import interfaceGraphique.MessageErreur;
 
@@ -7,11 +8,11 @@ public class ExceptionMontant extends MonException{
 
 	String message;
 	double montant;
-	public ExceptionMontant(String message,double montant, FenetrePrincipale f){
+	public ExceptionMontant(String message,double montant){
 	
 		this.message = message;
 		this.montant = montant;
-		MessageErreur.ErreurException(f, message);
+		MessageErreur.ErreurException(Application.fenetre, message);
 	}
 	
 	@Override

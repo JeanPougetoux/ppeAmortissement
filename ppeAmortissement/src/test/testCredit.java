@@ -7,11 +7,9 @@ import org.junit.Test;
 import amortissements.Credit;
 
 import exceptions.MonException;
-import interfaceGraphique.FenetrePrincipale;
 
 
 public class testCredit {
-	FenetrePrincipale f = new FenetrePrincipale();
 
 	@Test
 	public void testCalculeTaux() throws MonException {
@@ -22,7 +20,7 @@ public class testCredit {
 		double taux = 0.05;
 		Credit credit;
 		
-			credit = Credit.calculeTaux(f, Credit.AMORTISSEMENT_CONSTANTS, 100000, 10000, 20);
+			credit = Credit.calculeTaux(Credit.AMORTISSEMENT_CONSTANTS, 100000, 10000, 20);
 			assertEquals(type, credit.typeCredit());
 			assertEquals(montant, credit.montantEmprunte(), 0.001);
 			assertEquals(annuiteMaximale, credit.annuiteMaximale(), 0.001);
@@ -33,7 +31,7 @@ public class testCredit {
 		
 		annuiteMaximale = 8024.26;
 		type = 2;
-		credit = Credit.calculeTaux(f, Credit.ANNUITES_CONSTANTES, 100000, 8024.26, 20);
+		credit = Credit.calculeTaux(Credit.ANNUITES_CONSTANTES, 100000, 8024.26, 20);
 		assertEquals(type, credit.typeCredit());
 		assertEquals(montant, credit.montantEmprunte(), 0.001);
 		assertEquals(annuiteMaximale, credit.annuiteMaximale(), 0.001);
@@ -55,7 +53,7 @@ public class testCredit {
 		double taux = 0.06;
 		Credit credit;
 		
-			credit = Credit.calculeDuree(f, Credit.AMORTISSEMENT_CONSTANTS, 65000, 11122.22,0.06);
+			credit = Credit.calculeDuree(Credit.AMORTISSEMENT_CONSTANTS, 65000, 11122.22,0.06);
 			assertEquals(type, credit.typeCredit());
 			assertEquals(montant, credit.montantEmprunte(), 0.001);
 			assertEquals(annuiteMaximale, credit.annuiteMaximale(), 0.001);
@@ -67,7 +65,7 @@ public class testCredit {
 		type = 2;
 		annuiteMaximale = 9556.45;
 		
-			credit = Credit.calculeDuree(f, Credit.ANNUITES_CONSTANTES, 65000, 9556.45, 0.06);
+			credit = Credit.calculeDuree(Credit.ANNUITES_CONSTANTES, 65000, 9556.45, 0.06);
 			assertEquals(type, credit.typeCredit());
 			assertEquals(montant, credit.montantEmprunte(), 0.001);
 			assertEquals(annuiteMaximale, credit.annuiteMaximale(), 0.001);
@@ -86,7 +84,7 @@ public class testCredit {
 		double taux = 0.03;
 		Credit credit;
 		
-			credit = Credit.calculeMontantEmprunte(f, Credit.AMORTISSEMENT_CONSTANTS, 34440.00, 0.03, 4);
+			credit = Credit.calculeMontantEmprunte(Credit.AMORTISSEMENT_CONSTANTS, 34440.00, 0.03, 4);
 			assertEquals(type, credit.typeCredit());
 			assertEquals(montant, credit.montantEmprunte(), 0.001);
 			assertEquals(annuiteMaximale, credit.annuiteMaximale(), 0.001);
@@ -99,7 +97,7 @@ public class testCredit {
 		annuiteMaximale = 34687;
 			montant = 122998.385138;
 			taux = 0.05;
-			credit = Credit.calculeMontantEmprunte(f, Credit.ANNUITES_CONSTANTES, 34687, 0.05, 4);
+			credit = Credit.calculeMontantEmprunte(Credit.ANNUITES_CONSTANTES, 34687, 0.05, 4);
 			assertEquals(type, credit.typeCredit());
 			assertEquals(montant, credit.montantEmprunte(), 0.01);
 			assertEquals(annuiteMaximale, credit.annuiteMaximale(), 0.001);
@@ -110,7 +108,7 @@ public class testCredit {
 	@Test(expected=MonException.class)
 	public void testCalculeAnnuiteMaximaleTauxNegatif() throws MonException {
 
-			Credit.calculeMontantEmprunte(f, Credit.ANNUITES_CONSTANTES, 33090.33, 0.05, -4);
+			Credit.calculeMontantEmprunte(Credit.ANNUITES_CONSTANTES, 33090.33, 0.05, -4);
 		
 	}
 
@@ -123,7 +121,7 @@ public class testCredit {
 		double taux = 0.05;
 		Credit credit;
 		
-			credit = Credit.calculeAnnuiteMaximale(f, Credit.AMORTISSEMENT_CONSTANTS, 100000, 0.05, 20);
+			credit = Credit.calculeAnnuiteMaximale(Credit.AMORTISSEMENT_CONSTANTS, 100000, 0.05, 20);
 			assertEquals(type, credit.typeCredit());
 			assertEquals(montant, credit.montantEmprunte(), 0.001);
 			assertEquals(annuiteMaximale, credit.annuiteMaximale(), 0.001);
@@ -135,7 +133,7 @@ public class testCredit {
 		type = 2;
 		annuiteMaximale = 8024.26;
 		
-			credit = Credit.calculeAnnuiteMaximale(f, Credit.ANNUITES_CONSTANTES, 100000, 0.05, 20);
+			credit = Credit.calculeAnnuiteMaximale(Credit.ANNUITES_CONSTANTES, 100000, 0.05, 20);
 			assertEquals(type, credit.typeCredit());
 			assertEquals(montant, credit.montantEmprunte(), 0.001);
 			assertEquals(annuiteMaximale, credit.annuiteMaximale(), 0.01);

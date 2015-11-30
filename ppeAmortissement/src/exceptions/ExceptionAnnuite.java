@@ -1,5 +1,6 @@
 package exceptions;
 
+import interfaceGraphique.Application;
 import interfaceGraphique.FenetrePrincipale;
 import interfaceGraphique.MessageErreur;
 
@@ -8,11 +9,11 @@ public class ExceptionAnnuite extends MonException {
 
 	String message;
 	double annuite;
-	public ExceptionAnnuite(String message,double annuite, FenetrePrincipale f){
+	public ExceptionAnnuite(String message,double annuite){
 	
 		this.message = message;
 		this.annuite = annuite;
-		MessageErreur.ErreurException(f, message);
+		MessageErreur.ErreurException(Application.fenetre, message);
 	}
 	
 	@Override

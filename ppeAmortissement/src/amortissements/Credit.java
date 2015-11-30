@@ -22,7 +22,7 @@ public class Credit
 	 * Créée un crédit.
 	 */
 	
-	Credit (int typeCredit, double montantEmprunte, double annuiteMaximale,
+	private Credit (int typeCredit, double montantEmprunte, double annuiteMaximale,
 			double taux, int duree)
 	{
 		if (typeCredit == AMORTISSEMENT_CONSTANTS || typeCredit == ANNUITES_CONSTANTES)
@@ -215,6 +215,8 @@ public class Credit
 		}
 	
 
+	
+	
 	/**
 	 * Retourne un crédit en calculant automatiquement le montant
 	 * 	qu'il est possible d'emprunter.
@@ -236,6 +238,16 @@ public class Credit
 		}
 		return null;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*
 	 *  Vérifie que les données renseignées sont logiques, sinon lève une exception
 	 */

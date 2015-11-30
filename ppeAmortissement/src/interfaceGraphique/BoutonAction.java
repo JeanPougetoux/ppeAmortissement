@@ -44,9 +44,9 @@ public class BoutonAction extends AbstractAction {
 		fenetre.getErreur().setVisible(false);
 		String chaine = "";
 		chaine += "Taux : ";
-		chaine += "  Durée : ";
-		chaine += "  Montant emprunté : ";
-		chaine += "  Annuitée maximale : ";
+		chaine += "  Durï¿½e : ";
+		chaine += "  Montant empruntï¿½ : ";
+		chaine += "  Annuitï¿½e maximale : ";
 		fenetre.getLabelBottom().setText(chaine);
 	}
 
@@ -71,7 +71,7 @@ public class BoutonAction extends AbstractAction {
 							&& fenetre.getEmprunt().getText().length() != 0){
 						if(Double.parseDouble(fenetre.getRemboursement().getText()) > 
 							Double.parseDouble(fenetre.getEmprunt().getText())){
-							MessageErreur.ErreurAnnuité(fenetre);
+							MessageErreur.ErreurAnnuite(fenetre);
 							fenetre.clearTableau();
 						}
 						else{
@@ -101,9 +101,9 @@ public class BoutonAction extends AbstractAction {
 	public void printValeurs(Credit cred) {
 		String chaine = "";
 		chaine += "Taux : " + cred.taux() * 100;
-		chaine += "%,  Durée : " + cred.duree();
-		chaine += " année(s),  Montant emprunté : " + cred.montantEmprunte();
-		chaine += " euros,  Annuitée maximale : ";
+		chaine += "%,  Durï¿½e : " + cred.duree();
+		chaine += " annï¿½e(s),  Montant empruntï¿½ : " + cred.montantEmprunte();
+		chaine += " euros,  Annuitï¿½e maximale : ";
 		chaine += cred.annuiteMaximale() + " euros";
 		fenetre.getLabelBottom().setText(chaine);
 	}
@@ -132,12 +132,12 @@ public class BoutonAction extends AbstractAction {
 	private void defineTypeCredit() {
 		if (fenetre.getCombo().getSelectedItem() == "Amortissement constant")
 			typeCredit = 1;
-		else if (fenetre.getCombo().getSelectedItem() == "Annuitées constantes")
+		else if (fenetre.getCombo().getSelectedItem() == "Annuitï¿½es constantes")
 			typeCredit = 2;
 	}
 
 	/*
-	 * Vérifie les valeurs tapées par l'utilisateur et initialise les variables
+	 * Vï¿½rifie les valeurs tapï¿½es par l'utilisateur et initialise les variables
 	 */
 
 	private void getValeurs(){

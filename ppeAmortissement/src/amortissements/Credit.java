@@ -131,20 +131,25 @@ public class Credit
 		}
 		return null;
 	}
-	
+	/*
+	 * R√©alise le calcule de l'annuit√© en fonction du montant,de la dur√©e et du taux
+	 */
 	public static double calculTauxAnnuiteConstante(double montant, int duree, double taux){
 		return (montant*taux)/(1-Math.pow(1+taux, -duree));
 		
 	}
+	/*
+	 * V√©rifie que les donn√©es renseign√©es sont logiques, sinon l√®ve une exception
+	 */
 	public static void testCalculeTaux(double montant, double annuite, int duree)throws MonException{
 		if(duree<=0){
-			throw new ExceptionDuree("Impossible de calculer le taux, durÈe nÈgative !", duree);
+			throw new ExceptionDuree("Impossible de calculer le taux, durÔøΩe nÔøΩgative !", duree);
 		}
 		else if(montant < annuite){
-			throw new ExceptionMontant("Impossible de calculer le taux, l'annuitÈe doit Ítre infÈrieure au montant !",montant);
+			throw new ExceptionMontant("Impossible de calculer le taux, l'annuitÔøΩe doit ÔøΩtre infÔøΩrieure au montant !",montant);
 		}
 		else if (annuite < (montant/duree)){
-			throw new ExceptionAnnuite("Impossible de calculer le taux, L'amortissement est supÈrieur ‡ l'annuitÈe !", annuite);
+			throw new ExceptionAnnuite("Impossible de calculer le taux, L'amortissement est supÔøΩrieur ÔøΩ l'annuitÔøΩe !", annuite);
 		}
 		
 	}
@@ -162,14 +167,13 @@ public class Credit
 		if(typeCredit == AMORTISSEMENT_CONSTANTS){
 			
 			double dureeNonArrondie = montantEmprunte/(annuiteMaximale - montantEmprunte*taux);
-			System.out.println("durÈe nÈcessaire pour l'amortissement total :"+"\n" +dureeNonArrondie+"\n");
+			
 			int duree = (int)(Math.round(montantEmprunte/(annuiteMaximale - montantEmprunte*taux)));
 			double testDuree = duree - dureeNonArrondie;
-			System.out.println("ecart = "+ -testDuree);
-			System.out.println("durÈe arrondie"+"\n"+duree);
+			
 			if (testDuree < 0)
 				duree = (int)(Math.round(montantEmprunte/(annuiteMaximale - montantEmprunte*taux)+0.5));;
-			System.out.println("nouvelle durÈe arrondie "+duree);
+			
 			Credit cred = new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
 			return cred;
 		}
@@ -185,25 +189,27 @@ public class Credit
 				duree ++;
 			}
 			
-			System.out.println(montant);
-			System.out.println(duree);
+			
 			return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
 		}
 		return null;
 	}
-public static void testCalculeDuree(double montant, double annuite, double taux) throws MonException{
+	/*
+	 *  V√©rifie que les donn√©es renseign√©es sont logiques, sinon l√®ve une exception
+	 */
+	public static void testCalculeDuree(double montant, double annuite, double taux) throws MonException{
 		if (taux <= 0 || taux >= 1){
-			throw new ExceptionTaux("Impossible de calculer la durÈe,taux incorrect!",taux);
+			throw new ExceptionTaux("Impossible de calculer la durÔøΩe,taux incorrect!",taux);
 		}
 		else if (montant < annuite){
-			throw new ExceptionMontant("Impossible de calculer la durÈe, montant trop faible !",montant);
+			throw new ExceptionMontant("Impossible de calculer la durÔøΩe, montant trop faible !",montant);
 		}
 		else if (annuite < montant*taux){
-			throw new ExceptionAnnuite("Impossible de calculer la durÈe, l'annuitÈe doit Ítre supÈrieure aux intÈrets !",annuite);
+			throw new ExceptionAnnuite("Impossible de calculer la durÔøΩe, l'annuitÔøΩe doit ÔøΩtre supÔøΩrieure aux intÔøΩrets !",annuite);
 	
 		}
 		else if (annuite < 0){
-			throw new ExceptionAnnuite("Impossible de calculer la durÈe, annuitÈe nÈgative !",annuite);
+			throw new ExceptionAnnuite("Impossible de calculer la durÔøΩe, annuitÔøΩe nÔøΩgative !",annuite);
 			
 		}
 		}
@@ -230,15 +236,18 @@ public static void testCalculeDuree(double montant, double annuite, double taux)
 		}
 		return null;
 	}
+	/*
+	 *  V√©rifie que les donn√©es renseign√©es sont logiques, sinon l√®ve une exception
+	 */
 	public static void testCalculeMontantEmprunte(double annuite, double taux, int duree)throws MonException{
 		if (duree <= 0){
-			throw new ExceptionDuree("impossible de calculer le montant : la durÈe doit Ítre positive !",duree);
+			throw new ExceptionDuree("impossible de calculer le montant : la durÔøΩe doit ÔøΩtre positive !",duree);
 		}
 		else if (taux <=0 || taux >=1){
 			throw new ExceptionTaux("impossible de calculer le montant : taux incorrect !",taux);
 		}
 		else if (annuite < 0)
-			throw new ExceptionAnnuite("impossible de calculer le montant : L'annuitÈe doit Ítre positive",annuite);
+			throw new ExceptionAnnuite("impossible de calculer le montant : L'annuitÔøΩe doit ÔøΩtre positive",annuite);
 	}
 
 	/**
@@ -260,19 +269,22 @@ public static void testCalculeDuree(double montant, double annuite, double taux)
 		}
 		return null;
 	}
+	/*
+	 *  V√©rifie que les donn√©es renseign√©es sont logiques, sinon l√®ve une exception
+	 */
 	public static void testCalculeAnnuiteMaximale(double montant, double taux, 
 			int duree)throws MonException{
 		if (duree <= 0){
-			throw new ExceptionDuree ("calcul impossible, durÈe nÈgative",duree);
+			throw new ExceptionDuree ("calcul impossible, durÔøΩe nÔøΩgative",duree);
 		}
 		else if (taux <= 0 || taux >=1){
 			throw new ExceptionTaux ("calcul impossible, taux incorrect",taux);
 		}
 		else if (montant <=0){
-			throw new ExceptionMontant("calcul impossible, montant nÈgatif",montant);
+			throw new ExceptionMontant("calcul impossible, montant nÔøΩgatif",montant);
 		}
 		else if (montant <duree){
-			throw new ExceptionDuree ("calcul impossible, la durÈe ne peut Ítre plus grande que le montant ",duree);
+			throw new ExceptionDuree ("calcul impossible, la durÔøΩe ne peut ÔøΩtre plus grande que le montant ",duree);
 		}
 		
 	}

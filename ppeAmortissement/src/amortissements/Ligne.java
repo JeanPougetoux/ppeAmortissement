@@ -31,7 +31,7 @@ public class Ligne
 	
 	public int getAnnee()
 	{
-		return annee;
+		return annee + 1;
 	}
 	
 	/**

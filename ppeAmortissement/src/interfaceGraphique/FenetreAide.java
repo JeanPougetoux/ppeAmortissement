@@ -1,6 +1,7 @@
 package interfaceGraphique;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +25,7 @@ public class FenetreAide extends JDialog{
 	
 	private void build(){
 		setTitle("Aide d'utilisation"); 
-		setSize(470,250); 
+		setSize(470,240); 
 		setLocationRelativeTo(null); 
 		setResizable(false); 
 		setContentPane(buildContentPane());
@@ -40,6 +41,7 @@ public class FenetreAide extends JDialog{
 		scroll = new JScrollPane(textArea);
 		panel.add(scroll);
 		panel.add(bouton);
+		bouton.setPreferredSize(new Dimension(140, 27));
 		bouton.addActionListener(new ActionListener(){
 		      public void actionPerformed(ActionEvent arg0) {
 		    	  BoutonAide.fenetreAide.setVisible(false);
@@ -58,13 +60,13 @@ public class FenetreAide extends JDialog{
 		"  - le taux d'emprunt\n" +
 		"  - la duree du remboursement\n" +
 		"  - l'annuitee maximale\n\n" +
-		"Cependant, si vous souhaitez generer un tableau à partir de 4 valeurs, celles-ci devront" +
-		" etre strictement exactes.";
-//		"Veuillez ensuite saison votre jeu de valeurs ainsi que le type de remboursement qui vous " +
-//		"convient puis cliquez sur valider pour generer le tableau d'amortissement ainsi que la " +
-//		"valeur inconnue si vous n'en aviez saisi que 3." +
-//		"Vous avez de plus la possibilite d'exporter votre tableau d'amortissement au format Excel " +
-//		"grace au bouton Export.";
+		"Cependant, si vous souhaitez generer un tableau à partir de 4 valeurs, \ncelles-ci devront" +
+		" etre strictement exactes, au risque de produire une erreur.\n\n" +
+		"Veuillez ensuite saisir vos valeurs ainsi que le type de remboursement \nqui vous " +
+		"convient puis cliquez sur valider pour generer le tableau \nd'amortissement, ainsi que la " +
+		"valeur inconnue si vous n'en aviez saisi que 3.\n\n" +
+		"Vous avez de plus la possibilite d'exporter votre tableau d'amortissement au \nformat Excel (.xls)" +
+		"grace au bouton Export.";
 		return message;
 	}
 }

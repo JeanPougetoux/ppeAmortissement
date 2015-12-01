@@ -1,14 +1,14 @@
 package amortissements;
 
 /**
- * ReprÃ©sente le tableau d'amortissement d'un crÃ©dit.
+ * Represente le tableau d'amortissement d'un credit.
  */
 
 public class TableauAmortissement 
 {
 	
 	/**
-	 * CrÃ©e le tableau d'amortissement du crÃ©dit passÃ© en paramÃ¨tre.
+	 * Creer le tableau d'amortissement du credit passee en parametre.
 	 */
 	public final static int COLONNES_TABLEAU = 6;
 	

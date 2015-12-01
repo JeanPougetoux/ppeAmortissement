@@ -24,7 +24,7 @@ public class FenetreAide extends JDialog{
 	
 	private void build(){
 		setTitle("Aide d'utilisation"); 
-		setSize(400,200); 
+		setSize(470,250); 
 		setLocationRelativeTo(null); 
 		setResizable(false); 
 		setContentPane(buildContentPane());
@@ -34,7 +34,7 @@ public class FenetreAide extends JDialog{
 		panel = new JPanel();
 		panel.setLayout(new FlowLayout());
 		panel.setBackground(Color.lightGray);
-		textArea = new JTextArea(getMessageDaide(), 7, 7);
+		textArea = new JTextArea(getMessageDaide(), 10, 39);
 		bouton = new JButton("OK");
 		textArea.setEditable(false);
 		scroll = new JScrollPane(textArea);
@@ -48,17 +48,18 @@ public class FenetreAide extends JDialog{
 		    });
 		return panel;
 	}
+
 	private String getMessageDaide(){
 		String message;
-		message = "Bonjour et bienvenue dans votre application de Gestion de l'amortissement.\n" +
-		"Pour pouvoir generer un tableau d'amortissement il vous faudra connaître au minimum ";
-//		"3 valeurs coherentes les unes avec les autres parmis : " +
-//		"	- le montant emprunte" +
-//		"	- le taux d'emprunt" +
-//		"	- la duree du remboursement" +
-//		"	- l'annuitee maximale" +
-//		"Cependant, si vous souhaitez generer un tableau à partir de 4 valeurs, celles-ci devront" +
-//		" etre strictement exactes." +
+		message = "Bonjour et bienvenue dans votre application de Gestion de l'amortissement.\n\n" +
+		"Pour pouvoir generer un tableau d'amortissement il vous faudra connaître au\nminimum " +
+		"3 valeurs coherentes les unes avec les autres parmis : \n" +
+		"  - le montant emprunte\n" +
+		"  - le taux d'emprunt\n" +
+		"  - la duree du remboursement\n" +
+		"  - l'annuitee maximale\n\n" +
+		"Cependant, si vous souhaitez generer un tableau à partir de 4 valeurs, celles-ci devront" +
+		" etre strictement exactes.";
 //		"Veuillez ensuite saison votre jeu de valeurs ainsi que le type de remboursement qui vous " +
 //		"convient puis cliquez sur valider pour generer le tableau d'amortissement ainsi que la " +
 //		"valeur inconnue si vous n'en aviez saisi que 3." +

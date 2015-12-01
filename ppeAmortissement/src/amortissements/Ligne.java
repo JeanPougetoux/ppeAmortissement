@@ -1,13 +1,13 @@
 package amortissements;
 
 /**
- * Ligne du tableau d'amortissement d'un crédit.
+ * Ligne du tableau d'amortissement d'un credit.
  */
 
 public class Ligne 
 {
 	/**
-	 * Crée une ligne à partir des valeurs passées en paramètres.
+	 * Cree une ligne e� partir des valeurs passees en parametres.
 	 */
 	private int annee;
 	private double capitalInitial,interets,amortissements,annuite,capitalFinal;
@@ -25,8 +25,8 @@ public class Ligne
 	}
 
 	/**
-	 * Retourne l'indice de l'année concernée par la ligne.
-	 * Les indices commencent à 1.
+	 * Retourne l'indice de l'annee concernee par la ligne.
+	 * Les indices commencent e� 1.
 	 */
 	
 	public int getAnnee()
@@ -35,8 +35,8 @@ public class Ligne
 	}
 	
 	/**
-	 * Retourne le montant du capital restant dû au début 
-	 * de la période.
+	 * Retourne le montant du capital restant de� au debut 
+	 * de la periode.
 	 */
 	
 	public double getCapitalInitial()
@@ -45,7 +45,7 @@ public class Ligne
 	}
 	
 	/**
-	 * Retourne le montant des intérêts versés pendant la période.
+	 * Retourne le montant des intere�ts verses pendant la periode.
 	 */
 	
 	public double getInterets()
@@ -54,7 +54,7 @@ public class Ligne
 	}
 
 	/**
-	 * Retourne le montant du capital amorti pendant la période.
+	 * Retourne le montant du capital amorti pendant la periode.
 	 */
 	
 	public double getAmortissements()
@@ -63,7 +63,7 @@ public class Ligne
 	}
 
 	/**
-	 * Retourne le montant de l'annuité pendant la période.
+	 * Retourne le montant de l'annuite pendant la periode.
 	 */
 	
 	public double getAnnuite()
@@ -72,8 +72,8 @@ public class Ligne
 	}
 	
 	/**
-	 * Retourne le montant du capital restant dû à la fin
-	 * de la période.
+	 * Retourne le montant du capital restant de� e� la fin
+	 * de la periode.
 	 */
 	
 	public double getCapitalFinal()
@@ -86,8 +86,8 @@ public class Ligne
 	
 	
 	/**
-	 * Retourne la première ligne du tableau d'amortissement pour
-	 * le crédit passé en paramètre.
+	 * Retourne la premiere ligne du tableau d'amortissement pour
+	 * le credit passe en parametre.
 	 */
 	
 	public static Ligne premiereLigne(Credit credit)
@@ -102,8 +102,8 @@ public class Ligne
 
 	/**
 	 * Retourne la ligne suivant la ligne courante pour le 
-	 * passé en paramètre. Retoure null si la ligne courante est
-	 * la dernière ligne.
+	 * passe en parametre. Retoure null si la ligne courante est
+	 * la derniere ligne.
 	 */
 	
 

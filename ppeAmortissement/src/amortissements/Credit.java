@@ -8,7 +8,7 @@ import exceptions.ExceptionTaux;
 import exceptions.MonException;
 
 /**
- * Représente un crédit.
+ * Represente un credit.
  */
 
 public class Credit 
@@ -19,9 +19,9 @@ public class Credit
 	private double montantEmprunte,annuiteMaximale,taux;
 
 	/**
-	 * Créée un crédit.
+	 * Creee un credit.
 	 */
-	
+
 	private Credit (int typeCredit, double montantEmprunte, double annuiteMaximale,
 			double taux, int duree)
 	{
@@ -43,7 +43,7 @@ public class Credit
 	}
 	
 	/**
-	 * Retourné le montant emprunté.
+	 * Retourne le montant emprunte.
 	 */
 	
 	public double montantEmprunte()
@@ -52,7 +52,7 @@ public class Credit
 	}
 	
 	/**
-	 * Retourne le montant de la plus grande annuité. 
+	 * Retourne le montant de la plus grande annuite. 
 	 */
 	
 	public double annuiteMaximale()
@@ -61,7 +61,7 @@ public class Credit
 	}
 	
 	/**
-	 * Retourne le taux du crédit.
+	 * Retourne le taux du credit.
 	 */
 	
 	public double taux()
@@ -70,7 +70,7 @@ public class Credit
 	}
 	
 	/**
-	 * Retourne nombre d'annuités à verser.
+	 * Retourne nombre d'annuites à verser.
 	 */
 	
 	public int duree()
@@ -79,7 +79,7 @@ public class Credit
 	}
 	
 	/**
-	 * Retourne le tableau d'amortissement du crédit.
+	 * Retourne le tableau d'amortissement du credit.
 	 */
 	
 	public TableauAmortissement getTableauAmortissement()
@@ -88,7 +88,7 @@ public class Credit
 	}
 	
 	/**
-	 * Retourne un crédit en calculant automatiquement le taux.
+	 * Retourne un credit en calculant automatiquement le taux.
 	 */
 	
 	public static Credit calculeTaux(int typeCredit, 
@@ -132,14 +132,14 @@ public class Credit
 		return null;
 	}
 	/*
-	 * Réalise le calcule de l'annuité en fonction du montant,de la durée et du taux
+	 * Realise le calcule de l'annuite en fonction du montant,de la duree et du taux
 	 */
 	public static double calculTauxAnnuiteConstante(double montant, int duree, double taux){
 		return (montant*taux)/(1-Math.pow(1+taux, -duree));
 		
 	}
 	/*
-	 * Vérifie que les données renseignées sont logiques, sinon lève une exception
+	 * Verifie que les donnees renseignees sont logiques, sinon lève une exception
 	 */
 	public static void testCalculeTaux(double montant, double annuite, int duree)throws MonException{
 		if(duree<=0){
@@ -156,7 +156,7 @@ public class Credit
 
 	
 	/**
-	 * Retourne un crédit en calculant automatiquement la durée.
+	 * Retourne un credit en calculant automatiquement la duree.
 	 */
 	
 	public static Credit calculeDuree(int typeCredit, 
@@ -195,7 +195,7 @@ public class Credit
 		return null;
 	}
 	/*
-	 *  Vérifie que les données renseignées sont logiques, sinon lève une exception
+	 *  Verifie que les donnees renseignees sont logiques, sinon lève une exception
 	 */
 	public static void testCalculeDuree(double montant, double annuite, double taux) throws MonException{
 		if (taux <= 0 || taux >= 1){
@@ -218,7 +218,7 @@ public class Credit
 	
 	
 	/**
-	 * Retourne un crédit en calculant automatiquement le montant
+	 * Retourne un credit en calculant automatiquement le montant
 	 * 	qu'il est possible d'emprunter.
 	 * @throws ExceptionCalculeMontant 
 	 */
@@ -249,7 +249,7 @@ public class Credit
 	
 	
 	/*
-	 *  Vérifie que les données renseignées sont logiques, sinon lève une exception
+	 *  Verifie que les donnees renseignees sont logiques, sinon lève une exception
 	 */
 	public static void testCalculeMontantEmprunte(double annuite, double taux, int duree)throws MonException{
 		if (duree <= 0){
@@ -263,8 +263,8 @@ public class Credit
 	}
 
 	/**
-	 * Retourne un crédit en calculant automatiquement
-	 * l'annuité maximale.
+	 * Retourne un credit en calculant automatiquement
+	 * l'annuite maximale.
 	 */
 	
 	public static Credit calculeAnnuiteMaximale(int typeCredit, 
@@ -282,7 +282,7 @@ public class Credit
 		return null;
 	}
 	/*
-	 *  Vérifie que les données renseignées sont logiques, sinon lève une exception
+	 *  Verifie que les donnees renseignees sont logiques, sinon lève une exception
 	 */
 	public static void testCalculeAnnuiteMaximale(double montant, double taux, 
 			int duree)throws MonException{

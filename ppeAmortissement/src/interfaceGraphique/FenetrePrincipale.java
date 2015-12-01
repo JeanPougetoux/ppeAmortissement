@@ -20,7 +20,7 @@ public class FenetrePrincipale extends JFrame {
 	private DefaultTableModel model;
 
 	/**
-	 * Page principale o� se passe toutes les interactions
+	 * Page principale oe se passe toutes les interactions
 	 */
 	
 	public FenetrePrincipale(){
@@ -28,7 +28,7 @@ public class FenetrePrincipale extends JFrame {
 	}
 	
 	/**
-	 * Permet de changer les param�tres de la page
+	 * Permet de changer les parametres de la page
 	 */
 	
 	private void build(){
@@ -43,7 +43,7 @@ public class FenetrePrincipale extends JFrame {
 	}
 	
 	/*
-	 * D�finit le panel ou seront tous les �l�ments du Header
+	 * Definit le panel ou seront tous les elements du Header
 	 */
 	private JPanel buildContentPaneHead(){
 		panel2 = new JPanel();
@@ -63,8 +63,8 @@ public class FenetrePrincipale extends JFrame {
 		return panelTxt;
 	}
 	/**
-	 * Permet de remplir le JPanel avec les diff�rents composants et
-	 * l'int�gre au JFrame (page principale)
+	 * Permet de remplir le JPanel avec les differents composants et
+	 * l'integre au JFrame (page principale)
 	 */
 	
 	private JPanel buildContentPane(){		
@@ -82,14 +82,14 @@ public class FenetrePrincipale extends JFrame {
 	private void drawHead(){
 		labelTaux = new JLabel("Taux (en %) : ");
 		taux = new JTextField(04);
-		labelDuree = new JLabel("Dur�e (en ann�es) : ");				
+		labelDuree = new JLabel("Duree (en annees) : ");				
 		duree = new JTextField(04);
-		labelEmprunt = new JLabel("Montant emprunt� : ");		
+		labelEmprunt = new JLabel("Montant emprunte : ");		
 		emprunt = new JTextField(04);
-		labelRemboursement = new JLabel("Annuit�e maximale : ");		
+		labelRemboursement = new JLabel("Annuitee maximale : ");		
 		remboursement = new JTextField(04);
 		
-		String[] choixCredit = { "Annuit�es constantes", "Amortissement constant"};
+		String[] choixCredit = { "Annuitees constantes", "Amortissement constant"};
 		choix = new JComboBox<String>(choixCredit);
 		choix.setSelectedIndex(1);
 		bouton = new JButton(new BoutonAction(this, "valider"));
@@ -101,7 +101,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	
 	private void drawBottom(){
-		 labelBottom = new JLabel("Taux :   Dur�e :   Montant emprunt� :   Annuit�e maximale : ");
+		 labelBottom = new JLabel("Taux :   Duree :   Montant emprunte :   Annuitee maximale : ");
 		 bouton2 = new JButton(new ExportExcel(this, "export"));
 		 bouton3 = new JButton(new BoutonAide("aide"));
 		 messageErreur = new JLabel("Veuillez ne saisir que des valeurs unitaires");
@@ -148,13 +148,13 @@ public class FenetrePrincipale extends JFrame {
 		panelTxt.add(messageErreur);
 	}
 	/**
-	 * Cr�er un tableau, le remplit de valeurs et l'ajoute au JPanel
+	 * Creer un tableau, le remplit de valeurs et l'ajoute au JPanel
 	 */
 	
 	public void initTableau(){
 		Object[][] donnees = {};
  
-        String[] entetes = {"Ann�es", "Capital initial", "Int�r�t", "Amortissement", "Annuit�", "Capital final"};
+        String[] entetes = {"Annees", "Capital initial", "Interet", "Amortissement", "Annuitee", "Capital final"};
  
         model = new DefaultTableModel(donnees, entetes);
         tableau = new JTable(model);
@@ -173,13 +173,13 @@ public class FenetrePrincipale extends JFrame {
 			donnees[i][4] = (double)Math.round(tab[i].getAnnuite()*100)/100;
 			donnees[i][5] = (double)Math.round(tab[i].getCapitalFinal());
 		}
-        String[] entetes = {"Ann�es", "Capital initial", "Int�r�t", "Amortissement", "Annuit�", "Capital final"};
+        String[] entetes = {"Annees", "Capital initial", "Interet", "Amortissement", "Annuite", "Capital final"};
 		model = new DefaultTableModel(donnees, entetes);
 		tableau.setModel(model);
 	}
 	
 	/*
-	 * Efface toutes les donn�es du tableau
+	 * Efface toutes les donnees du tableau
 	 */
 	
 	public void clearTableau(){

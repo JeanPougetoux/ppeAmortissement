@@ -16,7 +16,7 @@ public class BoutonAction extends AbstractAction {
 	private int typeCredit;
 
 	/**
-	 * Classe liï¿½e au bouton et aux actions qu'il dï¿½clenche
+	 * Classe liee au bouton et aux actions qu'il declenche
 	 */
 
 	public BoutonAction(FenetrePrincipale fenetre, String texte) {
@@ -25,7 +25,7 @@ public class BoutonAction extends AbstractAction {
 	}
 
 	/**
-	 * Reprï¿½sente l'action liï¿½e au bouton
+	 * Represente l'action liee au bouton
 	 */
 
 	public void actionPerformed(ActionEvent e) {
@@ -36,7 +36,7 @@ public class BoutonAction extends AbstractAction {
 	}
 
 	/**
-	 * Rï¿½initialise les champs et la visibilitï¿½ du message d'erreur comme dans
+	 * Reinitialise les champs et la visibilite du message d'erreur comme dans
 	 * la page principale
 	 */
 
@@ -44,14 +44,14 @@ public class BoutonAction extends AbstractAction {
 		fenetre.getErreur().setVisible(false);
 		String chaine = "";
 		chaine += "Taux : ";
-		chaine += "  Durée : ";
-		chaine += "  Montant emprunté : ";
-		chaine += "  Annuitée maximale : ";
+		chaine += "  Duree : ";
+		chaine += "  Montant emprunte : ";
+		chaine += "  Annuitee maximale : ";
 		fenetre.getLabelBottom().setText(chaine);
 	}
 
 	/**
-	 * Vï¿½rifie que les textFields sont au bon nombre (de 3) et qu'ils ne
+	 * Verifie que les textFields sont au bon nombre (de 3) et qu'ils ne
 	 * contiennent pas de lettre, si tout est bon lance l'impression des valeurs
 	 */
 
@@ -95,21 +95,21 @@ public class BoutonAction extends AbstractAction {
 	}
 
 	/**
-	 * Met les valeurs validï¿½es dans les champs s'il n'y a pas d'erreurs
+	 * Met les valeurs validees dans les champs s'il n'y a pas d'erreurs
 	 */
 
 	public void printValeurs(Credit cred) {
 		String chaine = "";
 		chaine += "Taux : " + cred.taux() * 100;
-		chaine += "%,  Durée : " + cred.duree();
-		chaine += " année(s),  Montant emprunté : " + cred.montantEmprunte();
-		chaine += " euros,  Annuitée maximale : ";
+		chaine += "%,  Duree : " + cred.duree();
+		chaine += " annee(s),  Montant emprunte : " + cred.montantEmprunte();
+		chaine += " euros,  Annuitee maximale : ";
 		chaine += cred.annuiteMaximale() + " euros";
 		fenetre.getLabelBottom().setText(chaine);
 	}
 
 	/**
-	 * Permet de vï¿½rifier le nombre des valeurs saisies par l'utilisateur
+	 * Permet de verifier le nombre des valeurs saisies par l'utilisateur
 	 */
 
 	private int verifNombreValeurs(){
@@ -127,17 +127,17 @@ public class BoutonAction extends AbstractAction {
 	}
 
 	/*
-	 * Voit quel est le type du crï¿½dit
+	 * Voit quel est le type du credit
 	 */
 	private void defineTypeCredit() {
 		if (fenetre.getCombo().getSelectedItem() == "Amortissement constant")
 			typeCredit = 1;
-		else if (fenetre.getCombo().getSelectedItem() == "Annuitées constantes")
+		else if (fenetre.getCombo().getSelectedItem() == "Annuitees constantes")
 			typeCredit = 2;
 	}
 
 	/*
-	 * Vï¿½rifie les valeurs tapï¿½es par l'utilisateur et initialise les variables
+	 * Verifie les valeurs tapees par l'utilisateur et initialise les variables
 	 */
 
 	private void getValeurs(){
@@ -192,7 +192,7 @@ public class BoutonAction extends AbstractAction {
 		}
 	}
 	/*
-	 * Vï¿½rifie si le crï¿½dit possï¿½de 4 bonnes valeurs
+	 * Verifie si le credit possede 4 bonnes valeurs
 	 */
 	private boolean generationCredit4Valeurs(){
 		double taux = (Double.parseDouble(fenetre.getTaux().getText()))/100;
@@ -218,7 +218,7 @@ public class BoutonAction extends AbstractAction {
 	}
 
 	/**
-	 * Vï¿½rifie si une chaï¿½ne contient autre chose que des caractï¿½res numï¿½riques
+	 * Verifie si une chaene contient autre chose que des caracteres numeriques
 	 */
 
 	private boolean getNumeric(String chaine) {

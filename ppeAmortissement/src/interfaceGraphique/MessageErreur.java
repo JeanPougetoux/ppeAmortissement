@@ -14,7 +14,7 @@ public class MessageErreur {
 	}
 	
 	/**
-	 * Erreur caractï¿½re dans les champs
+	 * Erreur caractere dans les champs
 	 */
 	public static void ErreurLettre(FenetrePrincipale fenetre){
 		fenetre.getErreur().setText("Veuillez ne saisir que des valeurs unitaires");
@@ -32,19 +32,19 @@ public class MessageErreur {
 	}
 	
 	/**
-	 * Erreur si l'annuitï¿½ max est supï¿½rieur au montant empruntï¿½
+	 * Erreur si l'annuite max est superieur au montant emprunte
 	 */
 	public static void ErreurAnnuite(FenetrePrincipale fenetre){
-		fenetre.getErreur().setText("L'annuitée maximale est supérieur au montant emprunté");
+		fenetre.getErreur().setText("L'annuitee maximale est superieur au montant emprunte");
 		fenetre.getErreur().setForeground(Color.red);
 		fenetre.getErreur().setVisible(true);
 	}
 	
 	/**
-	 * Export bien effectï¿½
+	 * Export bien effecte
 	 */
 	public static void BienEnregistrer(FenetrePrincipale fenetre){
-		fenetre.getErreur().setText("Tableau bien exporté");
+		fenetre.getErreur().setText("Tableau bien exporte");
 		fenetre.getErreur().setForeground(Color.green);
 		fenetre.getErreur().setVisible(true);
 	}

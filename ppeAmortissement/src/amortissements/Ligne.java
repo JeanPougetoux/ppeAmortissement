@@ -1,17 +1,26 @@
 package amortissements;
 
+
 /**
  * Ligne du tableau d'amortissement d'un credit.
+ * @author thomas
+ *
  */
-
 public class Ligne 
 {
 	
 	private int annee;
 	private double capitalInitial,interets,amortissements,annuite,capitalFinal;
 
+	
 	/**
 	 * Cree une ligne a partir des valeurs passees en parametres.
+	 * @param annee
+	 * @param capitalInitial
+	 * @param interets
+	 * @param amortissements
+	 * @param annuite
+	 * @param capitalFinal
 	 */
 	Ligne(int annee, double capitalInitial, double interets, 
 			double amortissements, double annuite, double capitalFinal)
@@ -25,21 +34,23 @@ public class Ligne
 		this.capitalFinal = capitalFinal;
 	}
 
+	
 	/**
 	 * Retourne l'indice de l'annee concernee par la ligne.
 	 * Les indices commencent a 1.
+	 * @return int
 	 */
-	
 	public int getAnnee()
 	{
 		return annee + 1;
 	}
 	
+	
 	/**
 	 * Retourne le montant du capital restant au debut 
 	 * de la periode.
+	 * @return double
 	 */
-	
 	public double getCapitalInitial()
 	{
 		return capitalInitial;
@@ -47,36 +58,39 @@ public class Ligne
 	
 	/**
 	 * Retourne le montant des interets verses pendant la periode.
+	 * @return double
 	 */
-	
 	public double getInterets()
 	{
 		return interets;
 	}
 
-	/**
-	 * Retourne le montant du capital amorti pendant la periode.
-	 */
 	
+	/**
+	 *  Retourne le montant du capital amorti pendant la periode.
+	 * @return double
+	 */
 	public double getAmortissements()
 	{
 		return amortissements;
 	}
 
+	
 	/**
 	 * Retourne le montant de l'annuite pendant la periode.
+	 * @return double
 	 */
-	
 	public double getAnnuite()
 	{
 		return annuite;
 	}
 	
+	
 	/**
 	 * Retourne le montant du capital restant a la fin
 	 * de la periode.
+	 * @return double
 	 */
-	
 	public double getCapitalFinal()
 	{
 		return capitalFinal;
@@ -87,10 +101,11 @@ public class Ligne
 	
 	
 	/**
-	 * Retourne la premiere ligne du tableau d'amortissement pour
+	 *  Retourne la premiere ligne du tableau d'amortissement pour
 	 * le credit passe en parametre.
+	 * @param credit
+	 * @return Ligne
 	 */
-	
 	public static Ligne premiereLigne(Credit credit)
 	{
 		double amortissement = credit.annuiteMaximale()-(credit.montantEmprunte()*credit.taux());
@@ -101,13 +116,15 @@ public class Ligne
 	
 	
 
+	
+	
 	/**
 	 * Retourne la ligne suivant la ligne courante pour le 
 	 * passe en parametre. Retoure null si la ligne courante est
 	 * la derniere ligne.
+	 * @param credit
+	 * @return Ligne
 	 */
-	
-
 	
 	public Ligne ligneSuivante(Credit credit)
 	{

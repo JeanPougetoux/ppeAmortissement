@@ -7,8 +7,11 @@ import exceptions.ExceptionMontant;
 import exceptions.ExceptionTaux;
 import exceptions.MonException;
 
+
 /**
  * Represente un credit.
+ * @author thomas
+ *
  */
 
 public class Credit 
@@ -18,8 +21,14 @@ public class Credit
 	private int typeCredit,duree;
 	private double montantEmprunte,annuiteMaximale,taux;
 
+	
 	/**
-	 * Creee un credit.
+	 * Cree un credit
+	 * @param typeCredit
+	 * @param montantEmprunte
+	 * @param annuiteMaximale
+	 * @param taux
+	 * @param duree
 	 */
 
 	private Credit (int typeCredit, double montantEmprunte, double annuiteMaximale,
@@ -35,15 +44,19 @@ public class Credit
 		this.duree = duree;
 		
 	}
+	
 	/**
 	 * Retourne le type du credit
+	 * @return int
 	 */
 	public int typeCredit(){
 		return typeCredit;
 	}
 	
+	
 	/**
-	 * Retourne le montant emprunte.
+	 *  Retourne le montant emprunte.
+	 * @return double
 	 */
 	
 	public double montantEmprunte()
@@ -51,28 +64,31 @@ public class Credit
 		return montantEmprunte;
 	}
 	
-	/**
-	 * Retourne le montant de la plus grande annuite. 
-	 */
 	
+	/**
+	 * Retourne le montant de la plus grande annuite.
+	 * @return double
+	 */
 	public double annuiteMaximale()
 	{
 		return annuiteMaximale;
 	}
 	
-	/**
-	 * Retourne le taux du credit.
-	 */
 	
+	/**
+	 * Retourne le taux du credit
+	 * @return double
+	 */
 	public double taux()
 	{
 		return taux;
 	}
 	
-	/**
-	 * Retourne nombre d'annuites à verser.
-	 */
 	
+	/**
+	 *  Retourne nombre d'annuites à verser.
+	 * @return int 
+	 */
 	public int duree()
 	{
 		return duree;
@@ -80,18 +96,23 @@ public class Credit
 	
 	/**
 	 * Retourne le tableau d'amortissement du credit.
+	 * @return TableauAmortissement
 	 */
-	
 	public TableauAmortissement getTableauAmortissement()
 	{
 		return new TableauAmortissement(this);
 	}
 	
+
 	/**
 	 * Retourne un credit en calculant automatiquement le taux.
+	 * @param typeCredit
+	 * @param montantEmprunte
+	 * @param annuiteMaximale
+	 * @param duree
+	 * @return Credit
 	 * @throws MonException
 	 */
-	
 	public static Credit calculeTaux(int typeCredit, 
 			double montantEmprunte, double annuiteMaximale,
 			int duree)throws MonException
@@ -132,17 +153,26 @@ public class Credit
 		}
 		return null;
 	}
+	
 	/**
 	 * Realise le calcule de l'annuite en fonction du montant,de la duree et du taux
+	 * @param montant
+	 * @param duree
+	 * @param taux
+	 * @return double
 	 */
 	public static double calculTauxAnnuiteConstante(double montant, int duree, double taux){
 		return (montant*taux)/(1-Math.pow(1+taux, -duree));
 		
 	}
 
-	/*
+	
+	/**
 	 * Verifie que les donnees renseignees sont logiques, sinon leve une exception
->>>>>>> branch 'master' of https://github.com/ThomasEcalle/ppe_amortissement2.git
+	 * @param montant
+	 * @param annuite
+	 * @param duree
+	 * @throws MonException
 	 */
 	public static void testCalculeTaux(double montant, double annuite, int duree)throws MonException{
 		if(duree<=0){
@@ -158,8 +188,14 @@ public class Credit
 	}
 
 	
+	
 	/**
 	 * Retourne un credit en calculant automatiquement la duree.
+	 * @param typeCredit
+	 * @param montantEmprunte
+	 * @param annuiteMaximale
+	 * @param taux
+	 * @return Credit
 	 * @throws MonException
 	 */
 	
@@ -199,9 +235,13 @@ public class Credit
 		return null;
 	}
 
-	/*
+	
+	/**
 	 *  Verifie que les donnees renseignees sont logiques, sinon leve une exception
->>>>>>> branch 'master' of https://github.com/ThomasEcalle/ppe_amortissement2.git
+	 * @param montant
+	 * @param annuite
+	 * @param taux
+	 * @throws MonException
 	 */
 	public static void testCalculeDuree(double montant, double annuite, double taux) throws MonException{
 		if (taux <= 0 || taux >= 1){
@@ -223,12 +263,17 @@ public class Credit
 
 	
 	
+	
 	/**
 	 * Retourne un credit en calculant automatiquement le montant
 	 * 	qu'il est possible d'emprunter.
-	 * @throws MonException 
+	 * @param typeCredit
+	 * @param annuiteMaximale
+	 * @param taux
+	 * @param duree
+	 * @return credit
+	 * @throws MonException
 	 */
-	
 	public static Credit calculeMontantEmprunte(int typeCredit, 
 			double annuiteMaximale,	double taux, int duree) throws MonException
 	{
@@ -245,9 +290,13 @@ public class Credit
 		return null;
 	}
 	
-	/*
-	 *  Verifie que les donnees renseignees sont logiques, sinon leve une exception
->>>>>>> branch 'master' of https://github.com/ThomasEcalle/ppe_amortissement2.git
+
+	/**
+	 * Verifie que les donnees renseignees sont logiques, sinon leve une exception
+	 * @param annuite
+	 * @param taux
+	 * @param duree
+	 * @throws MonException
 	 */
 	public static void testCalculeMontantEmprunte(double annuite, double taux, int duree)throws MonException{
 		if (duree <= 0){
@@ -260,13 +309,17 @@ public class Credit
 			throw new ExceptionAnnuite("impossible de calculer le montant : L'annuitee doit etre positive",annuite);
 	}
 
+	
 	/**
 	 * Retourne un credit en calculant automatiquement
 	 * l'annuite maximale.
+	 * @param typeCredit
+	 * @param montantEmprunte
+	 * @param taux
+	 * @param duree
+	 * @return Credit
 	 * @throws MonException
-	 * 
 	 */
-	
 	public static Credit calculeAnnuiteMaximale(int typeCredit, 
 			double montantEmprunte,	double taux, int duree)throws MonException
 	{
@@ -282,9 +335,13 @@ public class Credit
 		return null;
 	}
 
-	/*
-	 *  Verifie que les donnees renseignees sont logiques, sinon leve une exception
->>>>>>> branch 'master' of https://github.com/ThomasEcalle/ppe_amortissement2.git
+
+	/**
+	 * Verifie que les donnees renseignees sont logiques, sinon leve une exception
+	 * @param montant
+	 * @param taux
+	 * @param duree
+	 * @throws MonException
 	 */
 	public static void testCalculeAnnuiteMaximale(double montant, double taux, 
 			int duree)throws MonException{

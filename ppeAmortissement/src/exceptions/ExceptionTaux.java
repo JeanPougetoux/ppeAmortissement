@@ -3,8 +3,12 @@ package exceptions;
 import interfaceGraphique.Application;
 import interfaceGraphique.FenetrePrincipale;
 import interfaceGraphique.MessageErreur;
+
 /**
- * Creer une exception concernant les erreurs de taux */
+ * Creer une exception concernant les erreurs de taux 
+ * @author thomas
+ *
+ */
 public class ExceptionTaux extends MonException{
 
 	String message;

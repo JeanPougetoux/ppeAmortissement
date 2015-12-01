@@ -3,10 +3,14 @@ package exceptions;
 import interfaceGraphique.Application;
 import interfaceGraphique.FenetrePrincipale;
 import interfaceGraphique.MessageErreur;
-
-@SuppressWarnings("serial")
 /**
- * Creer une exception concernant les erreurs d'annuite */
+ * 
+ * Creer une exception concernant les erreurs d'annuite 
+ * @author thomas
+ *
+ */
+@SuppressWarnings("serial")
+
 public class ExceptionAnnuite extends MonException {
 
 	String message;

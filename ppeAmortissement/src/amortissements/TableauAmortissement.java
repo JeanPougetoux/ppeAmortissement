@@ -1,19 +1,21 @@
 package amortissements;
 
+
 /**
  * Represente le tableau d'amortissement d'un credit.
+ * @author thomas
+ *
  */
-
 public class TableauAmortissement 
 {
-	
-	/**
-	 * Creer le tableau d'amortissement du credit passe en parametre.
-	 */
 	public final static int COLONNES_TABLEAU = 6;
 	
 	Ligne[] tableau;
 	Credit credit;
+	/**
+	 *  Creer le tableau d'amortissement du credit passe en parametre.
+	 * @param credit
+	 */
 	public TableauAmortissement(Credit credit)
 	{
 		this.credit = credit;
@@ -36,27 +38,32 @@ public class TableauAmortissement
 	
 	
 	
+	
 	/**
 	 * Retourne la duree de l'amortissement.
+	 * @return int 
 	 */
-	
 	public int getNbLignes()
 	{
 		return this.credit.duree();
 	}
 	
+	
 	/**
 	 * Retourne la i-eme ligne du tableau d'amortissement.
 	 * Les indices commencent a  0.
+	 * @param i
+	 * @return Ligne
 	 */
-	
 	public Ligne getLigne(int i)
 	{
 		return tableau[i];		
 	}
 	
+	
 	/**
-	 * Retourne le tableau de ligne qui correspond au tableau d'amortissement final
+	 *  Retourne le tableau de ligne qui correspond au tableau d'amortissement final
+	 * @return Ligne[]
 	 */
 	public Ligne[] getTableau()
 	{

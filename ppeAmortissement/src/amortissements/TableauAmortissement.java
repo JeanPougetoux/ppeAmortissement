@@ -8,7 +8,7 @@ public class TableauAmortissement
 {
 	
 	/**
-	 * Creer le tableau d'amortissement du credit passee en parametre.
+	 * Creer le tableau d'amortissement du credit passe en parametre.
 	 */
 	public final static int COLONNES_TABLEAU = 6;
 	
@@ -37,7 +37,7 @@ public class TableauAmortissement
 	
 	
 	/**
-	 * Retourne la durÃ©e de l'amortissement.
+	 * Retourne la duree de l'amortissement.
 	 */
 	
 	public int getNbLignes()
@@ -46,8 +46,8 @@ public class TableauAmortissement
 	}
 	
 	/**
-	 * Retourne la i-Ã¨me ligne du tableau d'amortissement.
-	 * Les indices commencent Ã  0.
+	 * Retourne la i-eme ligne du tableau d'amortissement.
+	 * Les indices commencent a  0.
 	 */
 	
 	public Ligne getLigne(int i)
@@ -55,19 +55,15 @@ public class TableauAmortissement
 		return tableau[i];		
 	}
 	
-	/*
-	 * Retourne le tableau d'amortissement
+	/**
+	 * Retourne le tableau de ligne qui correspond au tableau d'amortissement final
 	 */
 	public Ligne[] getTableau()
 	{
 		return tableau;
 	}
 	
-	/**
-	 * Retourne une reprÃ©sentation du tableau au format 
-	 * chaÃ®ne de caractÃ¨res.
-	 */
-	
+
 	public String toString() {
 		String message = "";
 		for (int i=0;i<getNbLignes();i++){

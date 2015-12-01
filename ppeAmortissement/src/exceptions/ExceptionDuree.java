@@ -4,6 +4,8 @@ import interfaceGraphique.Application;
 import interfaceGraphique.FenetrePrincipale;
 import interfaceGraphique.MessageErreur;
 
+/**
+ * Creer une exception concernant les erreurs de duree */
 @SuppressWarnings("serial")
 public class ExceptionDuree extends MonException {
 

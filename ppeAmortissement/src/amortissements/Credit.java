@@ -89,6 +89,7 @@ public class Credit
 	
 	/**
 	 * Retourne un credit en calculant automatiquement le taux.
+	 * @throws MonException
 	 */
 	
 	public static Credit calculeTaux(int typeCredit, 
@@ -131,14 +132,14 @@ public class Credit
 		}
 		return null;
 	}
-	/*
+	/**
 	 * Realise le calcule de l'annuite en fonction du montant,de la duree et du taux
 	 */
 	public static double calculTauxAnnuiteConstante(double montant, int duree, double taux){
 		return (montant*taux)/(1-Math.pow(1+taux, -duree));
 		
 	}
-	/*
+	/**
 	 * Verifie que les donnees renseignees sont logiques, sinon lève une exception
 	 */
 	public static void testCalculeTaux(double montant, double annuite, int duree)throws MonException{
@@ -157,6 +158,7 @@ public class Credit
 	
 	/**
 	 * Retourne un credit en calculant automatiquement la duree.
+	 * @throws MonException
 	 */
 	
 	public static Credit calculeDuree(int typeCredit, 
@@ -194,7 +196,7 @@ public class Credit
 		}
 		return null;
 	}
-	/*
+	/**
 	 *  Verifie que les donnees renseignees sont logiques, sinon lève une exception
 	 */
 	public static void testCalculeDuree(double montant, double annuite, double taux) throws MonException{
@@ -220,7 +222,7 @@ public class Credit
 	/**
 	 * Retourne un credit en calculant automatiquement le montant
 	 * 	qu'il est possible d'emprunter.
-	 * @throws ExceptionCalculeMontant 
+	 * @throws MonException 
 	 */
 	
 	public static Credit calculeMontantEmprunte(int typeCredit, 
@@ -248,7 +250,7 @@ public class Credit
 	
 	
 	
-	/*
+	/**
 	 *  Verifie que les donnees renseignees sont logiques, sinon lève une exception
 	 */
 	public static void testCalculeMontantEmprunte(double annuite, double taux, int duree)throws MonException{
@@ -265,6 +267,8 @@ public class Credit
 	/**
 	 * Retourne un credit en calculant automatiquement
 	 * l'annuite maximale.
+	 * @throws MonException
+	 * 
 	 */
 	
 	public static Credit calculeAnnuiteMaximale(int typeCredit, 
@@ -281,7 +285,7 @@ public class Credit
 		}
 		return null;
 	}
-	/*
+	/**
 	 *  Verifie que les donnees renseignees sont logiques, sinon lève une exception
 	 */
 	public static void testCalculeAnnuiteMaximale(double montant, double taux, 

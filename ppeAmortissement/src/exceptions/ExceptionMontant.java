@@ -3,7 +3,8 @@ package exceptions;
 import interfaceGraphique.Application;
 import interfaceGraphique.FenetrePrincipale;
 import interfaceGraphique.MessageErreur;
-
+/**
+ * Creer une exception concernant les erreurs de montant */
 @SuppressWarnings({ "serial", "unused" })
 public class ExceptionMontant extends MonException{
 

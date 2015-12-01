@@ -6,12 +6,13 @@ package amortissements;
 
 public class Ligne 
 {
-	/**
-	 * Cree une ligne e  partir des valeurs passees en parametres.
-	 */
+	
 	private int annee;
 	private double capitalInitial,interets,amortissements,annuite,capitalFinal;
 
+	/**
+	 * Cree une ligne a partir des valeurs passees en parametres.
+	 */
 	Ligne(int annee, double capitalInitial, double interets, 
 			double amortissements, double annuite, double capitalFinal)
 	{
@@ -26,7 +27,7 @@ public class Ligne
 
 	/**
 	 * Retourne l'indice de l'annee concernee par la ligne.
-	 * Les indices commencent e  1.
+	 * Les indices commencent a 1.
 	 */
 	
 	public int getAnnee()
@@ -35,7 +36,7 @@ public class Ligne
 	}
 	
 	/**
-	 * Retourne le montant du capital restant de» au debut 
+	 * Retourne le montant du capital restant au debut 
 	 * de la periode.
 	 */
 	
@@ -45,7 +46,7 @@ public class Ligne
 	}
 	
 	/**
-	 * Retourne le montant des intereªts verses pendant la periode.
+	 * Retourne le montant des interets verses pendant la periode.
 	 */
 	
 	public double getInterets()
@@ -72,7 +73,7 @@ public class Ligne
 	}
 	
 	/**
-	 * Retourne le montant du capital restant de» e  la fin
+	 * Retourne le montant du capital restant a la fin
 	 * de la periode.
 	 */
 	

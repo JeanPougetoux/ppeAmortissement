@@ -35,7 +35,7 @@ public class MessageErreur {
 	 * Erreur si l'annuitï¿½ max est supï¿½rieur au montant empruntï¿½
 	 */
 	public static void ErreurAnnuite(FenetrePrincipale fenetre){
-		fenetre.getErreur().setText("L'annuitï¿½ maximale est supï¿½rieur au montant empruntï¿½");
+		fenetre.getErreur().setText("L'annuitée maximale est supérieur au montant emprunté");
 		fenetre.getErreur().setForeground(Color.red);
 		fenetre.getErreur().setVisible(true);
 	}
@@ -44,7 +44,7 @@ public class MessageErreur {
 	 * Export bien effectï¿½
 	 */
 	public static void BienEnregistrer(FenetrePrincipale fenetre){
-		fenetre.getErreur().setText("Tableau bien exportï¿½");
+		fenetre.getErreur().setText("Tableau bien exporté");
 		fenetre.getErreur().setForeground(Color.green);
 		fenetre.getErreur().setVisible(true);
 	}

@@ -44,9 +44,9 @@ public class BoutonAction extends AbstractAction {
 		fenetre.getErreur().setVisible(false);
 		String chaine = "";
 		chaine += "Taux : ";
-		chaine += "  Durï¿½e : ";
-		chaine += "  Montant empruntï¿½ : ";
-		chaine += "  Annuitï¿½e maximale : ";
+		chaine += "  Durée : ";
+		chaine += "  Montant emprunté : ";
+		chaine += "  Annuitée maximale : ";
 		fenetre.getLabelBottom().setText(chaine);
 	}
 
@@ -101,9 +101,9 @@ public class BoutonAction extends AbstractAction {
 	public void printValeurs(Credit cred) {
 		String chaine = "";
 		chaine += "Taux : " + cred.taux() * 100;
-		chaine += "%,  Durï¿½e : " + cred.duree();
-		chaine += " annï¿½e(s),  Montant empruntï¿½ : " + cred.montantEmprunte();
-		chaine += " euros,  Annuitï¿½e maximale : ";
+		chaine += "%,  Durée : " + cred.duree();
+		chaine += " année(s),  Montant emprunté : " + cred.montantEmprunte();
+		chaine += " euros,  Annuitée maximale : ";
 		chaine += cred.annuiteMaximale() + " euros";
 		fenetre.getLabelBottom().setText(chaine);
 	}
@@ -132,7 +132,7 @@ public class BoutonAction extends AbstractAction {
 	private void defineTypeCredit() {
 		if (fenetre.getCombo().getSelectedItem() == "Amortissement constant")
 			typeCredit = 1;
-		else if (fenetre.getCombo().getSelectedItem() == "Annuitï¿½es constantes")
+		else if (fenetre.getCombo().getSelectedItem() == "Annuitées constantes")
 			typeCredit = 2;
 	}
 

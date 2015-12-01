@@ -7,12 +7,12 @@ import javax.swing.AbstractAction;
 @SuppressWarnings("serial")
 public class BoutonAide extends AbstractAction{
 
+	public final static FenetreAide fenetreAide = new FenetreAide();
 	public BoutonAide(String texte){
-		super(texte);
+		super(texte);		
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		FenetreAide fenetreAide = new FenetreAide();
 		fenetreAide.setVisible(true);
 	}
 

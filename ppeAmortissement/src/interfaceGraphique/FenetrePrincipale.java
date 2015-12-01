@@ -13,7 +13,7 @@ public class FenetrePrincipale extends JFrame {
 	private JLabel messageErreur;
 	private JLabel labelTaux, labelDuree, labelEmprunt, labelRemboursement, labelBottom;
 	private JPanel panel, panel2, panelTxt;
-	private JButton bouton, bouton2;
+	private JButton bouton, bouton2, bouton3;
 	private JScrollPane scroll;
 	private JTable tableau;
 	private JComboBox<String> choix;
@@ -24,8 +24,6 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	
 	public FenetrePrincipale(){
-		super();
-		
 		build();
 	}
 	
@@ -105,6 +103,7 @@ public class FenetrePrincipale extends JFrame {
 	private void drawBottom(){
 		 labelBottom = new JLabel("Taux :   Durée :   Montant emprunté :   Annuitée maximale : ");
 		 bouton2 = new JButton(new ExportExcel(this, "export"));
+		 bouton3 = new JButton(new BoutonAide("aide"));
 		 messageErreur = new JLabel("Veuillez ne saisir que des valeurs unitaires");
 	     messageErreur.setForeground(Color.red);
 	     messageErreur.setVisible(false);
@@ -142,6 +141,7 @@ public class FenetrePrincipale extends JFrame {
 	private void panelBottom(){
 		JPanel p = new JPanel(); 
 		p.add(bouton2); 
+		p.add(bouton3);
 		p.setBackground(Color.white);
 		panelTxt.add(p);
 		panelTxt.add(labelBottom);

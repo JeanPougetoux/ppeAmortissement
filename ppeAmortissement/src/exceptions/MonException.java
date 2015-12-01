@@ -1,6 +1,4 @@
 package exceptions;
 
-public class MonException extends Exception{
-
-	
-}
+@SuppressWarnings("serial")
+public class MonException extends Exception{}

@@ -139,17 +139,17 @@ public class Credit
 		
 	}
 	/*
-	 * Verifie que les donnees renseignees sont logiques, sinon lève une exception
+	 * Verifie que les donnees renseignees sont logiques, sinon leve une exception
 	 */
 	public static void testCalculeTaux(double montant, double annuite, int duree)throws MonException{
 		if(duree<=0){
-			throw new ExceptionDuree("Impossible de calculer le taux, dur�e n�gative !", duree);
+			throw new ExceptionDuree("Impossible de calculer le taux, duree negative !", duree);
 		}
 		else if(montant < annuite){
-			throw new ExceptionMontant("Impossible de calculer le taux, l'annuit�e doit �tre inf�rieure au montant !",montant);
+			throw new ExceptionMontant("Impossible de calculer le taux, l'annuitee doit etre inferieure au montant !",montant);
 		}
 		else if (annuite < (montant/duree)){
-			throw new ExceptionAnnuite("Impossible de calculer le taux, L'amortissement est sup�rieur � l'annuit�e !", annuite);
+			throw new ExceptionAnnuite("Impossible de calculer le taux, L'amortissement est superieur e l'annuitee !", annuite);
 		}
 		
 	}
@@ -195,21 +195,21 @@ public class Credit
 		return null;
 	}
 	/*
-	 *  Verifie que les donnees renseignees sont logiques, sinon lève une exception
+	 *  Verifie que les donnees renseignees sont logiques, sinon leve une exception
 	 */
 	public static void testCalculeDuree(double montant, double annuite, double taux) throws MonException{
 		if (taux <= 0 || taux >= 1){
-			throw new ExceptionTaux("Impossible de calculer la dur�e,taux incorrect!",taux);
+			throw new ExceptionTaux("Impossible de calculer la duree,taux incorrect!",taux);
 		}
 		else if (montant < annuite){
-			throw new ExceptionMontant("Impossible de calculer la dur�e, montant trop faible !",montant);
+			throw new ExceptionMontant("Impossible de calculer la duree, montant trop faible !",montant);
 		}
 		else if (annuite < montant*taux){
-			throw new ExceptionAnnuite("Impossible de calculer la dur�e, l'annuit�e doit �tre sup�rieure aux int�rets !",annuite);
+			throw new ExceptionAnnuite("Impossible de calculer la duree, l'annuitee doit etre superieure aux interets !",annuite);
 	
 		}
 		else if (annuite < 0){
-			throw new ExceptionAnnuite("Impossible de calculer la dur�e, annuit�e n�gative !",annuite);
+			throw new ExceptionAnnuite("Impossible de calculer la duree, annuitee negative !",annuite);
 			
 		}
 		}
@@ -239,27 +239,18 @@ public class Credit
 		return null;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/*
-	 *  Verifie que les donnees renseignees sont logiques, sinon lève une exception
+	 *  Verifie que les donnees renseignees sont logiques, sinon leve une exception
 	 */
 	public static void testCalculeMontantEmprunte(double annuite, double taux, int duree)throws MonException{
 		if (duree <= 0){
-			throw new ExceptionDuree("impossible de calculer le montant : la dur�e doit �tre positive !",duree);
+			throw new ExceptionDuree("impossible de calculer le montant : la duree doit etre positive !",duree);
 		}
 		else if (taux <=0 || taux >=1){
 			throw new ExceptionTaux("impossible de calculer le montant : taux incorrect !",taux);
 		}
 		else if (annuite < 0)
-			throw new ExceptionAnnuite("impossible de calculer le montant : L'annuit�e doit �tre positive",annuite);
+			throw new ExceptionAnnuite("impossible de calculer le montant : L'annuitee doit etre positive",annuite);
 	}
 
 	/**
@@ -282,21 +273,21 @@ public class Credit
 		return null;
 	}
 	/*
-	 *  Verifie que les donnees renseignees sont logiques, sinon lève une exception
+	 *  Verifie que les donnees renseignees sont logiques, sinon leve une exception
 	 */
 	public static void testCalculeAnnuiteMaximale(double montant, double taux, 
 			int duree)throws MonException{
 		if (duree <= 0){
-			throw new ExceptionDuree ("calcul impossible, dur�e n�gative",duree);
+			throw new ExceptionDuree ("calcul impossible, duree negative",duree);
 		}
 		else if (taux <= 0 || taux >=1){
 			throw new ExceptionTaux ("calcul impossible, taux incorrect",taux);
 		}
 		else if (montant <=0){
-			throw new ExceptionMontant("calcul impossible, montant n�gatif",montant);
+			throw new ExceptionMontant("calcul impossible, montant negatif",montant);
 		}
 		else if (montant <duree){
-			throw new ExceptionDuree ("calcul impossible, la dur�e ne peut �tre plus grande que le montant ",duree);
+			throw new ExceptionDuree ("calcul impossible, la duree ne peut etre plus grande que le montant ",duree);
 		}
 		
 	}

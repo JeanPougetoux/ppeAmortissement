@@ -49,7 +49,7 @@ public class testCredit {
 		int type = 1;
 		double montant = 65000;
 		double annuiteMaximale = 11122.22;
-		int duree = 9;
+		int duree = 10;
 		double taux = 0.06;
 		Credit credit;
 		
@@ -64,7 +64,7 @@ public class testCredit {
 		
 		type = 2;
 		annuiteMaximale = 9556.45;
-		
+		duree = 9;
 			credit = Credit.calculeDuree(Credit.ANNUITES_CONSTANTES, 65000, 9556.45, 0.06);
 			assertEquals(type, credit.typeCredit());
 			assertEquals(montant, credit.montantEmprunte(), 0.001);

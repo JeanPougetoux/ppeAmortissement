@@ -19,10 +19,16 @@ public class FenetreAide extends JDialog{
 	private JButton bouton;
 	private JScrollPane scroll;
 	
+	/**
+	 * Constructeur de la classe FenetreAide, appelle la fonction build()
+	 */
 	public FenetreAide(){
 		build();
 	}
 	
+	/**
+	 * Initialise la fenetre à la bonne taille et avec les bonnes caractéristiques
+	 */
 	private void build(){
 		setTitle("Aide d'utilisation"); 
 		setSize(470,240); 
@@ -31,6 +37,11 @@ public class FenetreAide extends JDialog{
 		setContentPane(buildContentPane());
 		setModal(true);
 	}
+	
+	/**
+	 * Permet d'ajouter les composant au JPanel et el retourne
+	 * @return le JPanel rempli
+	 */
 	private JPanel buildContentPane(){		
 		panel = new JPanel();
 		panel.setLayout(new FlowLayout());
@@ -51,6 +62,10 @@ public class FenetreAide extends JDialog{
 		return panel;
 	}
 
+	/**
+	 * Permet de fabriquer le message d'aide en concatenant plusieurs chaines
+	 * @return le message complet
+	 */
 	private String getMessageDaide(){
 		String message;
 		message = "Bonjour et bienvenue dans votre application de Gestion de l'amortissement.\n\n" +

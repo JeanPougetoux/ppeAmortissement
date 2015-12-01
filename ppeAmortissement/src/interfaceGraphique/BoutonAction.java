@@ -100,11 +100,11 @@ public class BoutonAction extends AbstractAction {
 
 	public void printValeurs(Credit cred) {
 		String chaine = "";
-		chaine += "Taux : " + cred.taux() * 100;
+		chaine += "Taux : " + (double)Math.round((cred.taux() * 100)*100)/100;
 		chaine += "%,  Duree : " + cred.duree();
-		chaine += " annee(s),  Montant emprunte : " + cred.montantEmprunte();
+		chaine += " annee(s),  Montant emprunte : " + (double)Math.round(cred.montantEmprunte()*100)/100;
 		chaine += " euros,  Annuitee maximale : ";
-		chaine += cred.annuiteMaximale() + " euros";
+		chaine += (double)Math.round(cred.annuiteMaximale()*100)/100 + " euros";
 		fenetre.getLabelBottom().setText(chaine);
 	}
 

@@ -69,13 +69,13 @@ public class FenetreAide extends JDialog{
 	private String getMessageDaide(){
 		String message;
 		message = "Bonjour et bienvenue dans votre application de Gestion de l'amortissement.\n\n" +
-		"Pour pouvoir generer un tableau d'amortissement il vous faudra connaître au\nminimum " +
+		"Pour pouvoir generer un tableau d'amortissement il vous faudra connaitre au\nminimum " +
 		"3 valeurs coherentes les unes avec les autres parmis : \n" +
 		"  - le montant emprunte\n" +
 		"  - le taux d'emprunt\n" +
 		"  - la duree du remboursement\n" +
 		"  - l'annuitee maximale\n\n" +
-		"Cependant, si vous souhaitez generer un tableau à partir de 4 valeurs, \ncelles-ci devront" +
+		"Cependant, si vous souhaitez generer un tableau a partir de 4 valeurs, \ncelles-ci devront" +
 		" etre strictement exactes, au risque de produire une erreur.\n\n" +
 		"Veuillez ensuite saisir vos valeurs ainsi que le type de remboursement \nqui vous " +
 		"convient puis cliquez sur valider pour generer le tableau \nd'amortissement, ainsi que la " +

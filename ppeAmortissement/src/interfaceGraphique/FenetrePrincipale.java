@@ -20,7 +20,7 @@ public class FenetrePrincipale extends JFrame {
 	private DefaultTableModel model;
 
 	/**
-	 * Page principale où se passe toutes les interactions
+	 * Page principale oï¿½ se passe toutes les interactions
 	 */
 	
 	public FenetrePrincipale(){
@@ -28,7 +28,7 @@ public class FenetrePrincipale extends JFrame {
 	}
 	
 	/**
-	 * Permet de changer les paramètres de la page
+	 * Permet de changer les paramï¿½tres de la page
 	 */
 	
 	private void build(){
@@ -43,7 +43,7 @@ public class FenetrePrincipale extends JFrame {
 	}
 	
 	/*
-	 * Définit le panel ou seront tous les éléments du Header
+	 * Dï¿½finit le panel ou seront tous les ï¿½lï¿½ments du Header
 	 */
 	private JPanel buildContentPaneHead(){
 		panel2 = new JPanel();
@@ -63,8 +63,8 @@ public class FenetrePrincipale extends JFrame {
 		return panelTxt;
 	}
 	/**
-	 * Permet de remplir le JPanel avec les différents composants et
-	 * l'intègre au JFrame (page principale)
+	 * Permet de remplir le JPanel avec les diffï¿½rents composants et
+	 * l'intï¿½gre au JFrame (page principale)
 	 */
 	
 	private JPanel buildContentPane(){		
@@ -82,14 +82,14 @@ public class FenetrePrincipale extends JFrame {
 	private void drawHead(){
 		labelTaux = new JLabel("Taux (en %) : ");
 		taux = new JTextField(04);
-		labelDuree = new JLabel("Durée (en années) : ");				
+		labelDuree = new JLabel("Durï¿½e (en annï¿½es) : ");				
 		duree = new JTextField(04);
-		labelEmprunt = new JLabel("Montant emprunté : ");		
+		labelEmprunt = new JLabel("Montant empruntï¿½ : ");		
 		emprunt = new JTextField(04);
-		labelRemboursement = new JLabel("Annuitée maximale : ");		
+		labelRemboursement = new JLabel("Annuitï¿½e maximale : ");		
 		remboursement = new JTextField(04);
 		
-		String[] choixCredit = { "Annuitées constantes", "Amortissement constant"};
+		String[] choixCredit = { "Annuitï¿½es constantes", "Amortissement constant"};
 		choix = new JComboBox<String>(choixCredit);
 		choix.setSelectedIndex(1);
 		bouton = new JButton(new BoutonAction(this, "valider"));
@@ -101,7 +101,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	
 	private void drawBottom(){
-		 labelBottom = new JLabel("Taux :   Durée :   Montant emprunté :   Annuitée maximale : ");
+		 labelBottom = new JLabel("Taux :   Durï¿½e :   Montant empruntï¿½ :   Annuitï¿½e maximale : ");
 		 bouton2 = new JButton(new ExportExcel(this, "export"));
 		 bouton3 = new JButton(new BoutonAide("aide"));
 		 messageErreur = new JLabel("Veuillez ne saisir que des valeurs unitaires");
@@ -148,13 +148,13 @@ public class FenetrePrincipale extends JFrame {
 		panelTxt.add(messageErreur);
 	}
 	/**
-	 * Créer un tableau, le remplit de valeurs et l'ajoute au JPanel
+	 * Crï¿½er un tableau, le remplit de valeurs et l'ajoute au JPanel
 	 */
 	
 	public void initTableau(){
 		Object[][] donnees = {};
  
-        String[] entetes = {"Années", "Capital initial", "Intérêt", "Amortissement", "Annuité", "Capital final"};
+        String[] entetes = {"Annï¿½es", "Capital initial", "Intï¿½rï¿½t", "Amortissement", "Annuitï¿½", "Capital final"};
  
         model = new DefaultTableModel(donnees, entetes);
         tableau = new JTable(model);
@@ -167,19 +167,19 @@ public class FenetrePrincipale extends JFrame {
 		Object[][] donnees = new Object[tab.length][6];
 		for(int i = 0; i < tab.length; i++){
 			donnees[i][0] = tab[i].getAnnee();
-			donnees[i][1] = tab[i].getCapitalInitial();
-			donnees[i][2] = tab[i].getInterets();
-			donnees[i][3] = tab[i].getAmortissements();
-			donnees[i][4] = tab[i].getAnnuite();
-			donnees[i][5] = tab[i].getCapitalFinal();
+			donnees[i][1] = (double)Math.round(tab[i].getCapitalInitial()*100)/100;
+			donnees[i][2] = (double)Math.round(tab[i].getInterets()*100)/100;
+			donnees[i][3] = (double)Math.round(tab[i].getAmortissements()*100)/100;
+			donnees[i][4] = (double)Math.round(tab[i].getAnnuite()*100)/100;
+			donnees[i][5] = (double)Math.round(tab[i].getCapitalFinal());
 		}
-        String[] entetes = {"Années", "Capital initial", "Intérêt", "Amortissement", "Annuité", "Capital final"};
+        String[] entetes = {"Annï¿½es", "Capital initial", "Intï¿½rï¿½t", "Amortissement", "Annuitï¿½", "Capital final"};
 		model = new DefaultTableModel(donnees, entetes);
 		tableau.setModel(model);
 	}
 	
 	/*
-	 * Efface toutes les données du tableau
+	 * Efface toutes les donnï¿½es du tableau
 	 */
 	
 	public void clearTableau(){

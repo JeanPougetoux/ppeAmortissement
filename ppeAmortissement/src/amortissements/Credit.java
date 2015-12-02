@@ -118,6 +118,8 @@ public class Credit
 			int duree)throws MonException
 	{
 		
+	
+		
 		if (typeCredit == AMORTISSEMENT_CONSTANTS){
 			
 				testCalculeTaux(montantEmprunte,annuiteMaximale,duree);

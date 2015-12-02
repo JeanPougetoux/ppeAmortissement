@@ -17,7 +17,7 @@ public class ExceptionTaux extends MonException{
 	
 		this.message = message;
 		this.taux = taux;
-		MessageErreur.ErreurException(Application.fenetre, message);
+		MessageErreur.ErreurException(Application.fenetre, message+" taux saisi :"+this.taux);
 	}
 	
 	@Override

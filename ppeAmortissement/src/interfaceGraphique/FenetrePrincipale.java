@@ -7,13 +7,21 @@ import javax.swing.table.DefaultTableModel;
 
 import amortissements.Ligne;
 
+@SuppressWarnings("serial")
+/**
+ * Classe FenetrePrincipale represente la fenetre
+ * genere par la classe Application et qui sera active
+ * tout au long de l'utilisation du logiciel. Elle herite
+ * de la classe JFrame.
+ * @author Jean
+ *
+ */
 public class FenetrePrincipale extends JFrame {
 
-	private static final long serialVersionUID = 1L;
 	private JTextField taux, duree, emprunt, remboursement;
 	private JLabel messageErreur;
 	private JLabel labelTaux, labelDuree, labelEmprunt, labelRemboursement, labelBottom;
-	private JPanel panel, panel2, panelTxt;
+	private JPanel panel, panel2, panelTxt, p;
 	private JButton bouton, bouton2, bouton3;
 	private JScrollPane scroll;
 	private JTable tableau;
@@ -21,17 +29,19 @@ public class FenetrePrincipale extends JFrame {
 	private DefaultTableModel model;
 
 	/**
-	 * Page principale oe se passe toutes les interactions
+	 * Constructeur de la classe FenetrePrincipale, appelle
+	 * la methode build().
 	 */
-	
 	public FenetrePrincipale(){
 		build();
 	}
 	
 	/**
-	 * Permet de changer les parametres de la page
+	 * Permet de donner ses caracteristiques au JFrame, puis attribue
+	 * comme panel principale le JPanel retourne par la methode
+	 * buildContentPaneHead(), et y ajoute les JPanel retournes
+	 * par les methodes buildContentPane() et buildContentPaneBot().
 	 */
-	
 	private void build(){
 		setTitle("Gestion de l'amortissement"); 
 		setSize(850,520); 
@@ -43,8 +53,12 @@ public class FenetrePrincipale extends JFrame {
 		getContentPane().add(buildContentPaneBot());
 	}
 	
-	/*
-	 * Definit le panel ou seront tous les elements du Header
+	/**
+	 * Definit le JPanel correspondant au header de l'application,
+	 * donc la partie à saisir pour l'utilisateur et le bouton valider.
+	 * Appelle les methodes drawHead() et panelHead().
+	 * @return panel2
+	 * 		retourne ce JPanel.
 	 */
 	private JPanel buildContentPaneHead(){
 		panel2 = new JPanel();
@@ -53,8 +67,30 @@ public class FenetrePrincipale extends JFrame {
 		drawHead();
 		panelHead();
 		return panel2;
+	}	
+	
+	/**
+	 * Definit le JPanel correspondant au tableau de l'application.
+	 * Appelle les methodes initTableau() et panelTableau().
+	 * @return panel
+	 * 		retourne ce JPanel.
+	 */
+	private JPanel buildContentPane(){		
+		panel = new JPanel();
+		panel.setLayout(new FlowLayout());
+		panel.setBackground(Color.white);
+		initTableau();
+		return panel;
 	}
 	
+	/**
+	 * Definit le JPanel correspondant au bas de l'application,
+	 * donc les boutons export et aide ainsi que le label des valeurs
+	 * et le message d'erreur s'il y a.
+	 * Appelle les methodes drawBottom() et panelBottom().
+	 * @return panelTxt
+	 * 		retourne ce JPanel.
+	 */
 	private JPanel buildContentPaneBot(){
 		panelTxt = new JPanel();
 		panelTxt.setLayout(new GridLayout(3,1));
@@ -63,22 +99,9 @@ public class FenetrePrincipale extends JFrame {
 		panelBottom();
 		return panelTxt;
 	}
+	
 	/**
-	 * Permet de remplir le JPanel avec les differents composants et
-	 * l'integre au JFrame (page principale)
-	 */
-	
-	private JPanel buildContentPane(){		
-		panel = new JPanel();
-		panel.setLayout(new FlowLayout());
-		panel.setBackground(Color.white);
-		initTableau();
-		panelTableau();
-		return panel;
-	}
-	
-	/*
-	 * Initialise le haut de l'application (label + champs)
+	 * Initialise tous les composants du header.
 	 */
 	private void drawHead(){
 		labelTaux = new JLabel("Taux (en %) : ");
@@ -96,22 +119,8 @@ public class FenetrePrincipale extends JFrame {
 		bouton = new JButton(new BoutonAction(this, "valider"));
 	}
 	
-	
-	/*
-	 * Initialise le message d'erreur en bas de l'application
-	 */
-	
-	private void drawBottom(){
-		 labelBottom = new JLabel("Taux :   Duree :   Montant emprunte :   Annuitee maximale : ");
-		 bouton2 = new JButton(new ExportExcel(this, "export"));
-		 bouton3 = new JButton(new BoutonAide("aide"));
-		 messageErreur = new JLabel("Veuillez ne saisir que des valeurs unitaires");
-	     messageErreur.setForeground(Color.red);
-	     messageErreur.setVisible(false);
-	}
-	
-	/*
-	 * Place le header 
+	/**
+	 * Ajoute les composants au JPanel correspondant au header.
 	 */
 	private void panelHead(){
 		panel2.add(labelTaux);
@@ -126,36 +135,9 @@ public class FenetrePrincipale extends JFrame {
 		panel2.add(bouton);
 	}
 	
-	/*
-	 * Place le tableau
-	 */
-	
-	private void panelTableau(){
-
-		panel.add(scroll);
-	}
-	
-	/*
-	 * Place les informations et le message d'erreur
-	 */
-	
-	private void panelBottom(){
-		JPanel p = new JPanel(); 
-		p.add(bouton2); 
-		bouton2.setPreferredSize(new Dimension(80, 25));
-		p.setBorder(new EmptyBorder(0, 589, 0, 0));
-		p.add(bouton3);
-		bouton3.setPreferredSize(new Dimension(80, 25));
-		p.setBackground(Color.white);
-		panelTxt.add(p);
-		panelTxt.add(labelBottom);
-		panelTxt.add(messageErreur);
-		panelTxt.setBorder(new EmptyBorder(0, 7, 0, 0));
-	}
 	/**
-	 * Creer un tableau, le remplit de valeurs et l'ajoute au JPanel
+	 * Initialise le tableau avec des valeurs vides et l'ajoute a panel.
 	 */
-	
 	public void initTableau(){
 		Object[][] donnees = {};
  
@@ -166,8 +148,15 @@ public class FenetrePrincipale extends JFrame {
         scroll = new JScrollPane(tableau);
         Dimension dim = new Dimension(760, 300);
         scroll.setPreferredSize(dim);
+        panel.add(scroll);
 	}
 	
+	/**
+	 * Permet de changer le model du tableau avec les valeurs du
+	 * tableau d'objets Ligne prit en parametre.
+	 * @param tab
+	 * 		Tableau de Lignes correspondant a un Credit.
+	 */
 	public void drawTableau(Ligne[] tab){
 		Object[][] donnees = new Object[tab.length][6];
 		for(int i = 0; i < tab.length; i++){
@@ -183,10 +172,42 @@ public class FenetrePrincipale extends JFrame {
 		tableau.setModel(model);
 	}
 	
-	/*
-	 * Efface toutes les donnees du tableau
+	/**
+	 * Initialise les elements du panel du bas, dont le bouton export, aide,
+	 * le labelBottom ainsi que le message d'erreur.
 	 */
+	private void drawBottom(){
+		 labelBottom = new JLabel("Taux :   Duree :   Montant emprunte :   Annuitee maximale : ");
+		 bouton2 = new JButton(new ExportExcel(this, "export"));
+		 bouton3 = new JButton(new BoutonAide("aide"));
+		 messageErreur = new JLabel("Veuillez ne saisir que des valeurs unitaires");
+	     messageErreur.setForeground(Color.red);
+	     messageErreur.setVisible(false);
+	}
 	
+	/**
+	 * Creer un JPanel p pour les deux bouton export
+	 * et documentation puis ajoute p au JPanel
+	 * panelTxt ainsi que labelBottom et messageErreur.
+	 */
+	private void panelBottom(){
+		p = new JPanel(); 
+		p.add(bouton2); 
+		bouton2.setPreferredSize(new Dimension(80, 25));
+		p.setBorder(new EmptyBorder(0, 589, 0, 0));
+		p.add(bouton3);
+		bouton3.setPreferredSize(new Dimension(80, 25));
+		p.setBackground(Color.white);
+		panelTxt.add(p);
+		panelTxt.add(labelBottom);
+		panelTxt.add(messageErreur);
+		panelTxt.setBorder(new EmptyBorder(0, 7, 0, 0));
+	}
+
+	/**
+	 * Permet d'effacer les donnees du model
+	 * correspondant au tableau.
+	 */
 	public void clearTableau(){
 		model.getDataVector().clear();
 		model.fireTableDataChanged();

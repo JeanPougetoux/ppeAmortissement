@@ -9,6 +9,11 @@ import amortissements.Ligne;
 
 import exceptions.MonException;
 
+/**
+ * Classe de tests de la classe Ligne.
+ * @author Jean
+ *
+ */
 public class testLigne {
 	
 	double montant ;
@@ -17,6 +22,10 @@ public class testLigne {
 	Credit cred ;
 	Ligne li ;
 
+	/**
+	 * Constructeur de la classe testLigne(), permet d'appeller premiereLigne().
+	 * @throws MonException
+	 */
 	public testLigne()throws MonException{
 		this.montant = 100000;
 		this.annuiteMaximale = 10000;
@@ -27,6 +36,9 @@ public class testLigne {
 	
 	
 	@Test
+	/**
+	 * Test des valeurs de la premiere ligne.
+	 */
 	public void testPremiereLigne() {
 		assertTrue(li.getAmortissements() == 5000);
 		assertTrue(li.getAnnee() == 0);
@@ -37,6 +49,11 @@ public class testLigne {
 	}
 
 	@Test
+	/**
+	 * Test des valeurs de la ligne suivante a la premiere ligne,
+	 * ici la seconde.
+	 * @throws MonException
+	 */
 	public void testLigneSuivante()throws MonException {
 		Ligne liSuivante = li.ligneSuivante(cred);
 		assertTrue(liSuivante.getAmortissements() == 5000);

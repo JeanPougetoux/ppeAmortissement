@@ -2,10 +2,18 @@ package interfaceGraphique;
 
 import java.awt.Color;
 
+/**
+ * Classe MessageErreur correspond a tous les
+ * message d'erreurs qui peuvent apparaitre
+ * dans la fenetre principale.
+ * @author Jean
+ *
+ */
 public class MessageErreur {
 
 	/**
-	 * Erreur nombre de champs remplis
+	 * Erreur trop petit nombre de champs remplis.
+	 * @param fenetre
 	 */
 	public static void ErreurNombre(FenetrePrincipale fenetre){
 		fenetre.getErreur().setText("Il faut au minimum trois champs.");
@@ -14,7 +22,8 @@ public class MessageErreur {
 	}
 	
 	/**
-	 * Erreur caractere dans les champs
+	 * Erreur s'il y a un caractere dans un des champs.
+	 * @param fenetre
 	 */
 	public static void ErreurLettre(FenetrePrincipale fenetre){
 		fenetre.getErreur().setText("Veuillez ne saisir que des valeurs unitaires");
@@ -23,7 +32,8 @@ public class MessageErreur {
 	}
 	
 	/**
-	 * Erreur si les quatres valeurs saisies ne sont pas bonnes
+	 * Erreur si les quatre valeurs ne sont pas bonnes.
+	 * @param fenetre
 	 */
 	public static void ErreurValeurs(FenetrePrincipale fenetre){
 		fenetre.getErreur().setText("Les valeurs ne correspondent pas");
@@ -32,16 +42,7 @@ public class MessageErreur {
 	}
 	
 	/**
-	 * Erreur si l'annuite max est superieur au montant emprunte
-	 *//*
-	public static void ErreurAnnuite(FenetrePrincipale fenetre){
-		fenetre.getErreur().setText("L'annuitee maximale est superieur au montant emprunte");
-		fenetre.getErreur().setForeground(Color.red);
-		fenetre.getErreur().setVisible(true);
-	}*/
-	
-	/**
-	 * Message d'erreur si le tableau d'amortissement est vide
+	 * Message d'erreur si le tableau d'amortissement est vide.
 	 * @param fenetre
 	 */
 	public static void TableauVide(FenetrePrincipale fenetre){
@@ -49,18 +50,22 @@ public class MessageErreur {
 		fenetre.getErreur().setForeground(Color.red);
 		fenetre.getErreur().setVisible(true);
 	}
-	
+
 	/**
-	 * Export bien effecte
+	 * Message si l'export est bien effectue.
+	 * @param fenetre
 	 */
 	public static void BienEnregistrer(FenetrePrincipale fenetre){
 		fenetre.getErreur().setText("Tableau bien exporte");
 		fenetre.getErreur().setForeground(Color.green);
 		fenetre.getErreur().setVisible(true);
 	}
-	
+
 	/**
-	 * Message d'erreur pour toutes les exceptions
+	 * Message d'erreur qui s'adapte selon la chaine prise en parametre.
+	 * Il est donc lie aux exceptions.
+	 * @param fenetre
+	 * @param texte
 	 */
 	public static void ErreurException(FenetrePrincipale fenetre, String texte){
 		fenetre.getErreur().setText(texte);

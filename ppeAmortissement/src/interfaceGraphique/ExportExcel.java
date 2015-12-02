@@ -8,9 +8,16 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableModel;
 
+@SuppressWarnings("serial")
+/**
+ * Classe ExportExcel correspond au bouton export
+ * de la fenetre principale. Elle herite de la classe
+ * AsbtractAction.
+ * @author Jean
+ *
+ */
 public class ExportExcel extends AbstractAction{
 	
-	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private FenetrePrincipale fenetre;
 	
@@ -18,17 +25,26 @@ public class ExportExcel extends AbstractAction{
 	 * Constructeur dont les paramètres sont la fenêtre principale et le texte du bouton.
 	 * Permet aussi d'initialiser la variable table à celle de l'objet fenetre.
 	 */
-	
+	/**
+	 * Constructeur de la classe ExportExcel. Elle initialise la
+	 * valeur sur le bouton de la fenetre principale ainsi que le JTable
+	 * table grace a la fenetre principale prise en parametre.
+	 * @param fenetre
+	 * 		Fenetre principale.
+	 * @param texte
+	 * 		"export".
+	 */
 	public ExportExcel(FenetrePrincipale fenetre, String texte){
 		super(texte);
 		this.fenetre = fenetre;
 		table = fenetre.getTableau();
 	}
 	
-	/*
-	 * Réagit au clic du bouton
+	/**
+	 * Action lorsque l'on clique sur le bouton.
+	 * Si la methode verifTableauVide() renvoie faux
+	 * appelle un message d'erreur, sinon appelle saveFile().
 	 */
-	
 	public void actionPerformed(ActionEvent e) { 
 		if(!verifTableauVide())
 			saveFile();
@@ -36,21 +52,21 @@ public class ExportExcel extends AbstractAction{
 			MessageErreur.TableauVide(fenetre);
 	} 
 	
-	/*
-	 * Ouvre une boite de dialogue pour enregistrer et si elle est validée,
-	 * lance la méthode drawFile avec en paramètre le chemin du fichier créé.
+	/**
+	 * Permet l'export du tableau. Recupere le chemin d'enregistrement
+	 * de celui ci ainsi que le choix de l'utilisateur grace a un fileChooser.
+	 * Puis si l'utilisateur a valider son choix, creer un nouveau fichier
+	 * en utilisant le chemin mentionne puis appelle la methode drawFile() en 
+	 * prenant en parametre ce fichier.
 	 */
-	
 	public void saveFile(){	
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Exporter tableau");   
 		String[] extensions = new String[] {"xls"};
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel File (*.xls)", extensions);  		
 		fileChooser.setSelectedFile(new File("fichier.xls"));
-
 		fileChooser.setFileFilter(filter);
 
-		 
 		int userSelection = fileChooser.showSaveDialog(fenetre);
 		 
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
@@ -59,11 +75,13 @@ public class ExportExcel extends AbstractAction{
 		}
 	}
 	
-	/*
-	 * Permet grâce au chemin du fichier créé précédemment d'écrire dans celui-ci
-	 * chaque ligne du JTable prit en paramètre dans cette classe.
+	/**
+	 * Permet d'ecrire dans le fichier pris en parametre le contenu de
+	 * la variable table (egale au JTable de la fenetre principale).
+	 * Si tout s'est bien passe appelle la methode enregistrementOk().
+	 * @param file
+	 * 		Fichier creer par la methode saveFile().
 	 */
-	
 	public void drawFile(File file){
 	 try{
 	        TableModel model = table.getModel();
@@ -89,19 +107,19 @@ public class ExportExcel extends AbstractAction{
 	}
 	
 	/**
-	 * Vérifie si le tableau contient des valeurs ou non
+	 * Vérifie si la variable table contient plus d'une ligne
 	 * @return bool
+	 * 		true si le tableau est vide sinon false
 	 */
 	public boolean verifTableauVide(){
         TableModel model = table.getModel();
         return model.getRowCount() < 1;
 	}
 	
-	/*
-	 * Permet si la création et l'enregistrement du fichier sont ok
-	 * de modifier le message d'erreur présent dans le JFrame principal.
+	/**
+	 * Appelle la methode statique BienEnregistrer() de la classe
+	 * MessageErreur.
 	 */
-	
 	public void enregistrementOk(){
 		MessageErreur.BienEnregistrer(fenetre);
 	}

@@ -11,6 +11,11 @@ import amortissements.TableauAmortissement;
 import exceptions.MonException;
 import interfaceGraphique.FenetrePrincipale;
 
+/**
+ * Classe de test de la classe TableauAmortissement.
+ * @author Jean
+ *
+ */
 public class testTableauAmortissement {
 
 	Credit cred;
@@ -19,6 +24,12 @@ public class testTableauAmortissement {
 	double taux;
 	TableauAmortissement tab;
 	
+	/**
+	 * Constructeur de la classe testTableauAmortissement,
+	 * permet de créer un nouveau tableau d'amortissement a partir
+	 * du Credit cred.
+	 * @throws MonException
+	 */
 	public testTableauAmortissement() throws MonException {
 		this.montant = 100000;
 		this.annuiteMaximale = 10000;
@@ -28,11 +39,18 @@ public class testTableauAmortissement {
 	}
 
 	@Test
+	/**
+	 * Permet de tester si le nombre de lignes du tableau est bon.
+	 */
 	public void testGetNbLignes() {
 		assertEquals(cred.duree(), 20, 0.01);
 	}
 
 	@Test
+	/**
+	 * Permet de recuperer une ligne du tableau et voir si
+	 * ses valeurs sont correctes, ici la premiere ligne.
+	 */
 	public void testGetLigne() {
 		Ligne li = tab.getLigne(1);
 		assertTrue(li.getAmortissements() == 5000);

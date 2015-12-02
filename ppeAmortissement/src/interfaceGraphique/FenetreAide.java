@@ -17,6 +17,12 @@ import javax.swing.JTextArea;
 
 
 @SuppressWarnings("serial")
+/**
+ * Classe FenetreAide represente la procedure pour 
+ * l'utilisateur, elle herite de la classe JDialog.
+ * @author Jean
+ *
+ */
 public class FenetreAide extends JDialog{
 	
 	private JPanel panel;
@@ -25,14 +31,14 @@ public class FenetreAide extends JDialog{
 	private JScrollPane scroll;
 	
 	/**
-	 * Constructeur de la classe FenetreAide, appelle la fonction build()
+	 * Constructeur de la classe FenetreAide, appelle la fonction build().
 	 */
 	public FenetreAide(){
 		build();
 	}
 	
 	/**
-	 * Initialise la fenetre à la bonne taille et avec les bonnes caractéristiques
+	 * Initialise la fenetre à la bonne taille et avec les bonnes caractéristiques.
 	 */
 	private void build(){
 		setTitle("Aide d'utilisation"); 
@@ -44,30 +50,49 @@ public class FenetreAide extends JDialog{
 	}
 	
 	/**
-	 * Permet d'ajouter les composant au JPanel et el retourne
-	 * @return le JPanel rempli
+	 * Permet de creer le JPanel, de definir ses caracteristiques
+	 * puis d'ajouter les differents elements a celui ci.
+	 * @return panel
+	 * 		Retourne le JPanel rempli.
 	 */
-	private JPanel buildContentPane(){		
+	private JPanel buildContentPane(){	
+		initialiseElements();
 		panel = new JPanel();
 		panel.setLayout(new FlowLayout());
 		panel.setBackground(Color.lightGray);
-		textArea = new JTextArea(getMessageDaide(), 10, 39);
-		bouton = new JButton("OK");
-		bouton2 = new JButton("Documentation");
-		textArea.setEditable(false);
-		scroll = new JScrollPane(textArea);
 		panel.add(scroll);
 		panel.add(bouton);
 		panel.add(bouton2);
+		return panel;
+	}
+
+	/**
+	 * Permet d'initialiser les differents elements de la page.
+	 */
+	private void initialiseElements(){
+		textArea = new JTextArea(getMessageDaide(), 10, 39);		
+		textArea.setEditable(false);
+		scroll = new JScrollPane(textArea);
+
+		bouton = new JButton("OK");
+		bouton2 = new JButton("Documentation");
 		bouton.setPreferredSize(new Dimension(130, 27));
 		bouton2.setPreferredSize(new Dimension(130, 27));
 		bouton.addActionListener(new ActionListener(){
+			/**
+			 * Action du bouton ok permettant de fermer le JFrame.
+			 */
 		      public void actionPerformed(ActionEvent arg0) {
 		    	  BoutonAide.fenetreAide.setVisible(false);
 		          BoutonAide.fenetreAide.dispose();
 		      }
 		    });
 		bouton2.addActionListener(new ActionListener(){
+			/**
+			 * Action du bouton documentation permettant
+			 * d'ouvrir le pdf correspondant a celle ci et contenu
+			 * dans les sources.
+			 */
 		      public void actionPerformed(ActionEvent arg0) {
 		    	  	try {
 						Desktop.getDesktop().open(new File(new File("").getAbsolutePath() + 
@@ -78,12 +103,11 @@ public class FenetreAide extends JDialog{
 					}
 		      }
 		    });
-		return panel;
 	}
-
 	/**
-	 * Permet de fabriquer le message d'aide en concatenant plusieurs chaines
-	 * @return le message complet
+	 * Permet de fabriquer le message d'aide en concatenant plusieurs chaines.
+	 * @return message
+	 * 		Retourne le message complet.
 	 */
 	private String getMessageDaide(){
 		String message;

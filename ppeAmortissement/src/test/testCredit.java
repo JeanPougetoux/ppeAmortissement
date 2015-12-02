@@ -8,9 +8,19 @@ import amortissements.Credit;
 
 import exceptions.MonException;
 
+/**
+ * Classe de tests de la classe Credit.
+ * @author Jean
+ *
+ */
 public class testCredit {
 
 	@Test
+	/**
+	 * Test la fabrique CalculTaux().
+	 * Verifie que les valeurs retournée sont les bonnes.
+	 * @throws MonException
+	 */
 	public void testCalculeTaux() throws MonException {
 		int type = 1;
 		double montant = 100000;
@@ -37,11 +47,21 @@ public class testCredit {
 	}
 
 	@Test
+	/**
+	 * Test la classe CalculTauxAnnuiteConstante().
+	 * Verifie que les valeurs retournée sont les bonnes.
+	 * @throws MonException
+	 */
 	public void testCalculTauxAnnuiteConstante() {
 		assertEquals(1317.54, Credit.calculTauxAnnuiteConstante(12000, 15, 0.07), 0.01);
 	}
 
 	@Test
+	/**
+	 * Test la fabrique CalculeDuree().
+	 * Verifie que les valeurs retournée sont les bonnes.
+	 * @throws MonException
+	 */
 	public void testCalculeDuree() throws MonException {
 		int type = 1;
 		double montant = 65000;
@@ -70,6 +90,11 @@ public class testCredit {
 	}
 
 	@Test
+	/**
+	 * Test la fabrique CalculMontantEmprunte().
+	 * Verifie que les valeurs retournée sont les bonnes.
+	 * @throws MonException
+	 */
 	public void testCalculeMontantEmprunte() throws MonException {
 		int type = Credit.AMORTISSEMENT_CONSTANTS;
 		double montant = 123000;
@@ -98,6 +123,11 @@ public class testCredit {
 	}
 
 	@Test(expected = MonException.class)
+	/**
+	 * Test la fabrique CalculeAnnuiteMaximaleTauxNegatif().
+	 * Verifie que les valeurs retournée sont les bonnes.
+	 * @throws MonException
+	 */
 	public void testCalculeAnnuiteMaximaleTauxNegatif() throws MonException {
 
 		Credit.calculeMontantEmprunte(Credit.ANNUITES_CONSTANTES, 33090.33, 0.05, -4);
@@ -105,6 +135,11 @@ public class testCredit {
 	}
 
 	@Test
+	/**
+	 * Test la fabrique CalculeAnnuiteMaximale().
+	 * Verifie que les valeurs retournée sont les bonnes.
+	 * @throws MonException
+	 */
 	public void testCalculeAnnuiteMaximale() throws MonException {
 		int type = 1;
 		double montant = 100000;

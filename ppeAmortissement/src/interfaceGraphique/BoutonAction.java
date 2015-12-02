@@ -8,26 +8,39 @@ import amortissements.Credit;
 
 import exceptions.MonException;
 
-
+/**
+ * Classe BoutonAction est utilisée au clic sur le bouton "valider" de
+ * la fenetre principale, elle hérite de la classe AbstractAction.
+ * @author Jean
+ *
+ */
+@SuppressWarnings("serial")
 public class BoutonAction extends AbstractAction {
 
-	private static final long serialVersionUID = 1L;
 	private FenetrePrincipale fenetre;
 	private int typeCredit;
+	private Credit cred;
 
 	/**
-	 * Classe liee au bouton et aux actions qu'il declenche
+	 * Constructeur de la classe, il initialise la variable fenetre
+	 * avec l'objet de la fenetre principale et donne la valeur texte
+	 * au bouton.
+	 * @param fenetre
+	 * 		notre fenetre principale.
+	 * @param texte
+	 * 		"valider".
 	 */
-
 	public BoutonAction(FenetrePrincipale fenetre, String texte) {
 		super(texte);
 		this.fenetre = fenetre;
 	}
 
 	/**
-	 * Represente l'action liee au bouton
+	 * Methode correspondant à l'action du clic
+	 * sur le bouton valider. Elle rend invisible le message
+	 * d'erreur au cas ou il y en ai un, vide le tableau et
+	 * appelle les méthode d'initialisation.
 	 */
-
 	public void actionPerformed(ActionEvent e) {
 		fenetre.getErreur().setVisible(false);
 		fenetre.clearTableau();
@@ -36,10 +49,11 @@ public class BoutonAction extends AbstractAction {
 	}
 
 	/**
-	 * Reinitialise les champs et la visibilite du message d'erreur comme dans
-	 * la page principale
+	 * Methode rend invisible le message d'erreur, puis
+	 * initialise une variable chaine au valeurs vide et
+	 * l'attribue grace à la methode getLabelBottom().setText
+	 * au label de la fenetre principale.
 	 */
-
 	public void initializeNul() {
 		fenetre.getErreur().setVisible(false);
 		String chaine = "";
@@ -51,10 +65,11 @@ public class BoutonAction extends AbstractAction {
 	}
 
 	/**
-	 * Verifie que les textFields sont au bon nombre (de 3) et qu'ils ne
-	 * contiennent pas de lettre, si tout est bon lance l'impression des valeurs
+	 * Permet de vérifier tout d'abord que les chaines saisies par l'utilisateur
+	 * ne contiennent pas de lettres, puis selon si 4 ou 3 valeurs ont été saisies,
+	 * appelle les methodes generationCredit4Valeurs ou getValeurs.
+	 * Si il y a moins de 3 valeurs, appelle un message d'erreur.
 	 */
-
 	public void initializeValeurs() {
 		if (getNumeric(fenetre.getTaux().getText()) && getNumeric(fenetre.getDuree().getText())
 				&& getNumeric(fenetre.getEmprunt().getText()) 
@@ -67,21 +82,8 @@ public class BoutonAction extends AbstractAction {
 					}
 				}
 				else{	
-					if(fenetre.getRemboursement().getText().length() != 0 
-							&& fenetre.getEmprunt().getText().length() != 0){
-						if(Double.parseDouble(fenetre.getRemboursement().getText()) > 
-							Double.parseDouble(fenetre.getEmprunt().getText())){
-							//MessageErreur.ErreurAnnuite(fenetre);
-							getValeurs();
-							fenetre.clearTableau();
-						}
-						else{
-							getValeurs();
-						}
-					}
-					else{
-						getValeurs();
-					}
+					getValeurs();
+					fenetre.clearTableau();
 				}
 			}
 			else{
@@ -96,9 +98,12 @@ public class BoutonAction extends AbstractAction {
 	}
 
 	/**
-	 * Met les valeurs validees dans les champs s'il n'y a pas d'erreurs
+	 * Permet d'initialiser une variable chaine avec les valeurs
+	 * du credit pris en parametre, puis attribut cette variable
+	 * au label de la fenetre principale grace au getLabelBottom().
+	 * @param cred
+	 * 		Credit genere auparavent prit en parametre.
 	 */
-
 	public void printValeurs(Credit cred) {
 		String chaine = "";
 		chaine += "Taux : " + (double)Math.round((cred.taux() * 100)*100)/100;
@@ -110,12 +115,14 @@ public class BoutonAction extends AbstractAction {
 	}
 
 	/**
-	 * Permet de verifier le nombre des valeurs saisies par l'utilisateur
+	 * Initialise une variable compteur a 0, puis
+	 * pour chacun des champs à remplir de la fenetre principale
+	 * qui est rempli, rajoute +1 a ce compteur.
+	 * @return compteur
+	 * 		Retourne le compteur (donc le nombre de champs remplis).
 	 */
-
 	private int verifNombreValeurs(){
 		int compteur = 0;
-		
 		if(fenetre.getTaux().getText().length() > 0)
 			compteur++;
 		if(fenetre.getDuree().getText().length() > 0)
@@ -127,8 +134,10 @@ public class BoutonAction extends AbstractAction {
 		return compteur;
 	}
 
-	/*
-	 * Voit quel est le type du credit
+	/**
+	 * Permet en recuperant la valeur du comboBox de la fenetre principale
+	 * de savoir quel est le type de remboursement qu'a choisit l'utilisateur,
+	 * puis l'attribut à la variable typeCredit.
 	 */
 	private void defineTypeCredit() {
 		if (fenetre.getCombo().getSelectedItem() == "Amortissement constant")
@@ -137,10 +146,13 @@ public class BoutonAction extends AbstractAction {
 			typeCredit = 2;
 	}
 
-	/*
-	 * Verifie les valeurs tapees par l'utilisateur et initialise les variables
+	/**
+	 * Methode appelee si le nombre de valeurs saisies par l'utilisateur vaut 3.
+	 * Appelle la methode pour definir le type de credit, puis vérifie pour chacun
+	 * des champs si ceux ci sont remplis ou non. Pour ceux remplis, recupere la
+	 * valeur saisie dans la variable correspondante.
+	 * Enfin, appelle la methode generationCredit avec en parametre les valeurs.
 	 */
-
 	private void getValeurs(){
 		defineTypeCredit();
 		double taux = 0;
@@ -168,9 +180,21 @@ public class BoutonAction extends AbstractAction {
 		}
 	}
 	
+	/**
+	 * Methode permet selon le champ qui n'a pas ete rempli par l'utilisateur
+	 * de creer un nouveau Credit avec les valeurs initialisees dans getValeurs().
+	 * Ensuite, appelle la methode printValeurs prenant en parametre ce credit pour
+	 * remplir le label du bas.
+	 * Puis appelle la methode drawTableau en prenant en parametre le tableau de ce
+	 * credit retourne par la methode getTableauAmortissement().getTableau().
+	 * @param taux
+	 * @param remboursement
+	 * @param emprunt
+	 * @param duree
+	 * @throws MonException
+	 */
 	private void generationCredit(double taux, double remboursement, double emprunt, 
 			int duree) throws MonException{
-		Credit cred;
 		if(fenetre.getEmprunt().getText().length() == 0){
 			cred = Credit.calculeMontantEmprunte(typeCredit, remboursement, taux, duree);
 			printValeurs(cred);			
@@ -192,8 +216,18 @@ public class BoutonAction extends AbstractAction {
 			fenetre.drawTableau(cred.getTableauAmortissement().getTableau());
 		}
 	}
-	/*
-	 * Verifie si le credit possede 4 bonnes valeurs
+
+	/**
+	 * Initialise les variables taux, duree, emprunt, remboursement avec les
+	 * champs saisis par l'utilisateur, puis appelle defineTypeCredit() pour
+	 * definir le type de credit.
+	 * Ensuite la methode tente de creer un nouveau credit avec emprunt, taux
+	 * et duree, puis verifie que l'annuite maximale genere par ce credit est
+	 * bien la meme que celle tapee par l'utilisateur.
+	 * Si tout est bon, appelle printValeurs et drawTableau pour remplir le
+	 * label du bas et le tableau d'amortissement.
+	 * @return bool
+	 * 		Retourne true si tout s'est bien passe, sinon false.
 	 */
 	private boolean generationCredit4Valeurs(){
 		double taux = (Double.parseDouble(fenetre.getTaux().getText()))/100;
@@ -201,7 +235,6 @@ public class BoutonAction extends AbstractAction {
 		double emprunt = Double.parseDouble(fenetre.getEmprunt().getText());
 		double remboursement = Double.parseDouble(fenetre.getRemboursement().getText());
 		defineTypeCredit();
-		Credit cred ;
 		try {
 			cred = Credit.calculeAnnuiteMaximale(typeCredit, emprunt, taux, duree);
 			if(cred.annuiteMaximale() == remboursement){
@@ -214,14 +247,15 @@ public class BoutonAction extends AbstractAction {
 			e.printStackTrace();
 		}
 		return false;
-		
-		
 	}
 
 	/**
-	 * Verifie si une chaene contient autre chose que des caracteres numeriques
+	 * Verifie en parcourant la chaine prise en parametre
+	 * si chacun de ses caractere est numerique ou non.
+	 * @param chaine
+	 * @return bool
+	 * 		Retourne true si la chaine est entierement numerique, sinon false.
 	 */
-
 	private boolean getNumeric(String chaine) {
 		for (int i = 0; i < chaine.length(); i++) {
 			if (!Character.isDigit(chaine.charAt(i)) && chaine.charAt(i) != '.')

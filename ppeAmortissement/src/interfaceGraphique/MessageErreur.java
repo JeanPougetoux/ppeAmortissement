@@ -33,12 +33,12 @@ public class MessageErreur {
 	
 	/**
 	 * Erreur si l'annuite max est superieur au montant emprunte
-	 */
+	 *//*
 	public static void ErreurAnnuite(FenetrePrincipale fenetre){
 		fenetre.getErreur().setText("L'annuitee maximale est superieur au montant emprunte");
 		fenetre.getErreur().setForeground(Color.red);
 		fenetre.getErreur().setVisible(true);
-	}
+	}*/
 	
 	/**
 	 * Message d'erreur si le tableau d'amortissement est vide

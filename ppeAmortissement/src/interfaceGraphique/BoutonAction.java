@@ -71,7 +71,8 @@ public class BoutonAction extends AbstractAction {
 							&& fenetre.getEmprunt().getText().length() != 0){
 						if(Double.parseDouble(fenetre.getRemboursement().getText()) > 
 							Double.parseDouble(fenetre.getEmprunt().getText())){
-							MessageErreur.ErreurAnnuite(fenetre);
+							//MessageErreur.ErreurAnnuite(fenetre);
+							getValeurs();
 							fenetre.clearTableau();
 						}
 						else{
@@ -163,7 +164,7 @@ public class BoutonAction extends AbstractAction {
 			generationCredit(taux, remboursement, emprunt, duree);
 		}
 		catch(MonException e){
-			System.out.println(e);
+			
 		}
 	}
 	

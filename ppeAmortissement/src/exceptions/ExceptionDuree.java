@@ -19,7 +19,7 @@ public class ExceptionDuree extends MonException {
 	
 		this.message = message;
 		this.duree = duree;
-		MessageErreur.ErreurException(Application.fenetre, message+ "duree saisie :"+this.duree);
+		MessageErreur.ErreurException(Application.fenetre, message+ " duree saisie : "+this.duree);
 	}
 	
 	@Override

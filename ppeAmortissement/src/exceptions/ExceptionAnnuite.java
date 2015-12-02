@@ -19,7 +19,7 @@ public class ExceptionAnnuite extends MonException {
 	
 		this.message = message;
 		this.annuite = annuite;
-		MessageErreur.ErreurException(Application.fenetre, message+ "annuitee saisie :"+this.annuite);
+		MessageErreur.ErreurException(Application.fenetre, message+ " annuitee saisie : "+this.annuite);
 	}
 	
 	@Override

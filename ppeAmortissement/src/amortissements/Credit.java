@@ -250,7 +250,7 @@ public class Credit
 			throw new ExceptionTaux("Impossible de calculer la duree,taux incorrect!",taux);
 		}
 		else if (montant < annuite){
-			throw new ExceptionMontant("Impossible de calculer la duree, montant trop faible !",montant);
+			throw new ExceptionMontant("Impossible de calculer la duree, montant trop faible par rapport a l'annuite !",montant);
 		}
 		else if (annuite < montant*taux){
 			throw new ExceptionAnnuite("Impossible de calculer la duree, l'annuitee doit etre superieure aux interets !",annuite);

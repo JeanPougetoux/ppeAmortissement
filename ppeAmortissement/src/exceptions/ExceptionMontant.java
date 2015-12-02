@@ -18,7 +18,7 @@ public class ExceptionMontant extends MonException{
 	
 		this.message = message;
 		this.montant = montant;
-		MessageErreur.ErreurException(Application.fenetre, message+ "montant saisi :"+this.montant);
+		MessageErreur.ErreurException(Application.fenetre, message+ " montant saisi : "+this.montant);
 	}
 	
 	@Override

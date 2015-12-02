@@ -30,7 +30,10 @@ public class ExportExcel extends AbstractAction{
 	 */
 	
 	public void actionPerformed(ActionEvent e) { 
-		saveFile();
+		if(!verifTableauVide())
+			saveFile();
+		else
+			MessageErreur.TableauVide(fenetre);
 	} 
 	
 	/*
@@ -83,6 +86,15 @@ public class ExportExcel extends AbstractAction{
 	        enregistrementOk();
 
 	    }catch(IOException e){ System.out.println(e); }
+	}
+	
+	/**
+	 * Vérifie si le tableau contient des valeurs ou non
+	 * @return bool
+	 */
+	public boolean verifTableauVide(){
+        TableModel model = table.getModel();
+        return model.getRowCount() < 1;
 	}
 	
 	/*

@@ -2,6 +2,7 @@ package interfaceGraphique;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import amortissements.Ligne;
@@ -141,11 +142,15 @@ public class FenetrePrincipale extends JFrame {
 	private void panelBottom(){
 		JPanel p = new JPanel(); 
 		p.add(bouton2); 
+		bouton2.setPreferredSize(new Dimension(80, 25));
+		p.setBorder(new EmptyBorder(0, 589, 0, 0));
 		p.add(bouton3);
+		bouton3.setPreferredSize(new Dimension(80, 25));
 		p.setBackground(Color.white);
 		panelTxt.add(p);
 		panelTxt.add(labelBottom);
 		panelTxt.add(messageErreur);
+		panelTxt.setBorder(new EmptyBorder(0, 7, 0, 0));
 	}
 	/**
 	 * Creer un tableau, le remplit de valeurs et l'ajoute au JPanel

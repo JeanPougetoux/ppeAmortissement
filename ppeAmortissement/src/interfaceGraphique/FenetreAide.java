@@ -1,22 +1,27 @@
 package interfaceGraphique;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+
 @SuppressWarnings("serial")
 public class FenetreAide extends JDialog{
 	
 	private JPanel panel;
 	private JTextArea textArea;
-	private JButton bouton;
+	private JButton bouton, bouton2;
 	private JScrollPane scroll;
 	
 	/**
@@ -48,15 +53,29 @@ public class FenetreAide extends JDialog{
 		panel.setBackground(Color.lightGray);
 		textArea = new JTextArea(getMessageDaide(), 10, 39);
 		bouton = new JButton("OK");
+		bouton2 = new JButton("Documentation");
 		textArea.setEditable(false);
 		scroll = new JScrollPane(textArea);
 		panel.add(scroll);
 		panel.add(bouton);
-		bouton.setPreferredSize(new Dimension(140, 27));
+		panel.add(bouton2);
+		bouton.setPreferredSize(new Dimension(130, 27));
+		bouton2.setPreferredSize(new Dimension(130, 27));
 		bouton.addActionListener(new ActionListener(){
 		      public void actionPerformed(ActionEvent arg0) {
 		    	  BoutonAide.fenetreAide.setVisible(false);
 		          BoutonAide.fenetreAide.dispose();
+		      }
+		    });
+		bouton2.addActionListener(new ActionListener(){
+		      public void actionPerformed(ActionEvent arg0) {
+		    	  	try {
+						Desktop.getDesktop().open(new File(new File("").getAbsolutePath() + 
+								"\\src\\pdf\\DocumentationUtilisateur.pdf"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 		      }
 		    });
 		return panel;

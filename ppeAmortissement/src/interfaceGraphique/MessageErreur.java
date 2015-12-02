@@ -41,6 +41,16 @@ public class MessageErreur {
 	}
 	
 	/**
+	 * Message d'erreur si le tableau d'amortissement est vide
+	 * @param fenetre
+	 */
+	public static void TableauVide(FenetrePrincipale fenetre){
+		fenetre.getErreur().setText("Le tableau d'amortissement est vide, export impossible");
+		fenetre.getErreur().setForeground(Color.red);
+		fenetre.getErreur().setVisible(true);
+	}
+	
+	/**
 	 * Export bien effecte
 	 */
 	public static void BienEnregistrer(FenetrePrincipale fenetre){

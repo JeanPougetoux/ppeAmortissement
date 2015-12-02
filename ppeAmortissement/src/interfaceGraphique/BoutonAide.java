@@ -13,9 +13,6 @@ import javax.swing.AbstractAction;
  */
 public class BoutonAide extends AbstractAction{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public final static FenetreAide fenetreAide = new FenetreAide();
 	

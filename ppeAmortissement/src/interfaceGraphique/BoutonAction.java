@@ -83,7 +83,6 @@ public class BoutonAction extends AbstractAction {
 				}
 				else{	
 					getValeurs();
-					fenetre.clearTableau();
 				}
 			}
 			else{

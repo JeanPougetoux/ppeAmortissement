@@ -141,7 +141,7 @@ public class FenetrePrincipale extends JFrame {
 	public void initTableau(){
 		Object[][] donnees = {};
  
-        String[] entetes = {"Annees", "Capital initial", "Interet", "Amortissement", "Annuitee", "Capital final"};
+        String[] entetes = {"Annees", "Capital initial", "Interet", "Amortissement", "Annuite", "Capital final"};
  
         model = new DefaultTableModel(donnees, entetes);
         tableau = new JTable(model);

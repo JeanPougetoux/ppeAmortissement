@@ -43,7 +43,8 @@ public class testTableauAmortissement {
 	 * Permet de tester si le nombre de lignes du tableau est bon.
 	 */
 	public void testGetNbLignes() {
-		assertEquals(cred.duree(), 20, 0.01);
+		assertEquals(cred.duree(), 20);
+		System.out.println(cred.duree());
 	}
 
 	@Test
@@ -53,11 +54,11 @@ public class testTableauAmortissement {
 	 */
 	public void testGetLigne() {
 		Ligne li = tab.getLigne(1);
-		assertTrue(li.getAmortissements() == 5000);
-		assertTrue(li.getAnnee() == 1);
-		assertTrue(li.getAnnuite() == 9750.00);
-		assertTrue(li.getCapitalFinal() == 90000.00);
-		assertTrue(li.getCapitalInitial() == 95000.00);
-		assertTrue(li.getInterets() == 4750.00);
+		assertEquals(li.getAmortissements(), 5000, 0.01);
+		assertEquals(li.getAnnee(), 2, 0.01);
+		assertEquals(li.getAnnuite(), 9750.00, 0.01);
+		assertEquals(li.getCapitalFinal(), 90000.00, 0.01);
+		assertEquals(li.getCapitalInitial(), 95000.00, 0.01);
+		assertEquals(li.getInterets(), 4750.00, 0.01);
 	}
 }

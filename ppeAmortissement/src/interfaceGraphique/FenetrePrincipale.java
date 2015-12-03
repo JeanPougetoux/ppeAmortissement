@@ -167,7 +167,8 @@ public class FenetrePrincipale extends JFrame {
 			donnees[i][4] = (double)Math.round(tab[i].getAnnuite()*100)/100;
 			donnees[i][5] = (double)Math.round(tab[i].getCapitalFinal());
 		}
-        String[] entetes = {"Annees", "Capital initial", "Interet", "Amortissement", "Annuite", "Capital final"};
+        String[] entetes = {"Annees", "Capital initial", "Interet", "Amortissement", "Annuite", 
+        		"Capital final"};
 		model = new DefaultTableModel(donnees, entetes);
 		tableau.setModel(model);
 	}

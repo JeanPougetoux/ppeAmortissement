@@ -99,7 +99,6 @@ public class ExportExcel extends AbstractAction{
 	            }
 	            excel.write("\n");
 	        }
-
 	        excel.close();
 	        enregistrementOk();
 

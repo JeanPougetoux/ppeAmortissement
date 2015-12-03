@@ -247,7 +247,7 @@ public class BoutonAction extends AbstractAction {
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Verifie en parcourant la chaine prise en parametre
 	 * si chacun de ses caractere est numerique ou non.

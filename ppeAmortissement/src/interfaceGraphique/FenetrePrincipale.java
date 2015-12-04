@@ -55,7 +55,7 @@ public class FenetrePrincipale extends JFrame {
 	
 	/**
 	 * Definit le JPanel correspondant au header de l'application,
-	 * donc la partie à saisir pour l'utilisateur et le bouton valider.
+	 * donc la partie ï¿½ saisir pour l'utilisateur et le bouton valider.
 	 * Appelle les methodes drawHead() et panelHead().
 	 * @return panel2
 	 * 		retourne ce JPanel.
@@ -170,6 +170,7 @@ public class FenetrePrincipale extends JFrame {
         String[] entetes = {"Annees", "Capital initial", "Interet", "Amortissement", "Annuite", "Capital final"};
 		model = new DefaultTableModel(donnees, entetes);
 		tableau.setModel(model);
+		
 	}
 	
 	/**

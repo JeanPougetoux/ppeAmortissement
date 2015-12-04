@@ -9,8 +9,8 @@ import amortissements.Credit;
 import exceptions.MonException;
 
 /**
- * Classe BoutonAction est utilis�e au clic sur le bouton "valider" de
- * la fenetre principale, elle h�rite de la classe AbstractAction.
+ * Classe BoutonAction est utilisee au clic sur le bouton "valider" de
+ * la fenetre principale, elle herite de la classe AbstractAction.
  * @author Jean
  *
  */
@@ -36,10 +36,10 @@ public class BoutonAction extends AbstractAction {
 	}
 
 	/**
-	 * Methode correspondant � l'action du clic
+	 * Methode correspondant a l'action du clic
 	 * sur le bouton valider. Elle rend invisible le message
 	 * d'erreur au cas ou il y en ai un, vide le tableau et
-	 * appelle les m�thode d'initialisation.
+	 * appelle les methode d'initialisation.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		fenetre.getErreur().setVisible(false);
@@ -51,7 +51,7 @@ public class BoutonAction extends AbstractAction {
 	/**
 	 * Methode rend invisible le message d'erreur, puis
 	 * initialise une variable chaine au valeurs vide et
-	 * l'attribue grace � la methode getLabelBottom().setText
+	 * l'attribue grace a la methode getLabelBottom().setText
 	 * au label de la fenetre principale.
 	 */
 	public void initializeNul() {
@@ -65,8 +65,8 @@ public class BoutonAction extends AbstractAction {
 	}
 
 	/**
-	 * Permet de v�rifier tout d'abord que les chaines saisies par l'utilisateur
-	 * ne contiennent pas de lettres, puis selon si 4 ou 3 valeurs ont �t� saisies,
+	 * Permet de verifier tout d'abord que les chaines saisies par l'utilisateur
+	 * ne contiennent pas de lettres, puis selon si 4 ou 3 valeurs ont ete saisies,
 	 * appelle les methodes generationCredit4Valeurs ou getValeurs.
 	 * Si il y a moins de 3 valeurs, appelle un message d'erreur.
 	 */
@@ -115,7 +115,7 @@ public class BoutonAction extends AbstractAction {
 
 	/**
 	 * Initialise une variable compteur a 0, puis
-	 * pour chacun des champs � remplir de la fenetre principale
+	 * pour chacun des champ de la fenetre principale
 	 * qui est rempli, rajoute +1 a ce compteur.
 	 * @return compteur
 	 * 		Retourne le compteur (donc le nombre de champs remplis).
@@ -136,7 +136,7 @@ public class BoutonAction extends AbstractAction {
 	/**
 	 * Permet en recuperant la valeur du comboBox de la fenetre principale
 	 * de savoir quel est le type de remboursement qu'a choisit l'utilisateur,
-	 * puis l'attribut � la variable typeCredit.
+	 * puis l'attribut a la variable typeCredit.
 	 */
 	
 	private void defineTypeCredit() {
@@ -148,7 +148,7 @@ public class BoutonAction extends AbstractAction {
 
 	/**
 	 * Methode appelee si le nombre de valeurs saisies par l'utilisateur vaut 3.
-	 * Appelle la methode pour definir le type de credit, puis v�rifie pour chacun
+	 * Appelle la methode pour definir le type de credit, puis verifie pour chacun
 	 * des champs si ceux ci sont remplis ou non. Pour ceux remplis, recupere la
 	 * valeur saisie dans la variable correspondante.
 	 * Enfin, appelle la methode generationCredit avec en parametre les valeurs.

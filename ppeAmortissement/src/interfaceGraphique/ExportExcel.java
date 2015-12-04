@@ -21,10 +21,6 @@ public class ExportExcel extends AbstractAction{
 	private JTable table;
 	private FenetrePrincipale fenetre;
 	
-	/*
-	 * Constructeur dont les paramètres sont la fenêtre principale et le texte du bouton.
-	 * Permet aussi d'initialiser la variable table à celle de l'objet fenetre.
-	 */
 	/**
 	 * Constructeur de la classe ExportExcel. Elle initialise la
 	 * valeur sur le bouton de la fenetre principale ainsi que le JTable
